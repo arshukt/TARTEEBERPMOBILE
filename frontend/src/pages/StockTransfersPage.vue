@@ -82,8 +82,8 @@
         <div class="desktop-line-items">
           <el-table :data="form.stockTransferDetails" border style="width: 100%">
             <el-table-column label="Item" min-width="280">
-              <template #default="{ row }">
-                <el-select v-model="row.itemId" placeholder="Select item" style="width: 100%">
+              <template #default="{ row, $index }">
+                <el-select v-model="row.itemId" placeholder="Select item" style="width: 100%" @change="onItemSelected($index)">
                   <el-option
                     v-for="item in itemStore.items"
                     :key="item.id"
@@ -91,6 +91,13 @@
                     :value="item.id"
                   />
                 </el-select>
+              </template>
+            </el-table-column>
+            <el-table-column label="Current Stock" width="100">
+              <template #default="{ row }">
+                <span :class="{ 'text-red-600': (getItemById(row.itemId)?.currentStock ?? 0) <= 0 && getItemById(row.itemId)?.currentStock !== undefined }">
+                  {{ getItemById(row.itemId)?.currentStock ?? '-' }}
+                </span>
               </template>
             </el-table-column>
             <el-table-column label="Quantity" width="160">
@@ -122,7 +129,7 @@
             <div class="mobile-line-grid">
               <label class="full">
                 <span class="mobile-field-label">Item</span>
-                <el-select v-model="row.itemId" placeholder="Select item" style="width: 100%">
+                <el-select v-model="row.itemId" placeholder="Select item" style="width: 100%" @change="onItemSelected(Number(index))">
                   <el-option
                     v-for="item in itemStore.items"
                     :key="item.id"
@@ -134,6 +141,12 @@
               <label class="full">
                 <span class="mobile-field-label">Quantity</span>
                 <el-input-number v-model="row.quantity" :min="1" :precision="2" :step="1" style="width: 100%" />
+              </label>
+              <label class="full">
+                <span class="mobile-field-label">Current Stock</span>
+                <span :class="{ 'text-red-600': (getItemById(row.itemId)?.currentStock ?? 0) <= 0 && getItemById(row.itemId)?.currentStock !== undefined }">
+                  {{ getItemById(row.itemId)?.currentStock ?? '-' }}
+                </span>
               </label>
             </div>
           </div>
@@ -221,10 +234,14 @@ const openDialog = async (stockTransfer?: any) => {
   dialogVisible.value = true;
   dialogLoading.value = true;
   try {
-    await itemStore.fetchAll();
+    await itemStore.fetchAllWithStock();
   } finally {
     dialogLoading.value = false;
   }
+};
+
+const getItemById = (itemId: number) => {
+  return itemStore.items.find(i => i.id === itemId);
 };
 
 const addItemRow = () => {
@@ -238,6 +255,19 @@ const removeItemRow = (index: number) => {
   form.value.stockTransferDetails.splice(index, 1);
 };
 
+const onItemSelected = (index: number) => {
+  const detail = form.value.stockTransferDetails[index];
+  const item = itemStore.items.find((i) => i.id === detail.itemId);
+  if (item) {
+    const stockMsg = item.currentStock !== undefined ? `Stock: ${item.currentStock}` : "Stock: -";
+    if (item.currentStock !== undefined && item.currentStock <= 0) {
+      ElMessage.warning(`${item.itemName} has no stock available`);
+    } else {
+      ElMessage.info(`${item.itemName} - ${stockMsg}`);
+    }
+  }
+};
+
 const handleSubmit = async () => {
   if (!formRef.value || saveLoading.value) return;
   const valid = await formRef.value.validate().catch(() => false);
@@ -248,6 +278,16 @@ const handleSubmit = async () => {
 
   if (hasInvalidItem) {
     ElMessage.warning("Add at least one valid item before saving the transfer");
+    return;
+  }
+
+  const insufficientStock = form.value.stockTransferDetails.some((detail: any) => {
+    const item = itemStore.items.find((i) => i.id === detail.itemId);
+    return item && item.currentStock !== undefined && detail.quantity > item.currentStock;
+  });
+
+  if (insufficientStock) {
+    ElMessage.warning("Cannot save transfer: one or more items have insufficient stock");
     return;
   }
 

@@ -16,6 +16,53 @@ public class PurchaseReturnRepository : RepositoryBase<PurchaseReturn>, IPurchas
     {
     }
 
+    public override async Task<PurchaseReturn?> GetByIdAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string headerSql = @"
+            SELECT *
+            FROM ""PurchaseReturns""
+            WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+        var purchaseReturn = await conn.QueryFirstOrDefaultAsync<PurchaseReturn>(headerSql, new { Id = id });
+        if (purchaseReturn == null)
+            return null;
+
+        const string detailsSql = @"
+            SELECT *
+            FROM ""PurchaseReturnDetails""
+            WHERE ""PurchaseReturnId"" = @PurchaseReturnId AND ""IsDeleted"" = false
+            ORDER BY ""Id""";
+        purchaseReturn.PurchaseReturnDetails = (await conn.QueryAsync<PurchaseReturnDetail>(
+            detailsSql,
+            new { PurchaseReturnId = id })).ToList();
+
+        return purchaseReturn;
+    }
+
+    public async Task<IReadOnlyDictionary<int, decimal>> GetReturnedQuantitiesByPurchaseDetailAsync(int purchaseId, int? excludeReturnId = null)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string sql = @"
+            SELECT
+                prd.""PurchaseDetailId"" AS ""DetailId"",
+                COALESCE(SUM(prd.""Quantity""), 0) AS ""Quantity""
+            FROM ""PurchaseReturnDetails"" prd
+            INNER JOIN ""PurchaseReturns"" pr ON pr.""Id"" = prd.""PurchaseReturnId""
+            WHERE pr.""PurchaseId"" = @PurchaseId
+              AND pr.""IsDeleted"" = false
+              AND prd.""IsDeleted"" = false
+              AND (@ExcludeReturnId IS NULL OR pr.""Id"" <> @ExcludeReturnId)
+            GROUP BY prd.""PurchaseDetailId""";
+
+        var rows = await conn.QueryAsync<ReturnedQuantityRow>(sql, new
+        {
+            PurchaseId = purchaseId,
+            ExcludeReturnId = excludeReturnId
+        });
+
+        return rows.ToDictionary(row => row.DetailId, row => row.Quantity);
+    }
+
     public override async Task AddAsync(PurchaseReturn purchaseReturn)
     {
         using var conn = _dbConnectionFactory.CreateConnection();
@@ -122,5 +169,41 @@ public class PurchaseReturnRepository : RepositoryBase<PurchaseReturn>, IPurchas
             transaction.Rollback();
             throw;
         }
+    }
+
+    public override async Task DeleteAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        conn.Open();
+        using var transaction = conn.BeginTransaction();
+        try
+        {
+            const string deleteHeaderSql = @"
+                UPDATE ""PurchaseReturns"" SET
+                    ""IsDeleted"" = true,
+                    ""DeletedAt"" = @DeletedAt
+                WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+            await conn.ExecuteAsync(deleteHeaderSql, new { Id = id, DeletedAt = DateTime.UtcNow }, transaction);
+
+            const string deleteDetailsSql = @"
+                UPDATE ""PurchaseReturnDetails"" SET
+                    ""IsDeleted"" = true,
+                    ""DeletedAt"" = @DeletedAt
+                WHERE ""PurchaseReturnId"" = @PurchaseReturnId AND ""IsDeleted"" = false";
+            await conn.ExecuteAsync(deleteDetailsSql, new { PurchaseReturnId = id, DeletedAt = DateTime.UtcNow }, transaction);
+
+            transaction.Commit();
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
+        }
+    }
+
+    private sealed class ReturnedQuantityRow
+    {
+        public int DetailId { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

@@ -57,3 +57,17 @@ export interface User {
   permissions?: string[]
   isActive: boolean
 }
+
+export interface SaleDto {
+  date: string
+  invoiceNumber: string
+  customer: string
+  total: number
+}
+
+export interface PurchaseDto {
+  date: string
+  invoiceNumber: string
+  supplier: string
+  total: number
+}

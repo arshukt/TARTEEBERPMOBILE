@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
-import type { OpeningStock, CreateOpeningStock, UpdateOpeningStock } from "@/services/opening-stocks";
+import type { OpeningStock, CreateOpeningStock, UpdateOpeningStock, OpeningStockDetail } from "@/services/opening-stocks";
 import { openingStockService } from "@/services/opening-stocks";
 
 export const useOpeningStockStore = defineStore("openingStocks", () => {
@@ -29,7 +29,14 @@ export const useOpeningStockStore = defineStore("openingStocks", () => {
             loading.value = true;
             const response = await openingStockService.getPaged(pageNumber, pageSize, searchTerm);
             if (response.success) {
-                pagedOpeningStocks.value = response.data!;
+                const items = (response.data!.items || []).map((item: OpeningStock) => ({
+                    ...item,
+                    quantity: item.openingStockDetails?.reduce((sum: number, d: OpeningStockDetail) => sum + d.quantity, 0)
+                }));
+                pagedOpeningStocks.value = {
+                    ...response.data!,
+                    items
+                };
             }
         } catch (error: any) {
             ElMessage.error(error?.response?.data?.message || "Failed to fetch opening stocks");

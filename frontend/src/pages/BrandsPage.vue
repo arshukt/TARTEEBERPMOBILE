@@ -16,21 +16,30 @@
     </div>
 
     <el-card>
-      <el-table :data="brandStore.pagedBrands.items" v-loading="brandStore.loading" stripe>
+      <el-table
+        :data="brandStore.pagedBrands.items"
+        v-loading="brandStore.loading"
+        stripe
+      >
         <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="brandName" label="Brand Name" />
-        <el-table-column label="Actions" width="200">
+        <el-table-column prop="brandName" label="Brand Name" width="150" />
+        <el-table-column
+          label="Actions"
+          width="90"
+          fixed="right"
+          align="center"
+        >
           <template #default="{ row }">
-            <el-button type="primary" size="small" link @click="openDialog(row)">
+            <el-button link type="primary" @click="openDialog(row)">
               Edit
             </el-button>
-            <el-button type="danger" size="small" link @click="handleDelete(row.id)">
+            <el-button link type="danger" @click="handleDelete(row)">
               Delete
             </el-button>
           </template>
         </el-table-column>
       </el-table>
-      
+
       <el-pagination
         v-model:current-page="brandStore.pagedBrands.pageNumber"
         v-model:page-size="brandStore.pagedBrands.pageSize"
@@ -75,13 +84,13 @@ const editingBrand = ref<any>(null);
 const formRef = ref<FormInstance>();
 
 const form = ref<CreateBrand>({
-  brandName: ""
+  brandName: "",
 });
 
 const rules: FormRules = {
   brandName: [
-    { required: true, message: "Brand name is required", trigger: "blur" }
-  ]
+    { required: true, message: "Brand name is required", trigger: "blur" },
+  ],
 };
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
@@ -96,7 +105,7 @@ const loadBrands = () => {
   brandStore.fetchPaged(
     brandStore.pagedBrands.pageNumber,
     brandStore.pagedBrands.pageSize,
-    searchTerm.value
+    searchTerm.value,
   );
 };
 
@@ -104,11 +113,11 @@ const openDialog = (brand?: any) => {
   editingBrand.value = brand || null;
   if (brand) {
     form.value = {
-      brandName: brand.brandName
+      brandName: brand.brandName,
     };
   } else {
     form.value = {
-      brandName: ""
+      brandName: "",
     };
   }
   dialogVisible.value = true;
@@ -122,7 +131,7 @@ const handleSubmit = async () => {
       if (editingBrand.value) {
         success = await brandStore.update({
           id: editingBrand.value.id,
-          ...form.value
+          ...form.value,
         } as UpdateBrand);
       } else {
         success = await brandStore.create(form.value);
@@ -137,9 +146,13 @@ const handleSubmit = async () => {
 
 const handleDelete = async (id: number) => {
   try {
-    await ElMessageBox.confirm("Are you sure you want to delete this brand?", "Confirm", {
-      type: "warning"
-    });
+    await ElMessageBox.confirm(
+      "Are you sure you want to delete this brand?",
+      "Confirm",
+      {
+        type: "warning",
+      },
+    );
     const success = await brandStore.remove(id);
     if (success) {
       loadBrands();

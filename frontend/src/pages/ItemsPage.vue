@@ -16,30 +16,41 @@
     </div>
 
     <el-card>
-      <el-table :data="itemStore.pagedItems.items" v-loading="itemStore.loading" stripe>
-        <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="barcode" label="Barcode" width="120" />
-        <el-table-column prop="itemCode" label="Item Code" width="120" />
-        <el-table-column prop="itemName" label="Item Name" />
-        <el-table-column prop="categoryName" label="Category" />
-        <el-table-column prop="brandName" label="Brand" />
-        <el-table-column prop="unitName" label="Unit" width="100" />
-        <el-table-column prop="retailRate" label="Retail Rate" width="120">
-          <template #default="{ row }">{{ formatCurrency(row.retailRate) }}</template>
+      <el-table
+        :data="itemStore.pagedItems.items"
+        v-loading="itemStore.loading"
+        stripe
+      >
+        <el-table-column prop="id" label="ID" width="60" />
+        <!-- <el-table-column prop="barcode" label="Barcode" width="100" /> -->
+        <el-table-column prop="itemCode" label="Item Code" width="100" />
+        <el-table-column prop="itemName" label="Item Name" width="150" />
+        <el-table-column prop="categoryName" label="Category" width="100" />
+        <!-- <el-table-column prop="brandName" label="Brand" width="100" /> -->
+        <el-table-column prop="unitName" label="Unit" width="60" />
+        <el-table-column prop="retailRate" label="RRP" width="120">
+          <template #default="{ row }">{{
+            formatCurrency(row.retailRate)
+          }}</template>
         </el-table-column>
         <el-table-column prop="isActive" label="Status" width="100">
           <template #default="{ row }">
             <el-tag :type="row.isActive ? 'success' : 'danger'">
-              {{ row.isActive ? 'Active' : 'Inactive' }}
+              {{ row.isActive ? "Active" : "Inactive" }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Actions" width="150">
+        <el-table-column
+          label="Actions"
+          width="90"
+          fixed="right"
+          align="center"
+        >
           <template #default="{ row }">
-            <el-button type="primary" size="small" link @click="openDialog(row)">
+            <el-button link type="primary" @click="openDialog(row)">
               Edit
             </el-button>
-            <el-button type="danger" size="small" link @click="handleDelete(row.id)">
+            <el-button link type="danger" @click="handleDelete(row)">
               Delete
             </el-button>
           </template>
@@ -84,7 +95,11 @@
         <el-row :gutter="20">
           <el-col :span="8">
             <el-form-item label="Category" prop="categoryId">
-              <el-select v-model="form.categoryId" placeholder="Select category" style="width: 100%">
+              <el-select
+                v-model="form.categoryId"
+                placeholder="Select category"
+                style="width: 100%"
+              >
                 <el-option
                   v-for="category in categoryStore.categories"
                   :key="category.id"
@@ -96,7 +111,11 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="Brand" prop="brandId">
-              <el-select v-model="form.brandId" placeholder="Select brand" style="width: 100%">
+              <el-select
+                v-model="form.brandId"
+                placeholder="Select brand"
+                style="width: 100%"
+              >
                 <el-option
                   v-for="brand in brandStore.brands"
                   :key="brand.id"
@@ -108,7 +127,11 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="Unit" prop="unitId">
-              <el-select v-model="form.unitId" placeholder="Select unit" style="width: 100%">
+              <el-select
+                v-model="form.unitId"
+                placeholder="Select unit"
+                style="width: 100%"
+              >
                 <el-option
                   v-for="unit in unitStore.units"
                   :key="unit.id"
@@ -123,22 +146,42 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="Purchase Rate" prop="purchaseRate">
-              <el-input-number v-model="form.purchaseRate" :precision="2" :step="0.01" style="width: 100%" />
+              <el-input-number
+                v-model="form.purchaseRate"
+                :precision="2"
+                :step="0.01"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="Cost Rate" prop="costRate">
-              <el-input-number v-model="form.costRate" :precision="2" :step="0.01" style="width: 100%" />
+              <el-input-number
+                v-model="form.costRate"
+                :precision="2"
+                :step="0.01"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="Wholesale Rate" prop="wholesaleRate">
-              <el-input-number v-model="form.wholesaleRate" :precision="2" :step="0.01" style="width: 100%" />
+              <el-input-number
+                v-model="form.wholesaleRate"
+                :precision="2"
+                :step="0.01"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="Retail Rate" prop="retailRate">
-              <el-input-number v-model="form.retailRate" :precision="2" :step="0.01" style="width: 100%" />
+              <el-input-number
+                v-model="form.retailRate"
+                :precision="2"
+                :step="0.01"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
         </el-row>
@@ -146,22 +189,42 @@
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="MRP" prop="mrp">
-              <el-input-number v-model="form.mrp" :precision="2" :step="0.01" style="width: 100%" />
+              <el-input-number
+                v-model="form.mrp"
+                :precision="2"
+                :step="0.01"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="Tax %" prop="taxPercentage">
-              <el-input-number v-model="form.taxPercentage" :precision="2" :step="0.01" style="width: 100%" />
+              <el-input-number
+                v-model="form.taxPercentage"
+                :precision="2"
+                :step="0.01"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="Min Stock" prop="minimumStock">
-              <el-input-number v-model="form.minimumStock" :precision="2" :step="1" style="width: 100%" />
+              <el-input-number
+                v-model="form.minimumStock"
+                :precision="2"
+                :step="1"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="Opening Stock" prop="openingStock">
-              <el-input-number v-model="form.openingStock" :precision="2" :step="1" style="width: 100%" />
+              <el-input-number
+                v-model="form.openingStock"
+                :precision="2"
+                :step="1"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
         </el-row>
@@ -185,7 +248,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from "element-plus";
+import {
+  ElMessage,
+  ElMessageBox,
+  type FormInstance,
+  type FormRules,
+} from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { useItemStore } from "@/stores/items";
 import { useCategoryStore } from "@/stores/categories";
@@ -219,29 +287,51 @@ const form = ref<CreateItem>({
   minimumStock: 0,
   openingStock: 0,
   isActive: true,
-  itemImage: ""
+  itemImage: "",
 });
 
 const rules: FormRules = {
-  itemCode: [{ required: true, message: "Item code is required", trigger: "blur" }],
-  itemName: [{ required: true, message: "Item name is required", trigger: "blur" }],
-  categoryId: [{ required: true, message: "Category is required", trigger: "change" }],
-  brandId: [{ required: true, message: "Brand is required", trigger: "change" }],
+  itemCode: [
+    { required: true, message: "Item code is required", trigger: "blur" },
+  ],
+  itemName: [
+    { required: true, message: "Item name is required", trigger: "blur" },
+  ],
+  categoryId: [
+    { required: true, message: "Category is required", trigger: "change" },
+  ],
+  brandId: [
+    { required: true, message: "Brand is required", trigger: "change" },
+  ],
   unitId: [{ required: true, message: "Unit is required", trigger: "change" }],
-  purchaseRate: [{ required: true, message: "Purchase rate is required", trigger: "blur" }],
-  costRate: [{ required: true, message: "Cost rate is required", trigger: "blur" }],
-  wholesaleRate: [{ required: true, message: "Wholesale rate is required", trigger: "blur" }],
-  retailRate: [{ required: true, message: "Retail rate is required", trigger: "blur" }],
+  purchaseRate: [
+    { required: true, message: "Purchase rate is required", trigger: "blur" },
+  ],
+  costRate: [
+    { required: true, message: "Cost rate is required", trigger: "blur" },
+  ],
+  wholesaleRate: [
+    { required: true, message: "Wholesale rate is required", trigger: "blur" },
+  ],
+  retailRate: [
+    { required: true, message: "Retail rate is required", trigger: "blur" },
+  ],
   mrp: [{ required: true, message: "MRP is required", trigger: "blur" }],
-  taxPercentage: [{ required: true, message: "Tax percentage is required", trigger: "blur" }],
-  minimumStock: [{ required: true, message: "Minimum stock is required", trigger: "blur" }],
-  openingStock: [{ required: true, message: "Opening stock is required", trigger: "blur" }]
+  taxPercentage: [
+    { required: true, message: "Tax percentage is required", trigger: "blur" },
+  ],
+  minimumStock: [
+    { required: true, message: "Minimum stock is required", trigger: "blur" },
+  ],
+  openingStock: [
+    { required: true, message: "Opening stock is required", trigger: "blur" },
+  ],
 };
 
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD"
+    currency: "QAR",
   }).format(value);
 };
 
@@ -257,7 +347,7 @@ const loadItems = () => {
   itemStore.fetchPaged(
     itemStore.pagedItems.pageNumber,
     itemStore.pagedItems.pageSize,
-    searchTerm.value
+    searchTerm.value,
   );
 };
 
@@ -284,7 +374,7 @@ const openDialog = async (item?: any) => {
       minimumStock: item.minimumStock,
       openingStock: item.openingStock,
       isActive: item.isActive,
-      itemImage: item.itemImage
+      itemImage: item.itemImage,
     };
   } else {
     form.value = {
@@ -303,7 +393,7 @@ const openDialog = async (item?: any) => {
       minimumStock: 0,
       openingStock: 0,
       isActive: true,
-      itemImage: ""
+      itemImage: "",
     };
   }
   dialogVisible.value = true;
@@ -317,7 +407,7 @@ const handleSubmit = async () => {
       if (editingItem.value) {
         success = await itemStore.update({
           id: editingItem.value.id,
-          ...form.value
+          ...form.value,
         } as UpdateItem);
       } else {
         success = await itemStore.create(form.value);
@@ -332,9 +422,13 @@ const handleSubmit = async () => {
 
 const handleDelete = async (id: number) => {
   try {
-    await ElMessageBox.confirm("Are you sure you want to delete this item?", "Confirm", {
-      type: "warning"
-    });
+    await ElMessageBox.confirm(
+      "Are you sure you want to delete this item?",
+      "Confirm",
+      {
+        type: "warning",
+      },
+    );
     const success = await itemStore.remove(id);
     if (success) {
       loadItems();

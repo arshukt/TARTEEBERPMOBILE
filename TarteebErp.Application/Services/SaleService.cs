@@ -56,7 +56,7 @@ public class SaleService : ISaleService
 
     public async Task<SaleDto> CreateAsync(CreateSaleDto dto, int currentUserId)
     {
-        ValidateSale(dto);
+        await ValidateSale(dto);
         dto.InvoiceNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.Sale,
             dto.InvoiceNumber);
@@ -97,7 +97,7 @@ public class SaleService : ISaleService
         if (sale == null)
             throw new KeyNotFoundException($"Sale with id {dto.Id} not found");
 
-        ValidateSale(dto);
+        await ValidateSale(dto);
         dto.InvoiceNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.Sale,
             dto.InvoiceNumber,
@@ -110,10 +110,34 @@ public class SaleService : ISaleService
         sale.UpdatedBy = currentUserId;
 
         await _saleRepository.UpdateAsync(sale);
+
+        var affectedItemIds = new HashSet<int>(
+            await _stockTransactionRepository.DeleteForReferenceAsync("Sale", dto.Id, currentUserId));
+
+        foreach (var detail in sale.SaleDetails)
+        {
+            affectedItemIds.Add(detail.ItemId);
+            await _stockTransactionRepository.AddTransactionAsync(new StockTransaction
+            {
+                ItemId = detail.ItemId,
+                TransactionType = StockTransactionType.Sale,
+                QuantityIn = 0,
+                QuantityOut = detail.Quantity,
+                ReferenceId = sale.Id,
+                ReferenceType = "Sale",
+                Notes = $"Sale invoice {dto.InvoiceNumber}",
+                TransactionDate = dto.SaleDate,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = currentUserId
+            });
+        }
+
+        await _stockTransactionRepository.RecalculateBalancesAsync(affectedItemIds);
     }
 
     public async Task DeleteAsync(int id)
     {
+        await _stockTransactionRepository.DeleteForReferenceAsync("Sale", id, 0);
         await _saleRepository.DeleteAsync(id);
     }
 
@@ -140,7 +164,7 @@ public class SaleService : ISaleService
         sale.DueAmount = sale.NetAmount - sale.PaidAmount;
     }
 
-    private static void ValidateSale(CreateSaleDto dto)
+    private async Task ValidateSale(CreateSaleDto dto)
     {
         TransactionValidation.RequireDate(dto.SaleDate, "Sale date");
         TransactionValidation.RequireDetails(dto.SaleDetails, "Sale details");
@@ -163,6 +187,10 @@ public class SaleService : ISaleService
 
             if (detail.Discount > detail.Quantity * detail.Rate)
                 throw new ArgumentException($"Sale line {lineNumber} discount cannot be greater than line total");
+
+            var currentStock = await _stockTransactionRepository.GetCurrentStockAsync(detail.ItemId);
+            if (detail.Quantity > currentStock)
+                throw new InvalidOperationException($"Insufficient stock for item {detail.ItemId}. Available: {currentStock}, requested: {detail.Quantity}");
 
             lineNumber++;
         }

@@ -10,7 +10,7 @@
     >
       <div class="erp-sidebar-header">
         <div class="erp-brand">
-          <div class="erp-brand-mark">T</div>
+          <img src="/logo.png" alt="Tarteeb ERP" class="erp-brand-logo" />
           <div>
             <h1 class="erp-brand-name">Tarteeb ERP</h1>
             <p class="erp-brand-subtitle">Van Sales</p>

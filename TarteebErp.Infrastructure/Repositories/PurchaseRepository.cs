@@ -16,6 +16,29 @@ public class PurchaseRepository : RepositoryBase<Purchase>, IPurchaseRepository
     {
     }
 
+    public override async Task<Purchase?> GetByIdAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string headerSql = @"
+            SELECT *
+            FROM ""Purchases""
+            WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+        var purchase = await conn.QueryFirstOrDefaultAsync<Purchase>(headerSql, new { Id = id });
+        if (purchase == null)
+            return null;
+
+        const string detailsSql = @"
+            SELECT *
+            FROM ""PurchaseDetails""
+            WHERE ""PurchaseId"" = @PurchaseId AND ""IsDeleted"" = false
+            ORDER BY ""Id""";
+        purchase.PurchaseDetails = (await conn.QueryAsync<PurchaseDetail>(
+            detailsSql,
+            new { PurchaseId = id })).ToList();
+
+        return purchase;
+    }
+
     public override async Task AddAsync(Purchase purchase)
     {
         using var conn = _dbConnectionFactory.CreateConnection();

@@ -10,7 +10,12 @@
           clearable
           @input="debouncedSearch"
         />
-        <el-select v-model="selectedItemId" placeholder="Filter by item" clearable style="width: 250px">
+        <el-select
+          v-model="selectedItemId"
+          placeholder="Filter by item"
+          clearable
+          style="width: 250px"
+        >
           <el-option
             v-for="item in itemStore.items"
             :key="item.id"
@@ -22,23 +27,35 @@
     </div>
 
     <el-card>
-      <el-table :data="stockTransactionStore.pagedStockTransactions.items" v-loading="stockTransactionStore.loading" stripe>
-        <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="transactionDate" label="Date" width="150">
+      <el-table
+        :data="stockTransactionStore.pagedStockTransactions.items"
+        v-loading="stockTransactionStore.loading"
+        stripe
+      >
+        <el-table-column prop="id" label="ID" width="60" />
+        <el-table-column prop="transactionDate" label="Date" width="100">
           <template #default="{ row }">
             {{ formatDate(row.transactionDate) }}
           </template>
         </el-table-column>
-        <el-table-column prop="transactionTypeName" label="Transaction Type" width="180" />
-        <el-table-column prop="quantityIn" label="Quantity In" width="120" />
-        <el-table-column prop="quantityOut" label="Quantity Out" width="120" />
-        <el-table-column prop="balanceAfter" label="Balance" width="120" />
-        <el-table-column prop="referenceType" label="Reference" width="150" />
-        <el-table-column label="Notes" prop="notes" />
+        <el-table-column
+          prop="transactionTypeName"
+          label="Transaction Type"
+          width="150"
+        />
+        <el-table-column prop="quantityIn" label="Qty In" width="80" />
+        <el-table-column prop="quantityOut" label="Qty Out" width="80" />
+        <el-table-column prop="balanceAfter" label="Balance" width="80" />
+        <!-- <el-table-column prop="referenceType" label="Reference" width="150" /> -->
+        <!-- <el-table-column label="Notes" prop="notes" /> -->
       </el-table>
       <el-pagination
-        v-model:current-page="stockTransactionStore.pagedStockTransactions.pageNumber"
-        v-model:page-size="stockTransactionStore.pagedStockTransactions.pageSize"
+        v-model:current-page="
+          stockTransactionStore.pagedStockTransactions.pageNumber
+        "
+        v-model:page-size="
+          stockTransactionStore.pagedStockTransactions.pageSize
+        "
         :page-sizes="[10, 20, 50, 100]"
         :total="stockTransactionStore.pagedStockTransactions.totalCount"
         layout="total, sizes, prev, pager, next, jumper"
@@ -78,7 +95,7 @@ const loadStockTransactions = () => {
     stockTransactionStore.pagedStockTransactions.pageNumber,
     stockTransactionStore.pagedStockTransactions.pageSize,
     searchTerm.value,
-    selectedItemId.value || undefined
+    selectedItemId.value || undefined,
   );
 };
 

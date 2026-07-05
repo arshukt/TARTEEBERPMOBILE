@@ -26,19 +26,32 @@
         stripe
         style="width: 100%"
       >
-        <el-table-column prop="supplierCode" label="Code" width="120" />
-        <el-table-column prop="supplierName" label="Name" min-width="180" />
+        <el-table-column prop="supplierCode" label="Code" width="80" />
+        <el-table-column prop="supplierName" label="Name" min-width="120" />
         <el-table-column prop="mobile" label="Mobile" width="130" />
-        <el-table-column prop="email" label="Email" width="180" />
-        <el-table-column prop="openingBalance" label="Opening Balance" width="180">
+        <!-- <el-table-column prop="email" label="Email" width="180" /> -->
+        <el-table-column
+          prop="openingBalance"
+          label="Balance"
+          width="80"
+        >
           <template #default="{ row }">
             {{ formatCurrency(row.openingBalance) }}
           </template>
         </el-table-column>
-        <el-table-column label="Actions" width="180">
+        <el-table-column
+          label="Actions"
+          width="90"
+          fixed="right"
+          align="center"
+        >
           <template #default="{ row }">
-            <el-button link type="primary" @click="openDialog(row)">Edit</el-button>
-            <el-button link type="danger" @click="handleDelete(row)">Delete</el-button>
+            <el-button link type="primary" @click="openDialog(row)">
+              Edit
+            </el-button>
+            <el-button link type="danger" @click="handleDelete(row)">
+              Delete
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -69,28 +82,53 @@
         label-width="140px"
       >
         <el-form-item label="Supplier Code" prop="supplierCode">
-          <el-input v-model="formData.supplierCode" placeholder="Enter supplier code" />
+          <el-input
+            v-model="formData.supplierCode"
+            placeholder="Enter supplier code"
+          />
         </el-form-item>
         <el-form-item label="Supplier Name" prop="supplierName">
-          <el-input v-model="formData.supplierName" placeholder="Enter supplier name" />
+          <el-input
+            v-model="formData.supplierName"
+            placeholder="Enter supplier name"
+          />
         </el-form-item>
         <el-form-item label="Mobile" prop="mobile">
-          <el-input v-model="formData.mobile" placeholder="Enter mobile number" />
+          <el-input
+            v-model="formData.mobile"
+            placeholder="Enter mobile number"
+          />
         </el-form-item>
         <el-form-item label="Email" prop="email">
-          <el-input v-model="formData.email" type="email" placeholder="Enter email" />
+          <el-input
+            v-model="formData.email"
+            type="email"
+            placeholder="Enter email"
+          />
         </el-form-item>
         <el-form-item label="Address" prop="address">
-          <el-input v-model="formData.address" type="textarea" :rows="2" placeholder="Enter address" />
+          <el-input
+            v-model="formData.address"
+            type="textarea"
+            :rows="2"
+            placeholder="Enter address"
+          />
         </el-form-item>
         <el-form-item label="Opening Balance" prop="openingBalance">
-          <el-input-number v-model="formData.openingBalance" :precision="2" :step="100" class="w-full" />
+          <el-input-number
+            v-model="formData.openingBalance"
+            :precision="2"
+            :step="100"
+            class="w-full"
+          />
         </el-form-item>
       </el-form>
       <template #footer>
         <div class="flex justify-end gap-2">
           <el-button @click="dialogVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="handleSubmit" :loading="saving">Save</el-button>
+          <el-button type="primary" @click="handleSubmit" :loading="saving"
+            >Save</el-button
+          >
         </div>
       </template>
     </el-dialog>
@@ -98,129 +136,153 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from 'element-plus'
-import { Plus, Search } from '@element-plus/icons-vue'
-import { supplierService, type Supplier, type CreateSupplier, type UpdateSupplier } from '@/services/suppliers'
+import { ref, reactive, onMounted } from "vue";
+import {
+  ElMessage,
+  ElMessageBox,
+  type FormInstance,
+  type FormRules,
+} from "element-plus";
+import { Plus, Search } from "@element-plus/icons-vue";
+import {
+  supplierService,
+  type Supplier,
+  type CreateSupplier,
+  type UpdateSupplier,
+} from "@/services/suppliers";
 
-const suppliers = ref<Supplier[]>([])
-const loading = ref(false)
-const saving = ref(false)
-const currentPage = ref(1)
-const pageSize = ref(10)
-const totalCount = ref(0)
-const searchTerm = ref('')
-const dialogVisible = ref(false)
-const isEdit = ref(false)
-const formRef = ref<FormInstance>()
+const suppliers = ref<Supplier[]>([]);
+const loading = ref(false);
+const saving = ref(false);
+const currentPage = ref(1);
+const pageSize = ref(10);
+const totalCount = ref(0);
+const searchTerm = ref("");
+const dialogVisible = ref(false);
+const isEdit = ref(false);
+const formRef = ref<FormInstance>();
 
 const formData = reactive<CreateSupplier & { id?: number }>({
-  supplierCode: '',
-  supplierName: '',
-  mobile: '',
-  email: '',
-  address: '',
+  supplierCode: "",
+  supplierName: "",
+  mobile: "",
+  email: "",
+  address: "",
   openingBalance: 0,
-  id: undefined
-})
+  id: undefined,
+});
 
 const rules: FormRules = {
-  supplierCode: [{ required: true, message: 'Please enter supplier code', trigger: 'blur' }],
-  supplierName: [{ required: true, message: 'Please enter supplier name', trigger: 'blur' }]
-}
+  supplierCode: [
+    { required: true, message: "Please enter supplier code", trigger: "blur" },
+  ],
+  supplierName: [
+    { required: true, message: "Please enter supplier name", trigger: "blur" },
+  ],
+};
 
-let debounceTimer: ReturnType<typeof setTimeout>
+let debounceTimer: ReturnType<typeof setTimeout>;
 const debouncedSearch = () => {
-  clearTimeout(debounceTimer)
+  clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
-    currentPage.value = 1
-    loadSuppliers()
-  }, 300)
-}
+    currentPage.value = 1;
+    loadSuppliers();
+  }, 300);
+};
 
 const loadSuppliers = async () => {
-  loading.value = true
+  loading.value = true;
   try {
-    const response = await supplierService.getPaged(currentPage.value, pageSize.value, searchTerm.value)
+    const response = await supplierService.getPaged(
+      currentPage.value,
+      pageSize.value,
+      searchTerm.value,
+    );
     if (response.success && response.data) {
-      suppliers.value = response.data.items
-      totalCount.value = response.data.totalCount
+      suppliers.value = response.data.items;
+      totalCount.value = response.data.totalCount;
     }
   } catch (error) {
-    ElMessage.error('Failed to load suppliers')
+    ElMessage.error("Failed to load suppliers");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 
 const openDialog = (supplier?: Supplier) => {
-  isEdit.value = !!supplier
+  isEdit.value = !!supplier;
   if (supplier) {
-    Object.assign(formData, supplier)
+    Object.assign(formData, supplier);
   } else {
     Object.assign(formData, {
-      supplierCode: '',
-      supplierName: '',
-      mobile: '',
-      email: '',
-      address: '',
+      supplierCode: "",
+      supplierName: "",
+      mobile: "",
+      email: "",
+      address: "",
       openingBalance: 0,
-      id: undefined
-    })
+      id: undefined,
+    });
   }
-  dialogVisible.value = true
-}
+  dialogVisible.value = true;
+};
 
 const handleSubmit = async () => {
-  if (!formRef.value) return
+  if (!formRef.value) return;
   await formRef.value.validate(async (valid) => {
     if (valid) {
-      saving.value = true
+      saving.value = true;
       try {
         if (isEdit.value && formData.id) {
-          await supplierService.update(formData as UpdateSupplier)
-          ElMessage.success('Supplier updated successfully')
+          await supplierService.update(formData as UpdateSupplier);
+          ElMessage.success("Supplier updated successfully");
         } else {
-          await supplierService.create(formData)
-          ElMessage.success('Supplier created successfully')
+          await supplierService.create(formData);
+          ElMessage.success("Supplier created successfully");
         }
-        dialogVisible.value = false
-        await loadSuppliers()
+        dialogVisible.value = false;
+        await loadSuppliers();
       } catch (error: any) {
-        ElMessage.error(error.response?.data?.message || 'Failed to save supplier')
+        ElMessage.error(
+          error.response?.data?.message || "Failed to save supplier",
+        );
       } finally {
-        saving.value = false
+        saving.value = false;
       }
     }
-  })
-}
+  });
+};
 
 const handleDelete = async (supplier: Supplier) => {
   try {
-    await ElMessageBox.confirm('Are you sure you want to delete this supplier?', 'Delete Supplier', {
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
-      type: 'warning'
-    })
-    await supplierService.delete(supplier.id)
-    ElMessage.success('Supplier deleted successfully')
-    await loadSuppliers()
+    await ElMessageBox.confirm(
+      "Are you sure you want to delete this supplier?",
+      "Delete Supplier",
+      {
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        type: "warning",
+      },
+    );
+    await supplierService.delete(supplier.id);
+    ElMessage.success("Supplier deleted successfully");
+    await loadSuppliers();
   } catch (error) {
-    if (error !== 'cancel') {
-      ElMessage.error('Failed to delete supplier')
+    if (error !== "cancel") {
+      ElMessage.error("Failed to delete supplier");
     }
   }
-}
+};
 
 const formatCurrency = (value: number): string => {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    minimumFractionDigits: 2
-  }).format(value)
-}
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "QAR",
+    minimumFractionDigits: 2,
+  }).format(value);
+};
 
 onMounted(() => {
-  loadSuppliers()
-})
+  loadSuppliers();
+});
 </script>

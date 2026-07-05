@@ -9,24 +9,31 @@
 
     <el-card shadow="sm">
       <el-table :data="users" style="width: 100%" v-loading="loading">
-        <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="username" label="Username" />
-        <el-table-column prop="fullName" label="Full Name" />
-        <el-table-column prop="roleName" label="Role" />
-        <el-table-column prop="isActive" label="Status" width="100">
+        <el-table-column prop="id" label="ID" width="60" />
+        <el-table-column prop="username" label="Username" width="90" />
+        <!-- <el-table-column prop="fullName" label="Full Name" width="60"/> -->
+        <el-table-column prop="roleName" label="Role" width="100" />
+        <el-table-column prop="isActive" label="Status" width="65">
           <template #default="{ row }">
             <el-tag :type="row.isActive ? 'success' : 'danger'">
-              {{ row.isActive ? 'Active' : 'Inactive' }}
+              {{ row.isActive ? "Active" : "Inactive" }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Actions" width="150" align="center">
+        <!-- <el-table-column label="Actions" width="150" align="center">
           <template #default="{ row }">
             <el-button-group>
               <el-button type="primary" link @click="handleEdit(row)">
                 <el-icon><Edit /></el-icon>
               </el-button>
             </el-button-group>
+          </template>
+        </el-table-column> -->
+        <el-table-column label="Actions" width="70" fixed="right">
+          <template #default="{ row }">
+            <el-button link type="primary" @click="handleEdit(row)">
+              Edit
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -38,17 +45,17 @@
       width="500px"
       destroy-on-close
     >
-      <el-form
-        ref="formRef"
-        :model="form"
-        :rules="rules"
-        label-width="120px"
-      >
+      <el-form ref="formRef" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="Username" prop="username">
           <el-input v-model="form.username" :disabled="isEdit" />
         </el-form-item>
         <el-form-item v-if="!isEdit" label="Password" prop="password">
-          <el-input v-model="form.password" type="password" show-password autocomplete="new-password" />
+          <el-input
+            v-model="form.password"
+            type="password"
+            show-password
+            autocomplete="new-password"
+          />
         </el-form-item>
         <el-form-item label="Full Name" prop="fullName">
           <el-input v-model="form.fullName" />
@@ -60,12 +67,25 @@
           <el-input v-model="form.mobile" />
         </el-form-item>
         <el-form-item label="Role" prop="roleId">
-          <el-select v-model="form.roleId" placeholder="Select Role" class="w-full">
-            <el-option v-for="role in roles" :key="role.id" :label="role.roleName" :value="role.id" />
+          <el-select
+            v-model="form.roleId"
+            placeholder="Select Role"
+            class="w-full"
+          >
+            <el-option
+              v-for="role in roles"
+              :key="role.id"
+              :label="role.roleName"
+              :value="role.id"
+            />
           </el-select>
         </el-form-item>
         <el-form-item label="Status" prop="isActive">
-          <el-switch v-model="form.isActive" active-text="Active" inactive-text="Inactive" />
+          <el-switch
+            v-model="form.isActive"
+            active-text="Active"
+            inactive-text="Inactive"
+          />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -81,10 +101,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import { Plus, Edit } from '@element-plus/icons-vue'
-import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
-import api from '@/services/api'
+import { ref, reactive, onMounted } from "vue";
+import { Plus, Edit } from "@element-plus/icons-vue";
+import { ElMessage, type FormInstance, type FormRules } from "element-plus";
+import api from "@/services/api";
 
 interface UserDto {
   id: number;
@@ -102,89 +122,95 @@ interface Role {
   roleName: string;
 }
 
-const loading = ref(false)
-const submitting = ref(false)
-const dialogVisible = ref(false)
-const isEdit = ref(false)
-const users = ref<UserDto[]>([])
-const roles = ref<Role[]>([])
-const formRef = ref<FormInstance>()
+const loading = ref(false);
+const submitting = ref(false);
+const dialogVisible = ref(false);
+const isEdit = ref(false);
+const users = ref<UserDto[]>([]);
+const roles = ref<Role[]>([]);
+const formRef = ref<FormInstance>();
 
 const form = reactive({
   id: 0,
-  username: '',
-  password: '',
-  fullName: '',
-  email: '',
-  mobile: '',
+  username: "",
+  password: "",
+  fullName: "",
+  email: "",
+  mobile: "",
   roleId: null as number | null,
-  isActive: true
-})
+  isActive: true,
+});
 
 const rules = reactive<FormRules>({
-  username: [{ required: true, message: 'Please enter username', trigger: 'blur' }],
+  username: [
+    { required: true, message: "Please enter username", trigger: "blur" },
+  ],
   password: [
     {
       validator: (_rule, value, callback) => {
         if (!isEdit.value && !value) {
-          callback(new Error('Please enter password'))
-          return
+          callback(new Error("Please enter password"));
+          return;
         }
-        callback()
+        callback();
       },
-      trigger: 'blur'
-    }
+      trigger: "blur",
+    },
   ],
-  fullName: [{ required: true, message: 'Please enter full name', trigger: 'blur' }],
-  roleId: [{ required: true, message: 'Please select a role', trigger: 'change' }]
-})
+  fullName: [
+    { required: true, message: "Please enter full name", trigger: "blur" },
+  ],
+  roleId: [
+    { required: true, message: "Please select a role", trigger: "change" },
+  ],
+});
 
 const fetchUsersAndRoles = async () => {
-  loading.value = true
+  loading.value = true;
   try {
-    const resRoles = await api.get<Role[]>('/roles')
-    roles.value = resRoles.data
-    
-    const resUsers = await api.get<UserDto[]>('/users')
-    users.value = resUsers.data
+    const resRoles = await api.get<Role[]>("/roles");
+    roles.value = resRoles.data;
+
+    const resUsers = await api.get<UserDto[]>("/users");
+    users.value = resUsers.data;
   } catch (error) {
-    ElMessage.error('Failed to load data')
+    ElMessage.error("Failed to load data");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 
 const handleCreate = () => {
-  isEdit.value = false
-  form.id = 0
-  form.username = ''
-  form.password = ''
-  form.fullName = ''
-  form.email = ''
-  form.mobile = ''
-  form.roleId = null
-  form.isActive = true
-  dialogVisible.value = true
-}
+  isEdit.value = false;
+  form.id = 0;
+  form.username = "";
+  form.password = "";
+  form.fullName = "";
+  form.email = "";
+  form.mobile = "";
+  form.roleId = null;
+  form.isActive = true;
+  dialogVisible.value = true;
+};
 
 const handleEdit = (row: UserDto) => {
-  isEdit.value = true
-  form.id = row.id
-  form.username = row.username
-  form.password = ''
-  form.fullName = row.fullName
-  form.email = row.email || ''
-  form.mobile = row.mobile || ''
-  form.roleId = row.roleId
-  form.isActive = row.isActive
-  dialogVisible.value = true
-}
+  isEdit.value = true;
+  form.id = row.id;
+  form.username = row.username;
+  form.password = "";
+  form.fullName = row.fullName;
+  form.email = row.email || "";
+  form.mobile = row.mobile || "";
+  form.roleId = row.roleId;
+  form.isActive = row.isActive;
+  dialogVisible.value = true;
+};
 
 const submitForm = async () => {
-  if (!formRef.value) return
+  if (!formRef.value) return;
   await formRef.value.validate(async (valid) => {
     if (valid) {
-      submitting.value = true
+      submitting.value = true;
       try {
         const payload = {
           id: form.id,
@@ -194,28 +220,28 @@ const submitForm = async () => {
           email: form.email,
           mobile: form.mobile,
           roleId: form.roleId,
-          isActive: form.isActive
-        }
+          isActive: form.isActive,
+        };
 
         if (isEdit.value) {
-          await api.put(`/users/${form.id}`, payload)
-          ElMessage.success('User updated successfully')
+          await api.put(`/users/${form.id}`, payload);
+          ElMessage.success("User updated successfully");
         } else {
-          await api.post('/users', payload)
-          ElMessage.success('User created successfully')
+          await api.post("/users", payload);
+          ElMessage.success("User created successfully");
         }
-        dialogVisible.value = false
-        fetchUsersAndRoles()
+        dialogVisible.value = false;
+        fetchUsersAndRoles();
       } catch (error) {
-        ElMessage.error('Failed to save user')
+        ElMessage.error("Failed to save user");
       } finally {
-        submitting.value = false
+        submitting.value = false;
       }
     }
-  })
-}
+  });
+};
 
 onMounted(() => {
-  fetchUsersAndRoles()
-})
+  fetchUsersAndRoles();
+});
 </script>

@@ -16,6 +16,29 @@ public class SaleRepository : RepositoryBase<Sale>, ISaleRepository
     {
     }
 
+    public override async Task<Sale?> GetByIdAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string headerSql = @"
+            SELECT *
+            FROM ""Sales""
+            WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+        var sale = await conn.QueryFirstOrDefaultAsync<Sale>(headerSql, new { Id = id });
+        if (sale == null)
+            return null;
+
+        const string detailsSql = @"
+            SELECT *
+            FROM ""SaleDetails""
+            WHERE ""SaleId"" = @SaleId AND ""IsDeleted"" = false
+            ORDER BY ""Id""";
+        sale.SaleDetails = (await conn.QueryAsync<SaleDetail>(
+            detailsSql,
+            new { SaleId = id })).ToList();
+
+        return sale;
+    }
+
     public override async Task AddAsync(Sale sale)
     {
         using var conn = _dbConnectionFactory.CreateConnection();

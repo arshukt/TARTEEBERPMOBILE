@@ -16,22 +16,31 @@
     </div>
 
     <el-card>
-      <el-table :data="categoryStore.pagedCategories.items" v-loading="categoryStore.loading" stripe>
+      <el-table
+        :data="categoryStore.pagedCategories.items"
+        v-loading="categoryStore.loading"
+        stripe
+      >
         <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="categoryName" label="Category Name" />
-        <el-table-column prop="description" label="Description" />
-        <el-table-column label="Actions" width="200">
+        <el-table-column prop="categoryName" label="Name" width="150"/>
+        <!-- <el-table-column prop="description" label="Description" /> -->
+        <el-table-column
+          label="Actions"
+          width="90"
+          fixed="right"
+          align="center"
+        >
           <template #default="{ row }">
-            <el-button type="primary" size="small" link @click="openDialog(row)">
+            <el-button link type="primary" @click="openDialog(row)">
               Edit
             </el-button>
-            <el-button type="danger" size="small" link @click="handleDelete(row.id)">
+            <el-button link type="danger" @click="handleDelete(row)">
               Delete
             </el-button>
           </template>
         </el-table-column>
       </el-table>
-      
+
       <el-pagination
         v-model:current-page="categoryStore.pagedCategories.pageNumber"
         v-model:page-size="categoryStore.pagedCategories.pageSize"
@@ -51,7 +60,10 @@
     >
       <el-form :model="form" :rules="rules" ref="formRef" label-width="120px">
         <el-form-item label="Category Name" prop="categoryName">
-          <el-input v-model="form.categoryName" placeholder="Enter category name" />
+          <el-input
+            v-model="form.categoryName"
+            placeholder="Enter category name"
+          />
         </el-form-item>
         <el-form-item label="Description" prop="description">
           <el-input
@@ -85,13 +97,13 @@ const formRef = ref<FormInstance>();
 
 const form = ref<CreateCategory>({
   categoryName: "",
-  description: ""
+  description: "",
 });
 
 const rules: FormRules = {
   categoryName: [
-    { required: true, message: "Category name is required", trigger: "blur" }
-  ]
+    { required: true, message: "Category name is required", trigger: "blur" },
+  ],
 };
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
@@ -106,7 +118,7 @@ const loadCategories = () => {
   categoryStore.fetchPaged(
     categoryStore.pagedCategories.pageNumber,
     categoryStore.pagedCategories.pageSize,
-    searchTerm.value
+    searchTerm.value,
   );
 };
 
@@ -115,12 +127,12 @@ const openDialog = (category?: any) => {
   if (category) {
     form.value = {
       categoryName: category.categoryName,
-      description: category.description
+      description: category.description,
     };
   } else {
     form.value = {
       categoryName: "",
-      description: ""
+      description: "",
     };
   }
   dialogVisible.value = true;
@@ -134,7 +146,7 @@ const handleSubmit = async () => {
       if (editingCategory.value) {
         success = await categoryStore.update({
           id: editingCategory.value.id,
-          ...form.value
+          ...form.value,
         } as UpdateCategory);
       } else {
         success = await categoryStore.create(form.value);
@@ -149,9 +161,13 @@ const handleSubmit = async () => {
 
 const handleDelete = async (id: number) => {
   try {
-    await ElMessageBox.confirm("Are you sure you want to delete this category?", "Confirm", {
-      type: "warning"
-    });
+    await ElMessageBox.confirm(
+      "Are you sure you want to delete this category?",
+      "Confirm",
+      {
+        type: "warning",
+      },
+    );
     const success = await categoryStore.remove(id);
     if (success) {
       loadCategories();

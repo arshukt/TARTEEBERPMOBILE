@@ -9,10 +9,10 @@
 
     <el-card shadow="sm">
       <el-table :data="roles" style="width: 100%" v-loading="loading">
-        <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="roleName" label="Role Name" width="200" />
-        <el-table-column prop="description" label="Description" />
-        <el-table-column prop="isActive" label="Status" width="100">
+        <el-table-column prop="id" label="ID" width="60" />
+        <el-table-column prop="roleName" label="Role Name" width="100" />
+        <!-- <el-table-column prop="description" label="Description" /> -->
+        <el-table-column prop="isActive" label="Status" width="65">
           <template #default="{ row }">
             <el-tag :type="row.isActive ? 'success' : 'danger'">
               {{ row.isActive ? 'Active' : 'Inactive' }}
@@ -25,9 +25,9 @@
               <el-button type="primary" link @click="handleEdit(row)">
                 <el-icon><Edit /></el-icon>
               </el-button>
-              <el-button type="danger" link @click="handleDelete(row)">
+              <!-- <el-button type="danger" link @click="handleDelete(row)">
                 <el-icon><Delete /></el-icon>
-              </el-button>
+              </el-button> -->
             </el-button-group>
           </template>
         </el-table-column>

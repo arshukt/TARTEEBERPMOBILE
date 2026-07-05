@@ -72,9 +72,33 @@
           </el-select>
         </el-form-item>
         <el-form-item label="Party Type" prop="partyType">
-          <el-select v-model="form.partyType" style="width: 100%" placeholder="Select party type">
+          <el-select v-model="form.partyType" style="width: 100%" placeholder="Select party type" @change="form.partyId = 0">
             <el-option label="Customer" :value="1" />
             <el-option label="Supplier" :value="2" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="Party" prop="partyId">
+          <el-select
+            v-model="form.partyId"
+            style="width: 100%"
+            :placeholder="form.partyType === 1 ? 'Select customer' : 'Select supplier'"
+          >
+            <template v-if="form.partyType === 1">
+              <el-option
+                v-for="customer in customerStore.customers"
+                :key="customer.id"
+                :label="customer.customerName"
+                :value="customer.id"
+              />
+            </template>
+            <template v-else>
+              <el-option
+                v-for="supplier in supplierStore.suppliers"
+                :key="supplier.id"
+                :label="supplier.supplierName"
+                :value="supplier.id"
+              />
+            </template>
           </el-select>
         </el-form-item>
         <el-form-item label="Amount" prop="amount">
@@ -104,9 +128,13 @@ import { ref, onMounted } from "vue";
 import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { usePaymentStore } from "@/stores/companiesAndReturns";
+import { useCustomerStore } from "@/stores/customers";
+import { useSupplierStore } from "@/stores/suppliers";
 import { documentNumberService } from "@/services/document-numbers";
 
 const paymentStore = usePaymentStore();
+const customerStore = useCustomerStore();
+const supplierStore = useSupplierStore();
 
 const searchTerm = ref("");
 const dialogVisible = ref(false);
@@ -130,6 +158,7 @@ const rules: FormRules = {
   paymentDate: [{ required: true, message: "Payment date is required", trigger: "change" }],
   paymentType: [{ required: true, message: "Payment type is required", trigger: "change" }],
   partyType: [{ required: true, message: "Party type is required", trigger: "change" }],
+  partyId: [{ required: true, message: "Party is required", trigger: "change" }],
   amount: [{ required: true, message: "Amount is required", trigger: "blur" }]
 };
 
@@ -140,7 +169,7 @@ const formatDate = (dateStr: string) => {
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD"
+    currency: "QAR"
   }).format(amount);
 };
 
@@ -173,6 +202,14 @@ const loadNextPaymentNumber = async () => {
 
 const openDialog = async (payment?: any) => {
   editingPayment.value = payment || null;
+  try {
+    await Promise.all([
+      customerStore.fetchAll(),
+      supplierStore.fetchAll()
+    ]);
+  } catch {
+    ElMessage.warning("Failed to load parties");
+  }
   if (payment) {
     form.value = {
       ...payment,

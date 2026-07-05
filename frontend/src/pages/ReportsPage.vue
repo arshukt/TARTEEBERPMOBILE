@@ -1,6 +1,6 @@
 <template>
-  <div class="p-6">
-    <h1 class="text-2xl font-bold mb-6">Reports</h1>
+  <div class="erp-page erp-card-stack">
+    <h1 class="erp-page-heading">Reports</h1>
     <el-row :gutter="20">
       <el-col :span="6" v-for="report in reports" :key="report.path">
         <el-card class="cursor-pointer hover:shadow-lg transition-shadow" @click="goToReport(report.path)">

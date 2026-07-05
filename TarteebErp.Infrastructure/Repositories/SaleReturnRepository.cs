@@ -16,6 +16,53 @@ public class SaleReturnRepository : RepositoryBase<SaleReturn>, ISaleReturnRepos
     {
     }
 
+    public override async Task<SaleReturn?> GetByIdAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string headerSql = @"
+            SELECT *
+            FROM ""SalesReturns""
+            WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+        var saleReturn = await conn.QueryFirstOrDefaultAsync<SaleReturn>(headerSql, new { Id = id });
+        if (saleReturn == null)
+            return null;
+
+        const string detailsSql = @"
+            SELECT *
+            FROM ""SaleReturnDetails""
+            WHERE ""SaleReturnId"" = @SaleReturnId AND ""IsDeleted"" = false
+            ORDER BY ""Id""";
+        saleReturn.SaleReturnDetails = (await conn.QueryAsync<SaleReturnDetail>(
+            detailsSql,
+            new { SaleReturnId = id })).ToList();
+
+        return saleReturn;
+    }
+
+    public async Task<IReadOnlyDictionary<int, decimal>> GetReturnedQuantitiesBySaleDetailAsync(int saleId, int? excludeReturnId = null)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string sql = @"
+            SELECT
+                srd.""SaleDetailId"" AS ""DetailId"",
+                COALESCE(SUM(srd.""Quantity""), 0) AS ""Quantity""
+            FROM ""SaleReturnDetails"" srd
+            INNER JOIN ""SalesReturns"" sr ON sr.""Id"" = srd.""SaleReturnId""
+            WHERE sr.""SaleId"" = @SaleId
+              AND sr.""IsDeleted"" = false
+              AND srd.""IsDeleted"" = false
+              AND (@ExcludeReturnId IS NULL OR sr.""Id"" <> @ExcludeReturnId)
+            GROUP BY srd.""SaleDetailId""";
+
+        var rows = await conn.QueryAsync<ReturnedQuantityRow>(sql, new
+        {
+            SaleId = saleId,
+            ExcludeReturnId = excludeReturnId
+        });
+
+        return rows.ToDictionary(row => row.DetailId, row => row.Quantity);
+    }
+
     public override async Task AddAsync(SaleReturn saleReturn)
     {
         using var conn = _dbConnectionFactory.CreateConnection();
@@ -122,5 +169,41 @@ public class SaleReturnRepository : RepositoryBase<SaleReturn>, ISaleReturnRepos
             transaction.Rollback();
             throw;
         }
+    }
+
+    public override async Task DeleteAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        conn.Open();
+        using var transaction = conn.BeginTransaction();
+        try
+        {
+            const string deleteHeaderSql = @"
+                UPDATE ""SalesReturns"" SET
+                    ""IsDeleted"" = true,
+                    ""DeletedAt"" = @DeletedAt
+                WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+            await conn.ExecuteAsync(deleteHeaderSql, new { Id = id, DeletedAt = DateTime.UtcNow }, transaction);
+
+            const string deleteDetailsSql = @"
+                UPDATE ""SaleReturnDetails"" SET
+                    ""IsDeleted"" = true,
+                    ""DeletedAt"" = @DeletedAt
+                WHERE ""SaleReturnId"" = @SaleReturnId AND ""IsDeleted"" = false";
+            await conn.ExecuteAsync(deleteDetailsSql, new { SaleReturnId = id, DeletedAt = DateTime.UtcNow }, transaction);
+
+            transaction.Commit();
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
+        }
+    }
+
+    private sealed class ReturnedQuantityRow
+    {
+        public int DetailId { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

@@ -1923,3 +1923,1067 @@ Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime
 2026-06-30 14:51:52.986 +03:00 [INF] Executed action TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API) in 4.6788ms
 2026-06-30 14:51:52.989 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
 2026-06-30 14:51:52.991 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/documentnumbers/purchase-return/next - 200 null application/json; charset=utf-8 53.9435ms
+2026-06-30 15:11:43.176 +03:00 [INF] Starting database migration...
+2026-06-30 15:11:44.830 +03:00 [INF] Database migration completed successfully.
+2026-06-30 15:11:45.362 +03:00 [INF] User profile is available. Using 'C:\Users\USER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-30 15:11:46.004 +03:00 [INF] Now listening on: https://localhost:7167
+2026-06-30 15:11:46.372 +03:00 [INF] Now listening on: http://localhost:5009
+2026-06-30 15:11:46.660 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-30 15:11:46.723 +03:00 [INF] Hosting environment: Development
+2026-06-30 15:11:46.725 +03:00 [INF] Content root path: D:\TARTEEBERPMOBILE\TarteebErp M\TarteebErp.API
+2026-06-30 15:11:49.062 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/index.html - null null
+2026-06-30 15:11:49.286 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/index.html - 200 null text/html;charset=utf-8 242.9386ms
+2026-06-30 15:11:49.301 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/index.js - null null
+2026-06-30 15:11:49.302 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-30 15:11:49.312 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/index.js - 200 null application/javascript;charset=utf-8 10.7328ms
+2026-06-30 15:11:49.339 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 38.3028ms
+2026-06-30 15:11:49.430 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - null null
+2026-06-30 15:11:49.635 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 204.8331ms
+2026-06-30 15:12:41.430 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/auth/me - null null
+2026-06-30 15:12:41.741 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 15:12:41.990 +03:00 [INF] Route matched with {action = "GetCurrentUser", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser() on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:12:42.387 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.UserDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:12:42.421 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API) in 404.5287ms
+2026-06-30 15:12:42.424 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 15:12:42.428 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/auth/me - 200 null application/json; charset=utf-8 999.23ms
+2026-06-30 15:12:43.095 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/purchasereturns?pageNumber=1&pageSize=10 - null null
+2026-06-30 15:12:43.447 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.PurchaseReturnsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:12:43.473 +03:00 [INF] Route matched with {action = "GetPaged", controller = "PurchaseReturns"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.PurchaseReturnDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.PurchaseReturnsController (TarteebErp.API).
+2026-06-30 15:12:43.567 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.PurchaseReturnDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:12:43.588 +03:00 [INF] Executed action TarteebErp.API.Controllers.PurchaseReturnsController.GetPaged (TarteebErp.API) in 110.7451ms
+2026-06-30 15:12:43.591 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.PurchaseReturnsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:12:43.593 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/purchasereturns?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 498.4271ms
+2026-06-30 15:13:08.049 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 41
+2026-06-30 15:13:08.102 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:13:08.122 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:13:08.324 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:13:08.855 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:13:08.860 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 531.5278ms
+2026-06-30 15:13:08.878 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:13:08.879 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 401 null application/json; charset=utf-8 830.0635ms
+2026-06-30 15:13:18.330 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 36
+2026-06-30 15:13:18.333 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:13:18.334 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:13:18.336 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:13:18.447 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:13:18.450 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 111.8999ms
+2026-06-30 15:13:18.451 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:13:18.453 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 401 null application/json; charset=utf-8 123.5352ms
+2026-06-30 15:13:32.835 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 40
+2026-06-30 15:13:33.125 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:13:33.127 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:13:33.252 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:13:33.366 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.LoginResponseDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:13:33.379 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 120.9646ms
+2026-06-30 15:13:33.383 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:13:33.385 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 200 null application/json; charset=utf-8 549.8882ms
+2026-06-30 15:13:33.586 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:13:33.707 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:13:33.716 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:13:33.752 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:13:33.940 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 221.3256ms
+2026-06-30 15:13:34.235 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:13:34.237 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 651.0837ms
+2026-06-30 15:13:34.265 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:13:34.273 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:13:34.280 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:13:34.316 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:13:34.330 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 38.7256ms
+2026-06-30 15:13:34.332 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:13:34.335 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 70.1794ms
+2026-06-30 15:13:40.305 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/roles - null null
+2026-06-30 15:13:40.395 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.RolesController.GetRoles (TarteebErp.API)'
+2026-06-30 15:13:40.404 +03:00 [INF] Route matched with {action = "GetRoles", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.Entities.Role]]] GetRoles() on controller TarteebErp.API.Controllers.RolesController (TarteebErp.API).
+2026-06-30 15:13:40.420 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.Dictionary`2+ValueCollection[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[TarteebErp.Domain.Entities.Role, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:13:40.450 +03:00 [INF] Executed action TarteebErp.API.Controllers.RolesController.GetRoles (TarteebErp.API) in 43.4693ms
+2026-06-30 15:13:40.457 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.RolesController.GetRoles (TarteebErp.API)'
+2026-06-30 15:13:40.459 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/roles - 200 null application/json; charset=utf-8 154.0666ms
+2026-06-30 15:13:40.477 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/users - null null
+2026-06-30 15:13:40.484 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.UsersController.GetUsers (TarteebErp.API)'
+2026-06-30 15:13:40.490 +03:00 [INF] Route matched with {action = "GetUsers", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.Auth.UserDto]]] GetUsers() on controller TarteebErp.API.Controllers.UsersController (TarteebErp.API).
+2026-06-30 15:13:40.501 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[TarteebErp.Domain.Entities.User, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TarteebErp.Application.DTOs.Auth.UserDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:13:40.508 +03:00 [INF] Executed action TarteebErp.API.Controllers.UsersController.GetUsers (TarteebErp.API) in 15.2195ms
+2026-06-30 15:13:40.511 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.UsersController.GetUsers (TarteebErp.API)'
+2026-06-30 15:13:40.513 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/users - 200 null application/json; charset=utf-8 35.5828ms
+2026-06-30 15:14:23.116 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 39
+2026-06-30 15:14:23.176 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:14:23.184 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:14:23.186 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:14:23.231 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.LoginResponseDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:23.234 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 43.7785ms
+2026-06-30 15:14:23.236 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:14:23.238 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 200 null application/json; charset=utf-8 122.6297ms
+2026-06-30 15:14:23.292 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:14:23.299 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:23.301 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:14:23.307 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:23.310 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 6.2992ms
+2026-06-30 15:14:23.319 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:23.321 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 28.297ms
+2026-06-30 15:14:23.335 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:14:23.338 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:23.339 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:14:23.345 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:23.348 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 6.2466ms
+2026-06-30 15:14:23.350 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:23.352 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 17.0742ms
+2026-06-30 15:14:36.356 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 40
+2026-06-30 15:14:36.360 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:14:36.361 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:14:36.366 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:14:36.408 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.LoginResponseDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:36.410 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 40.5507ms
+2026-06-30 15:14:36.414 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:14:36.417 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 200 null application/json; charset=utf-8 60.7477ms
+2026-06-30 15:14:36.483 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:14:36.491 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:36.493 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:14:36.503 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:36.505 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 6.6629ms
+2026-06-30 15:14:36.507 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:36.509 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 25.5802ms
+2026-06-30 15:14:36.523 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:14:36.527 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:36.529 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:14:36.538 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:36.540 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 8.9099ms
+2026-06-30 15:14:36.542 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:36.544 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 20.7373ms
+2026-06-30 15:14:42.609 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/purchases?pageNumber=1&pageSize=10 - null null
+2026-06-30 15:14:42.613 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.PurchasesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:42.620 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Purchases"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.PurchaseDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.PurchasesController (TarteebErp.API).
+2026-06-30 15:14:42.643 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.PurchaseDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:14:42.653 +03:00 [INF] Executed action TarteebErp.API.Controllers.PurchasesController.GetPaged (TarteebErp.API) in 30.731ms
+2026-06-30 15:14:42.655 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.PurchasesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:14:42.657 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/purchases?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 47.669ms
+2026-06-30 15:17:42.936 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - null null
+2026-06-30 15:17:42.942 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:17:42.952 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 15:17:43.074 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:17:43.085 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API) in 131.0284ms
+2026-06-30 15:17:43.088 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:17:43.095 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 159.1418ms
+2026-06-30 15:17:43.958 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers/all - null null
+2026-06-30 15:17:43.958 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/documentnumbers/sale/next - null null
+2026-06-30 15:17:43.982 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 15:17:43.981 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items/all - null null
+2026-06-30 15:17:43.996 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
+2026-06-30 15:17:43.999 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 15:17:44.002 +03:00 [INF] Route matched with {action = "GetAll", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetAll() on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:17:44.005 +03:00 [INF] Route matched with {action = "GetAll", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.ItemDto]]]] GetAll() on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:17:44.005 +03:00 [INF] Route matched with {action = "GetNext", controller = "DocumentNumbers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.String]]] GetNext(System.String) on controller TarteebErp.API.Controllers.DocumentNumbersController (TarteebErp.API).
+2026-06-30 15:17:44.021 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:17:44.045 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:17:44.050 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API) in 46.902ms
+2026-06-30 15:17:44.066 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 15:17:44.051 +03:00 [INF] Executed action TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API) in 40.2558ms
+2026-06-30 15:17:44.094 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
+2026-06-30 15:17:44.079 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers/all - 200 null application/json; charset=utf-8 121.4572ms
+2026-06-30 15:17:44.103 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/documentnumbers/sale/next - 200 null application/json; charset=utf-8 144.5664ms
+2026-06-30 15:17:44.128 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:17:44.136 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API) in 127.561ms
+2026-06-30 15:17:44.152 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 15:17:44.155 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items/all - 200 null application/json; charset=utf-8 173.9047ms
+2026-06-30 15:26:42.969 +03:00 [INF] Starting database migration...
+2026-06-30 15:26:45.013 +03:00 [INF] VersionMigration migrating
+2026-06-30 15:26:45.028 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:45.106 +03:00 [INF] CreateTable VersionInfo
+2026-06-30 15:26:45.139 +03:00 [INF] CREATE TABLE "public"."VersionInfo" ("Version" bigint NOT NULL);
+2026-06-30 15:26:45.260 +03:00 [INF] => 0.1031519s
+2026-06-30 15:26:45.324 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:45.337 +03:00 [INF] VersionMigration migrated
+2026-06-30 15:26:45.819 +03:00 [INF] => 0.2142633s
+2026-06-30 15:26:46.126 +03:00 [INF] VersionUniqueMigration migrating
+2026-06-30 15:26:46.133 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:46.183 +03:00 [INF] CreateIndex VersionInfo (Version)
+2026-06-30 15:26:46.254 +03:00 [INF] CREATE UNIQUE INDEX "UC_Version" ON "public"."VersionInfo" ("Version" ASC);
+2026-06-30 15:26:46.283 +03:00 [INF] => 0.0967538s
+2026-06-30 15:26:46.298 +03:00 [INF] AlterTable VersionInfo
+2026-06-30 15:26:46.300 +03:00 [INF] 
+2026-06-30 15:26:46.366 +03:00 [INF] => 0.0665121s
+2026-06-30 15:26:46.410 +03:00 [INF] CreateColumn VersionInfo AppliedOn DateTime
+2026-06-30 15:26:46.498 +03:00 [INF] ALTER TABLE "public"."VersionInfo" ADD "AppliedOn" timestamp;
+2026-06-30 15:26:46.504 +03:00 [INF] => 0.0079625s
+2026-06-30 15:26:46.506 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:46.507 +03:00 [INF] VersionUniqueMigration migrated
+2026-06-30 15:26:46.508 +03:00 [INF] => 0.011578s
+2026-06-30 15:26:46.519 +03:00 [INF] VersionDescriptionMigration migrating
+2026-06-30 15:26:46.521 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:46.523 +03:00 [INF] AlterTable VersionInfo
+2026-06-30 15:26:46.524 +03:00 [INF] 
+2026-06-30 15:26:46.525 +03:00 [INF] => 0.0008961s
+2026-06-30 15:26:46.527 +03:00 [INF] CreateColumn VersionInfo Description String
+2026-06-30 15:26:46.530 +03:00 [INF] ALTER TABLE "public"."VersionInfo" ADD "Description" varchar(1024);
+2026-06-30 15:26:46.565 +03:00 [INF] => 0.0372896s
+2026-06-30 15:26:46.570 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:46.571 +03:00 [INF] VersionDescriptionMigration migrated
+2026-06-30 15:26:46.572 +03:00 [INF] => 0.0437087s
+2026-06-30 15:26:46.605 +03:00 [INF] 1: CreateInitialTables migrating
+2026-06-30 15:26:46.606 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:46.674 +03:00 [INF] CreateTable Companies
+2026-06-30 15:26:46.690 +03:00 [INF] CREATE TABLE "public"."Companies" ("Id" serial NOT NULL, "CompanyName" varchar(255) NOT NULL, "Address" varchar(500), "Mobile" varchar(50), "Phone" varchar(50), "Email" varchar(100), "Website" varchar(255), "Logo" varchar(500), "TaxNumber" varchar(100), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Companies" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.729 +03:00 [INF] => 0.0422604s
+2026-06-30 15:26:46.745 +03:00 [INF] CreateTable Users
+2026-06-30 15:26:46.746 +03:00 [INF] CREATE TABLE "public"."Users" ("Id" serial NOT NULL, "Username" varchar(50) NOT NULL, "PasswordHash" varchar(255) NOT NULL, "FullName" varchar(100) NOT NULL, "Mobile" varchar(50), "Email" varchar(100), "Role" integer NOT NULL, "IsActive" boolean NOT NULL DEFAULT true, "RefreshToken" varchar(500), "RefreshTokenExpiry" timestamp, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Users" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.755 +03:00 [INF] => 0.0094625s
+2026-06-30 15:26:46.761 +03:00 [INF] CreateIndex Users (Username)
+2026-06-30 15:26:46.762 +03:00 [INF] CREATE UNIQUE INDEX "IX_Users_Username" ON "public"."Users" ("Username" ASC);
+2026-06-30 15:26:46.766 +03:00 [INF] => 0.0041196s
+2026-06-30 15:26:46.771 +03:00 [INF] CreateTable Customers
+2026-06-30 15:26:46.778 +03:00 [INF] CREATE TABLE "public"."Customers" ("Id" serial NOT NULL, "CustomerCode" varchar(50) NOT NULL, "CustomerName" varchar(255) NOT NULL, "ContactPerson" varchar(100), "Mobile" varchar(50), "WhatsApp" varchar(50), "Email" varchar(100), "Address" varchar(500), "City" varchar(100), "CreditDays" integer NOT NULL DEFAULT 0, "CreditLimit" decimal(18,2) NOT NULL DEFAULT 0, "OpeningBalance" decimal(18,2) NOT NULL DEFAULT 0, "IsActive" boolean NOT NULL DEFAULT true, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Customers" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.788 +03:00 [INF] => 0.0104522s
+2026-06-30 15:26:46.795 +03:00 [INF] CreateIndex Customers (CustomerCode)
+2026-06-30 15:26:46.800 +03:00 [INF] CREATE UNIQUE INDEX "IX_Customers_CustomerCode" ON "public"."Customers" ("CustomerCode" ASC);
+2026-06-30 15:26:46.815 +03:00 [INF] => 0.0151947s
+2026-06-30 15:26:46.833 +03:00 [INF] CreateTable Suppliers
+2026-06-30 15:26:46.835 +03:00 [INF] CREATE TABLE "public"."Suppliers" ("Id" serial NOT NULL, "SupplierCode" varchar(50) NOT NULL, "SupplierName" varchar(255) NOT NULL, "Mobile" varchar(50), "Email" varchar(100), "Address" varchar(500), "OpeningBalance" decimal(18,2) NOT NULL DEFAULT 0, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Suppliers" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.845 +03:00 [INF] => 0.0106691s
+2026-06-30 15:26:46.852 +03:00 [INF] CreateIndex Suppliers (SupplierCode)
+2026-06-30 15:26:46.854 +03:00 [INF] CREATE UNIQUE INDEX "IX_Suppliers_SupplierCode" ON "public"."Suppliers" ("SupplierCode" ASC);
+2026-06-30 15:26:46.858 +03:00 [INF] => 0.0035717s
+2026-06-30 15:26:46.861 +03:00 [INF] CreateTable Categories
+2026-06-30 15:26:46.865 +03:00 [INF] CREATE TABLE "public"."Categories" ("Id" serial NOT NULL, "CategoryName" varchar(100) NOT NULL, "Description" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Categories" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.879 +03:00 [INF] => 0.0132925s
+2026-06-30 15:26:46.885 +03:00 [INF] CreateTable Brands
+2026-06-30 15:26:46.886 +03:00 [INF] CREATE TABLE "public"."Brands" ("Id" serial NOT NULL, "BrandName" varchar(100) NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Brands" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.894 +03:00 [INF] => 0.007377s
+2026-06-30 15:26:46.901 +03:00 [INF] CreateTable Units
+2026-06-30 15:26:46.902 +03:00 [INF] CREATE TABLE "public"."Units" ("Id" serial NOT NULL, "UnitName" varchar(50) NOT NULL, "Symbol" varchar(10) NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Units" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.910 +03:00 [INF] => 0.0073634s
+2026-06-30 15:26:46.913 +03:00 [INF] CreateTable Items
+2026-06-30 15:26:46.915 +03:00 [INF] CREATE TABLE "public"."Items" ("Id" serial NOT NULL, "Barcode" varchar(100), "ItemCode" varchar(50) NOT NULL, "ItemName" varchar(255) NOT NULL, "CategoryId" integer NOT NULL, "BrandId" integer NOT NULL, "UnitId" integer NOT NULL, "PurchaseRate" decimal(18,2) NOT NULL, "CostRate" decimal(18,2) NOT NULL, "WholesaleRate" decimal(18,2) NOT NULL, "RetailRate" decimal(18,2) NOT NULL, "MRP" decimal(18,2) NOT NULL, "TaxPercentage" decimal(5,2) NOT NULL, "MinimumStock" decimal(18,2) NOT NULL, "OpeningStock" decimal(18,2) NOT NULL, "IsActive" boolean NOT NULL DEFAULT true, "ItemImage" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Items" PRIMARY KEY ("Id"));
+2026-06-30 15:26:46.929 +03:00 [INF] => 0.0139549s
+2026-06-30 15:26:46.934 +03:00 [INF] CreateIndex Items (ItemCode)
+2026-06-30 15:26:46.940 +03:00 [INF] CREATE UNIQUE INDEX "IX_Items_ItemCode" ON "public"."Items" ("ItemCode" ASC);
+2026-06-30 15:26:46.944 +03:00 [INF] => 0.0042778s
+2026-06-30 15:26:46.951 +03:00 [INF] CreateForeignKey FK_Items_Categories_CategoryId Items(CategoryId) Categories(Id)
+2026-06-30 15:26:46.955 +03:00 [INF] ALTER TABLE "public"."Items" ADD CONSTRAINT "FK_Items_Categories_CategoryId" FOREIGN KEY ("CategoryId") REFERENCES "public"."Categories" ("Id");
+2026-06-30 15:26:46.972 +03:00 [INF] => 0.0199401s
+2026-06-30 15:26:46.981 +03:00 [INF] CreateForeignKey FK_Items_Brands_BrandId Items(BrandId) Brands(Id)
+2026-06-30 15:26:46.988 +03:00 [INF] ALTER TABLE "public"."Items" ADD CONSTRAINT "FK_Items_Brands_BrandId" FOREIGN KEY ("BrandId") REFERENCES "public"."Brands" ("Id");
+2026-06-30 15:26:47.000 +03:00 [INF] => 0.0122742s
+2026-06-30 15:26:47.001 +03:00 [INF] CreateForeignKey FK_Items_Units_UnitId Items(UnitId) Units(Id)
+2026-06-30 15:26:47.006 +03:00 [INF] ALTER TABLE "public"."Items" ADD CONSTRAINT "FK_Items_Units_UnitId" FOREIGN KEY ("UnitId") REFERENCES "public"."Units" ("Id");
+2026-06-30 15:26:47.010 +03:00 [INF] => 0.003812s
+2026-06-30 15:26:47.012 +03:00 [INF] CreateTable OpeningStocks
+2026-06-30 15:26:47.014 +03:00 [INF] CREATE TABLE "public"."OpeningStocks" ("Id" serial NOT NULL, "Date" timestamp NOT NULL, "Notes" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_OpeningStocks" PRIMARY KEY ("Id"));
+2026-06-30 15:26:47.027 +03:00 [INF] => 0.0131187s
+2026-06-30 15:26:47.031 +03:00 [INF] CreateTable OpeningStockDetails
+2026-06-30 15:26:47.032 +03:00 [INF] CREATE TABLE "public"."OpeningStockDetails" ("Id" serial NOT NULL, "OpeningStockId" integer NOT NULL, "ItemId" integer NOT NULL, "PurchaseRate" decimal(18,2) NOT NULL, "CostRate" decimal(18,2) NOT NULL, "RetailRate" decimal(18,2) NOT NULL, "WholesaleRate" decimal(18,2) NOT NULL, "MRP" decimal(18,2) NOT NULL, "Quantity" decimal(18,2) NOT NULL, "BatchNumber" varchar(100), "ExpiryDate" timestamp, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_OpeningStockDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:47.040 +03:00 [INF] => 0.0077559s
+2026-06-30 15:26:47.061 +03:00 [INF] CreateForeignKey FK_OpeningStockDetails_OpeningStocks_OpeningStockId OpeningStockDetails(OpeningStockId) OpeningStocks(Id)
+2026-06-30 15:26:47.068 +03:00 [INF] ALTER TABLE "public"."OpeningStockDetails" ADD CONSTRAINT "FK_OpeningStockDetails_OpeningStocks_OpeningStockId" FOREIGN KEY ("OpeningStockId") REFERENCES "public"."OpeningStocks" ("Id");
+2026-06-30 15:26:47.073 +03:00 [INF] => 0.0050768s
+2026-06-30 15:26:47.074 +03:00 [INF] CreateForeignKey FK_OpeningStockDetails_Items_ItemId OpeningStockDetails(ItemId) Items(Id)
+2026-06-30 15:26:47.077 +03:00 [INF] ALTER TABLE "public"."OpeningStockDetails" ADD CONSTRAINT "FK_OpeningStockDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:47.080 +03:00 [INF] => 0.0029372s
+2026-06-30 15:26:47.081 +03:00 [INF] CreateTable Purchases
+2026-06-30 15:26:47.084 +03:00 [INF] CREATE TABLE "public"."Purchases" ("Id" serial NOT NULL, "SupplierId" integer NOT NULL, "PurchaseDate" timestamp NOT NULL, "InvoiceNumber" varchar(100) NOT NULL, "TotalAmount" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "NetAmount" decimal(18,2) NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Purchases" PRIMARY KEY ("Id"));
+2026-06-30 15:26:47.091 +03:00 [INF] => 0.007667s
+2026-06-30 15:26:47.097 +03:00 [INF] CreateForeignKey FK_Purchases_Suppliers_SupplierId Purchases(SupplierId) Suppliers(Id)
+2026-06-30 15:26:47.110 +03:00 [INF] ALTER TABLE "public"."Purchases" ADD CONSTRAINT "FK_Purchases_Suppliers_SupplierId" FOREIGN KEY ("SupplierId") REFERENCES "public"."Suppliers" ("Id");
+2026-06-30 15:26:47.117 +03:00 [INF] => 0.006297s
+2026-06-30 15:26:47.146 +03:00 [INF] CreateIndex Purchases (InvoiceNumber)
+2026-06-30 15:26:47.149 +03:00 [INF] CREATE UNIQUE INDEX "IX_Purchases_InvoiceNumber" ON "public"."Purchases" ("InvoiceNumber" ASC);
+2026-06-30 15:26:47.154 +03:00 [INF] => 0.0051608s
+2026-06-30 15:26:47.162 +03:00 [INF] CreateTable PurchaseDetails
+2026-06-30 15:26:47.181 +03:00 [INF] CREATE TABLE "public"."PurchaseDetails" ("Id" serial NOT NULL, "PurchaseId" integer NOT NULL, "ItemId" integer NOT NULL, "Quantity" decimal(18,2) NOT NULL, "PurchaseRate" decimal(18,2) NOT NULL, "CostRate" decimal(18,2) NOT NULL, "RetailRate" decimal(18,2) NOT NULL, "WholesaleRate" decimal(18,2) NOT NULL, "MRP" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxPercentage" decimal(5,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "Total" decimal(18,2) NOT NULL, "BatchNumber" varchar(100), "ExpiryDate" timestamp, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_PurchaseDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:47.191 +03:00 [INF] => 0.0101805s
+2026-06-30 15:26:47.196 +03:00 [INF] CreateForeignKey FK_PurchaseDetails_Purchases_PurchaseId PurchaseDetails(PurchaseId) Purchases(Id)
+2026-06-30 15:26:47.199 +03:00 [INF] ALTER TABLE "public"."PurchaseDetails" ADD CONSTRAINT "FK_PurchaseDetails_Purchases_PurchaseId" FOREIGN KEY ("PurchaseId") REFERENCES "public"."Purchases" ("Id");
+2026-06-30 15:26:47.208 +03:00 [INF] => 0.0089799s
+2026-06-30 15:26:47.215 +03:00 [INF] CreateForeignKey FK_PurchaseDetails_Items_ItemId PurchaseDetails(ItemId) Items(Id)
+2026-06-30 15:26:47.216 +03:00 [INF] ALTER TABLE "public"."PurchaseDetails" ADD CONSTRAINT "FK_PurchaseDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:47.219 +03:00 [INF] => 0.0032438s
+2026-06-30 15:26:47.220 +03:00 [INF] CreateTable Sales
+2026-06-30 15:26:47.245 +03:00 [INF] CREATE TABLE "public"."Sales" ("Id" serial NOT NULL, "CustomerId" integer, "SaleDate" timestamp NOT NULL, "InvoiceNumber" varchar(100) NOT NULL, "TotalAmount" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "NetAmount" decimal(18,2) NOT NULL, "PaidAmount" decimal(18,2) NOT NULL, "DueAmount" decimal(18,2) NOT NULL, "DueDate" timestamp, "IsCredit" boolean NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Sales" PRIMARY KEY ("Id"));
+2026-06-30 15:26:47.261 +03:00 [INF] => 0.0154834s
+2026-06-30 15:26:47.342 +03:00 [INF] CreateForeignKey FK_Sales_Customers_CustomerId Sales(CustomerId) Customers(Id)
+2026-06-30 15:26:47.421 +03:00 [INF] ALTER TABLE "public"."Sales" ADD CONSTRAINT "FK_Sales_Customers_CustomerId" FOREIGN KEY ("CustomerId") REFERENCES "public"."Customers" ("Id");
+2026-06-30 15:26:47.432 +03:00 [INF] => 0.0114409s
+2026-06-30 15:26:47.484 +03:00 [INF] CreateIndex Sales (InvoiceNumber)
+2026-06-30 15:26:47.513 +03:00 [INF] CREATE UNIQUE INDEX "IX_Sales_InvoiceNumber" ON "public"."Sales" ("InvoiceNumber" ASC);
+2026-06-30 15:26:47.525 +03:00 [INF] => 0.0125666s
+2026-06-30 15:26:47.568 +03:00 [INF] CreateTable SaleDetails
+2026-06-30 15:26:47.636 +03:00 [INF] CREATE TABLE "public"."SaleDetails" ("Id" serial NOT NULL, "SaleId" integer NOT NULL, "ItemId" integer NOT NULL, "Quantity" decimal(18,2) NOT NULL, "Rate" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxPercentage" decimal(5,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "Total" decimal(18,2) NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_SaleDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:48.018 +03:00 [INF] => 0.3826718s
+2026-06-30 15:26:48.048 +03:00 [INF] CreateForeignKey FK_SaleDetails_Sales_SaleId SaleDetails(SaleId) Sales(Id)
+2026-06-30 15:26:48.062 +03:00 [INF] ALTER TABLE "public"."SaleDetails" ADD CONSTRAINT "FK_SaleDetails_Sales_SaleId" FOREIGN KEY ("SaleId") REFERENCES "public"."Sales" ("Id");
+2026-06-30 15:26:48.202 +03:00 [INF] => 0.1400745s
+2026-06-30 15:26:48.342 +03:00 [INF] CreateForeignKey FK_SaleDetails_Items_ItemId SaleDetails(ItemId) Items(Id)
+2026-06-30 15:26:48.469 +03:00 [INF] ALTER TABLE "public"."SaleDetails" ADD CONSTRAINT "FK_SaleDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:48.480 +03:00 [INF] => 0.0113188s
+2026-06-30 15:26:48.481 +03:00 [INF] CreateTable StockTransactions
+2026-06-30 15:26:48.482 +03:00 [INF] CREATE TABLE "public"."StockTransactions" ("Id" serial NOT NULL, "ItemId" integer NOT NULL, "TransactionType" integer NOT NULL, "QuantityIn" decimal(18,2) NOT NULL, "QuantityOut" decimal(18,2) NOT NULL, "BalanceAfter" decimal(18,2) NOT NULL, "ReferenceId" integer NOT NULL, "ReferenceType" varchar(100) NOT NULL, "Notes" varchar(500), "TransactionDate" timestamp NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_StockTransactions" PRIMARY KEY ("Id"));
+2026-06-30 15:26:48.493 +03:00 [INF] => 0.0108692s
+2026-06-30 15:26:48.495 +03:00 [INF] CreateForeignKey FK_StockTransactions_Items_ItemId StockTransactions(ItemId) Items(Id)
+2026-06-30 15:26:48.496 +03:00 [INF] ALTER TABLE "public"."StockTransactions" ADD CONSTRAINT "FK_StockTransactions_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:48.500 +03:00 [INF] => 0.0035347s
+2026-06-30 15:26:48.501 +03:00 [INF] CreateIndex Items (Barcode)
+2026-06-30 15:26:48.502 +03:00 [INF] CREATE INDEX "IX_Items_Barcode" ON "public"."Items" ("Barcode" ASC);
+2026-06-30 15:26:48.506 +03:00 [INF] => 0.0037378s
+2026-06-30 15:26:48.520 +03:00 [INF] CreateIndex StockTransactions (ItemId)
+2026-06-30 15:26:48.521 +03:00 [INF] CREATE INDEX "IX_StockTransactions_ItemId" ON "public"."StockTransactions" ("ItemId" ASC);
+2026-06-30 15:26:48.532 +03:00 [INF] => 0.0114897s
+2026-06-30 15:26:48.536 +03:00 [INF] CreateIndex StockTransactions (TransactionDate)
+2026-06-30 15:26:48.539 +03:00 [INF] CREATE INDEX "IX_StockTransactions_TransactionDate" ON "public"."StockTransactions" ("TransactionDate" ASC);
+2026-06-30 15:26:48.544 +03:00 [INF] => 0.0054011s
+2026-06-30 15:26:48.550 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (1,'2026-06-30T12:26:48','CreateInitialTables');
+2026-06-30 15:26:48.560 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:48.735 +03:00 [INF] 1: CreateInitialTables migrated
+2026-06-30 15:26:48.737 +03:00 [INF] => 0.1961383s
+2026-06-30 15:26:48.747 +03:00 [INF] 2: SeedDefaultAdminUser migrating
+2026-06-30 15:26:48.760 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:49.065 +03:00 [INF] INSERT INTO "public"."Users" ("Username","PasswordHash","FullName","Mobile","Email","Role","IsActive","RefreshToken","RefreshTokenExpiry","CreatedAt","CreatedBy","UpdatedAt","UpdatedBy","IsDeleted","DeletedAt","DeletedBy") VALUES ('admin','AS+RF4mBkdYONi0eJth4oQ==:p2ZDBy2+q0t447IaRe8QV9muMNXh/hU55P2wIdFI4Ag=','System Administrator',NULL,NULL,1,true,NULL,NULL,'2026-06-30T12:26:48',1,NULL,NULL,false,NULL,NULL);
+2026-06-30 15:26:49.568 +03:00 [INF] -> 1 Insert operations completed in 00:00:00.5019982 taking an average of 00:00:00.5019982
+2026-06-30 15:26:49.632 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (2,'2026-06-30T12:26:49','SeedDefaultAdminUser');
+2026-06-30 15:26:49.657 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:49.692 +03:00 [INF] 2: SeedDefaultAdminUser migrated
+2026-06-30 15:26:49.713 +03:00 [INF] => 0.6271419s
+2026-06-30 15:26:49.734 +03:00 [INF] 3: CreatePurchaseReturnsAndSalesReturnsTables migrating
+2026-06-30 15:26:49.781 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:49.799 +03:00 [INF] CreateTable PurchaseReturns
+2026-06-30 15:26:49.807 +03:00 [INF] CREATE TABLE "public"."PurchaseReturns" ("Id" serial NOT NULL, "PurchaseId" integer NOT NULL, "ReturnDate" timestamp NOT NULL, "ReturnNumber" varchar(100) NOT NULL, "TotalAmount" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "NetAmount" decimal(18,2) NOT NULL, "Notes" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_PurchaseReturns" PRIMARY KEY ("Id"));
+2026-06-30 15:26:49.819 +03:00 [INF] => 0.0119157s
+2026-06-30 15:26:49.820 +03:00 [INF] CreateForeignKey FK_PurchaseReturns_Purchases_PurchaseId PurchaseReturns(PurchaseId) Purchases(Id)
+2026-06-30 15:26:49.821 +03:00 [INF] ALTER TABLE "public"."PurchaseReturns" ADD CONSTRAINT "FK_PurchaseReturns_Purchases_PurchaseId" FOREIGN KEY ("PurchaseId") REFERENCES "public"."Purchases" ("Id");
+2026-06-30 15:26:49.828 +03:00 [INF] => 0.0065024s
+2026-06-30 15:26:49.829 +03:00 [INF] CreateIndex PurchaseReturns (ReturnNumber)
+2026-06-30 15:26:49.830 +03:00 [INF] CREATE UNIQUE INDEX "IX_PurchaseReturns_ReturnNumber" ON "public"."PurchaseReturns" ("ReturnNumber" ASC);
+2026-06-30 15:26:49.833 +03:00 [INF] => 0.0034904s
+2026-06-30 15:26:49.836 +03:00 [INF] CreateTable PurchaseReturnDetails
+2026-06-30 15:26:49.837 +03:00 [INF] CREATE TABLE "public"."PurchaseReturnDetails" ("Id" serial NOT NULL, "PurchaseReturnId" integer NOT NULL, "PurchaseDetailId" integer NOT NULL, "ItemId" integer NOT NULL, "Quantity" decimal(18,2) NOT NULL, "PurchaseRate" decimal(18,2) NOT NULL, "CostRate" decimal(18,2) NOT NULL, "RetailRate" decimal(18,2) NOT NULL, "WholesaleRate" decimal(18,2) NOT NULL, "MRP" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxPercentage" decimal(5,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "Total" decimal(18,2) NOT NULL, "Reason" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_PurchaseReturnDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:49.847 +03:00 [INF] => 0.0101281s
+2026-06-30 15:26:49.850 +03:00 [INF] CreateForeignKey FK_PurchaseReturnDetails_PurchaseReturns_PurchaseReturnId PurchaseReturnDetails(PurchaseReturnId) PurchaseReturns(Id)
+2026-06-30 15:26:49.852 +03:00 [INF] ALTER TABLE "public"."PurchaseReturnDetails" ADD CONSTRAINT "FK_PurchaseReturnDetails_PurchaseReturns_PurchaseReturnId" FOREIGN KEY ("PurchaseReturnId") REFERENCES "public"."PurchaseReturns" ("Id");
+2026-06-30 15:26:49.856 +03:00 [INF] => 0.0046182s
+2026-06-30 15:26:49.857 +03:00 [INF] CreateForeignKey FK_PurchaseReturnDetails_PurchaseDetails_PurchaseDetailId PurchaseReturnDetails(PurchaseDetailId) PurchaseDetails(Id)
+2026-06-30 15:26:49.858 +03:00 [INF] ALTER TABLE "public"."PurchaseReturnDetails" ADD CONSTRAINT "FK_PurchaseReturnDetails_PurchaseDetails_PurchaseDetailId" FOREIGN KEY ("PurchaseDetailId") REFERENCES "public"."PurchaseDetails" ("Id");
+2026-06-30 15:26:49.866 +03:00 [INF] => 0.0074147s
+2026-06-30 15:26:49.869 +03:00 [INF] CreateForeignKey FK_PurchaseReturnDetails_Items_ItemId PurchaseReturnDetails(ItemId) Items(Id)
+2026-06-30 15:26:49.870 +03:00 [INF] ALTER TABLE "public"."PurchaseReturnDetails" ADD CONSTRAINT "FK_PurchaseReturnDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:49.891 +03:00 [INF] => 0.0211655s
+2026-06-30 15:26:49.895 +03:00 [INF] CreateTable SalesReturns
+2026-06-30 15:26:49.896 +03:00 [INF] CREATE TABLE "public"."SalesReturns" ("Id" serial NOT NULL, "SaleId" integer NOT NULL, "ReturnDate" timestamp NOT NULL, "ReturnNumber" varchar(100) NOT NULL, "TotalAmount" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "NetAmount" decimal(18,2) NOT NULL, "Notes" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_SalesReturns" PRIMARY KEY ("Id"));
+2026-06-30 15:26:49.913 +03:00 [INF] => 0.0170161s
+2026-06-30 15:26:49.925 +03:00 [INF] CreateForeignKey FK_SalesReturns_Sales_SaleId SalesReturns(SaleId) Sales(Id)
+2026-06-30 15:26:49.951 +03:00 [INF] ALTER TABLE "public"."SalesReturns" ADD CONSTRAINT "FK_SalesReturns_Sales_SaleId" FOREIGN KEY ("SaleId") REFERENCES "public"."Sales" ("Id");
+2026-06-30 15:26:49.958 +03:00 [INF] => 0.0076348s
+2026-06-30 15:26:49.962 +03:00 [INF] CreateIndex SalesReturns (ReturnNumber)
+2026-06-30 15:26:49.963 +03:00 [INF] CREATE UNIQUE INDEX "IX_SalesReturns_ReturnNumber" ON "public"."SalesReturns" ("ReturnNumber" ASC);
+2026-06-30 15:26:49.969 +03:00 [INF] => 0.0063946s
+2026-06-30 15:26:49.979 +03:00 [INF] CreateTable SaleReturnDetails
+2026-06-30 15:26:49.980 +03:00 [INF] CREATE TABLE "public"."SaleReturnDetails" ("Id" serial NOT NULL, "SaleReturnId" integer NOT NULL, "SaleDetailId" integer NOT NULL, "ItemId" integer NOT NULL, "Quantity" decimal(18,2) NOT NULL, "Rate" decimal(18,2) NOT NULL, "Discount" decimal(18,2) NOT NULL, "TaxPercentage" decimal(5,2) NOT NULL, "TaxAmount" decimal(18,2) NOT NULL, "Total" decimal(18,2) NOT NULL, "Reason" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_SaleReturnDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:49.990 +03:00 [INF] => 0.0104815s
+2026-06-30 15:26:49.995 +03:00 [INF] CreateForeignKey FK_SaleReturnDetails_SalesReturns_SaleReturnId SaleReturnDetails(SaleReturnId) SalesReturns(Id)
+2026-06-30 15:26:50.001 +03:00 [INF] ALTER TABLE "public"."SaleReturnDetails" ADD CONSTRAINT "FK_SaleReturnDetails_SalesReturns_SaleReturnId" FOREIGN KEY ("SaleReturnId") REFERENCES "public"."SalesReturns" ("Id");
+2026-06-30 15:26:50.006 +03:00 [INF] => 0.0047059s
+2026-06-30 15:26:50.013 +03:00 [INF] CreateForeignKey FK_SaleReturnDetails_SaleDetails_SaleDetailId SaleReturnDetails(SaleDetailId) SaleDetails(Id)
+2026-06-30 15:26:50.017 +03:00 [INF] ALTER TABLE "public"."SaleReturnDetails" ADD CONSTRAINT "FK_SaleReturnDetails_SaleDetails_SaleDetailId" FOREIGN KEY ("SaleDetailId") REFERENCES "public"."SaleDetails" ("Id");
+2026-06-30 15:26:50.021 +03:00 [INF] => 0.0035534s
+2026-06-30 15:26:50.024 +03:00 [INF] CreateForeignKey FK_SaleReturnDetails_Items_ItemId SaleReturnDetails(ItemId) Items(Id)
+2026-06-30 15:26:50.025 +03:00 [INF] ALTER TABLE "public"."SaleReturnDetails" ADD CONSTRAINT "FK_SaleReturnDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:50.030 +03:00 [INF] => 0.005532s
+2026-06-30 15:26:50.039 +03:00 [INF] CreateTable StockAdjustments
+2026-06-30 15:26:50.051 +03:00 [INF] CREATE TABLE "public"."StockAdjustments" ("Id" serial NOT NULL, "AdjustmentDate" timestamp NOT NULL, "AdjustmentNumber" varchar(100) NOT NULL, "Notes" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_StockAdjustments" PRIMARY KEY ("Id"));
+2026-06-30 15:26:50.063 +03:00 [INF] => 0.0118456s
+2026-06-30 15:26:50.071 +03:00 [INF] CreateIndex StockAdjustments (AdjustmentNumber)
+2026-06-30 15:26:50.073 +03:00 [INF] CREATE UNIQUE INDEX "IX_StockAdjustments_AdjustmentNumber" ON "public"."StockAdjustments" ("AdjustmentNumber" ASC);
+2026-06-30 15:26:50.076 +03:00 [INF] => 0.0033188s
+2026-06-30 15:26:50.096 +03:00 [INF] CreateTable StockAdjustmentDetails
+2026-06-30 15:26:50.097 +03:00 [INF] CREATE TABLE "public"."StockAdjustmentDetails" ("Id" serial NOT NULL, "StockAdjustmentId" integer NOT NULL, "ItemId" integer NOT NULL, "QuantityIn" decimal(18,2) NOT NULL, "QuantityOut" decimal(18,2) NOT NULL, "Reason" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_StockAdjustmentDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:50.123 +03:00 [INF] => 0.0263901s
+2026-06-30 15:26:50.129 +03:00 [INF] CreateForeignKey FK_StockAdjustmentDetails_StockAdjustments_StockAdjustmentId StockAdjustmentDetails(StockAdjustmentId) StockAdjustments(Id)
+2026-06-30 15:26:50.129 +03:00 [INF] ALTER TABLE "public"."StockAdjustmentDetails" ADD CONSTRAINT "FK_StockAdjustmentDetails_StockAdjustments_StockAdjustmentId" FOREIGN KEY ("StockAdjustmentId") REFERENCES "public"."StockAdjustments" ("Id");
+2026-06-30 15:26:50.135 +03:00 [INF] => 0.0056812s
+2026-06-30 15:26:50.137 +03:00 [INF] CreateForeignKey FK_StockAdjustmentDetails_Items_ItemId StockAdjustmentDetails(ItemId) Items(Id)
+2026-06-30 15:26:50.137 +03:00 [INF] ALTER TABLE "public"."StockAdjustmentDetails" ADD CONSTRAINT "FK_StockAdjustmentDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:50.140 +03:00 [INF] => 0.0026042s
+2026-06-30 15:26:50.145 +03:00 [INF] CreateTable Payments
+2026-06-30 15:26:50.146 +03:00 [INF] CREATE TABLE "public"."Payments" ("Id" serial NOT NULL, "PaymentDate" timestamp NOT NULL, "PaymentNumber" varchar(100) NOT NULL, "PaymentType" integer NOT NULL, "PartyType" integer NOT NULL, "PartyId" integer NOT NULL, "Amount" decimal(18,2) NOT NULL, "PaymentMethod" varchar(100), "ReferenceNumber" varchar(100), "Notes" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Payments" PRIMARY KEY ("Id"));
+2026-06-30 15:26:50.156 +03:00 [INF] => 0.0103498s
+2026-06-30 15:26:50.159 +03:00 [INF] CreateIndex Payments (PaymentNumber)
+2026-06-30 15:26:50.161 +03:00 [INF] CREATE UNIQUE INDEX "IX_Payments_PaymentNumber" ON "public"."Payments" ("PaymentNumber" ASC);
+2026-06-30 15:26:50.165 +03:00 [INF] => 0.0043085s
+2026-06-30 15:26:50.166 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (3,'2026-06-30T12:26:50','CreatePurchaseReturnsAndSalesReturnsTables');
+2026-06-30 15:26:50.168 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:50.169 +03:00 [INF] 3: CreatePurchaseReturnsAndSalesReturnsTables migrated
+2026-06-30 15:26:50.170 +03:00 [INF] => 0.0082396s
+2026-06-30 15:26:50.183 +03:00 [INF] 4: CreateStockTransfersTable migrating
+2026-06-30 15:26:50.187 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:50.197 +03:00 [INF] CreateTable StockTransfers
+2026-06-30 15:26:50.212 +03:00 [INF] CREATE TABLE "public"."StockTransfers" ("Id" serial NOT NULL, "TransferDate" timestamp NOT NULL, "TransferNumber" varchar(100) NOT NULL, "FromLocation" varchar(255), "ToLocation" varchar(255), "Notes" varchar(500), "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_StockTransfers" PRIMARY KEY ("Id"));
+2026-06-30 15:26:50.224 +03:00 [INF] => 0.0123938s
+2026-06-30 15:26:50.235 +03:00 [INF] CreateIndex StockTransfers (TransferNumber)
+2026-06-30 15:26:50.236 +03:00 [INF] CREATE UNIQUE INDEX "IX_StockTransfers_TransferNumber" ON "public"."StockTransfers" ("TransferNumber" ASC);
+2026-06-30 15:26:50.242 +03:00 [INF] => 0.0057792s
+2026-06-30 15:26:50.246 +03:00 [INF] CreateTable StockTransferDetails
+2026-06-30 15:26:50.248 +03:00 [INF] CREATE TABLE "public"."StockTransferDetails" ("Id" serial NOT NULL, "StockTransferId" integer NOT NULL, "ItemId" integer NOT NULL, "Quantity" decimal(18,2) NOT NULL, "CreatedAt" timestamp NOT NULL, "CreatedBy" integer NOT NULL, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_StockTransferDetails" PRIMARY KEY ("Id"));
+2026-06-30 15:26:50.255 +03:00 [INF] => 0.0076189s
+2026-06-30 15:26:50.256 +03:00 [INF] CreateForeignKey FK_StockTransferDetails_StockTransfers_StockTransferId StockTransferDetails(StockTransferId) StockTransfers(Id)
+2026-06-30 15:26:50.257 +03:00 [INF] ALTER TABLE "public"."StockTransferDetails" ADD CONSTRAINT "FK_StockTransferDetails_StockTransfers_StockTransferId" FOREIGN KEY ("StockTransferId") REFERENCES "public"."StockTransfers" ("Id");
+2026-06-30 15:26:50.262 +03:00 [INF] => 0.0051598s
+2026-06-30 15:26:50.263 +03:00 [INF] CreateForeignKey FK_StockTransferDetails_Items_ItemId StockTransferDetails(ItemId) Items(Id)
+2026-06-30 15:26:50.264 +03:00 [INF] ALTER TABLE "public"."StockTransferDetails" ADD CONSTRAINT "FK_StockTransferDetails_Items_ItemId" FOREIGN KEY ("ItemId") REFERENCES "public"."Items" ("Id");
+2026-06-30 15:26:50.270 +03:00 [INF] => 0.005272s
+2026-06-30 15:26:50.271 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (4,'2026-06-30T12:26:50','CreateStockTransfersTable');
+2026-06-30 15:26:50.273 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:50.275 +03:00 [INF] 4: CreateStockTransfersTable migrated
+2026-06-30 15:26:50.280 +03:00 [INF] => 0.0105693s
+2026-06-30 15:26:50.280 +03:00 [INF] 5: RemoveDuplicateItemCodeIndex migrating
+2026-06-30 15:26:50.318 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:50.346 +03:00 [INF] ExecuteSqlStatement 
+            DO $$
+            BEGIN
+                IF EXISTS (
+                    SELECT 1 FROM pg_indexes 
+                    WHERE schemaname = 'public' 
+                    AND tablename = 'items' 
+                    AND indexname = 'ix_items_itemcode'
+                ) THEN
+                    DROP INDEX "IX_Items_ItemCode";
+                END IF;
+            END $$;
+        
+2026-06-30 15:26:50.692 +03:00 [INF] 
+            DO $$
+            BEGIN
+                IF EXISTS (
+                    SELECT 1 FROM pg_indexes 
+                    WHERE schemaname = 'public' 
+                    AND tablename = 'items' 
+                    AND indexname = 'ix_items_itemcode'
+                ) THEN
+                    DROP INDEX "IX_Items_ItemCode";
+                END IF;
+            END $$;
+        
+2026-06-30 15:26:51.002 +03:00 [INF] => 0.3105938s
+2026-06-30 15:26:51.006 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (5,'2026-06-30T12:26:51','RemoveDuplicateItemCodeIndex');
+2026-06-30 15:26:51.008 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:51.010 +03:00 [INF] 5: RemoveDuplicateItemCodeIndex migrated
+2026-06-30 15:26:51.012 +03:00 [INF] => 0.318492s
+2026-06-30 15:26:51.012 +03:00 [INF] 6: CreateRolesAndPermissions migrating
+2026-06-30 15:26:51.013 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:51.030 +03:00 [INF] CreateTable Roles
+2026-06-30 15:26:51.031 +03:00 [INF] CREATE TABLE "public"."Roles" ("Id" serial NOT NULL, "RoleName" varchar(100) NOT NULL, "Description" varchar(500), "IsActive" boolean NOT NULL DEFAULT true, "CreatedAt" timestamp NOT NULL DEFAULT (now() at time zone 'UTC'), "CreatedBy" integer NOT NULL DEFAULT 1, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_Roles" PRIMARY KEY ("Id"));
+2026-06-30 15:26:51.046 +03:00 [INF] => 0.0146608s
+2026-06-30 15:26:51.047 +03:00 [INF] CreateTable RolePermissions
+2026-06-30 15:26:51.049 +03:00 [INF] CREATE TABLE "public"."RolePermissions" ("Id" serial NOT NULL, "RoleId" integer NOT NULL, "PermissionKey" varchar(100) NOT NULL, "CreatedAt" timestamp NOT NULL DEFAULT (now() at time zone 'UTC'), "CreatedBy" integer NOT NULL DEFAULT 1, "UpdatedAt" timestamp, "UpdatedBy" integer, "IsDeleted" boolean NOT NULL DEFAULT false, "DeletedAt" timestamp, "DeletedBy" integer, CONSTRAINT "PK_RolePermissions" PRIMARY KEY ("Id"));
+2026-06-30 15:26:51.070 +03:00 [INF] => 0.0210386s
+2026-06-30 15:26:51.071 +03:00 [INF] CreateForeignKey FK_RolePermissions_Roles_RoleId RolePermissions(RoleId) Roles(Id)
+2026-06-30 15:26:51.072 +03:00 [INF] ALTER TABLE "public"."RolePermissions" ADD CONSTRAINT "FK_RolePermissions_Roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "public"."Roles" ("Id");
+2026-06-30 15:26:51.077 +03:00 [INF] => 0.0049407s
+2026-06-30 15:26:51.077 +03:00 [INF] INSERT INTO "public"."Roles" ("RoleName","Description") VALUES ('Admin','System Administrator');
+2026-06-30 15:26:51.080 +03:00 [INF] INSERT INTO "public"."Roles" ("RoleName","Description") VALUES ('Manager','Manager');
+2026-06-30 15:26:51.081 +03:00 [INF] INSERT INTO "public"."Roles" ("RoleName","Description") VALUES ('Cashier','Cashier');
+2026-06-30 15:26:51.083 +03:00 [INF] INSERT INTO "public"."Roles" ("RoleName","Description") VALUES ('Salesman','Salesman');
+2026-06-30 15:26:51.085 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Dashboard');
+2026-06-30 15:26:51.091 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Company');
+2026-06-30 15:26:51.100 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Customers');
+2026-06-30 15:26:51.113 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Suppliers');
+2026-06-30 15:26:51.115 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Categories');
+2026-06-30 15:26:51.116 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Brands');
+2026-06-30 15:26:51.118 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Units');
+2026-06-30 15:26:51.119 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Items');
+2026-06-30 15:26:51.121 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'OpeningStocks');
+2026-06-30 15:26:51.122 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Purchases');
+2026-06-30 15:26:51.124 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'PurchaseReturns');
+2026-06-30 15:26:51.126 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Sales');
+2026-06-30 15:26:51.128 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'SaleReturns');
+2026-06-30 15:26:51.130 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'StockAdjustments');
+2026-06-30 15:26:51.131 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'StockTransfers');
+2026-06-30 15:26:51.132 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'StockLedger');
+2026-06-30 15:26:51.133 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Payments');
+2026-06-30 15:26:51.135 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Reports');
+2026-06-30 15:26:51.136 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Roles');
+2026-06-30 15:26:51.137 +03:00 [INF] INSERT INTO "public"."RolePermissions" ("RoleId","PermissionKey") VALUES (1,'Users');
+2026-06-30 15:26:51.138 +03:00 [INF] AlterTable Users
+2026-06-30 15:26:51.139 +03:00 [INF] 
+2026-06-30 15:26:51.140 +03:00 [INF] => 0.0007266s
+2026-06-30 15:26:51.141 +03:00 [INF] CreateColumn Users RoleId Int32
+2026-06-30 15:26:51.144 +03:00 [INF] ALTER TABLE "public"."Users" ADD "RoleId" integer;
+2026-06-30 15:26:51.146 +03:00 [INF] => 0.0015987s
+2026-06-30 15:26:51.147 +03:00 [INF] ExecuteSqlStatement UPDATE "Users" SET "RoleId" = "Role"
+2026-06-30 15:26:51.147 +03:00 [INF] UPDATE "Users" SET "RoleId" = "Role"
+2026-06-30 15:26:51.150 +03:00 [INF] => 0.0028744s
+2026-06-30 15:26:51.151 +03:00 [INF] AlterTable Users
+2026-06-30 15:26:51.152 +03:00 [INF] 
+2026-06-30 15:26:51.153 +03:00 [INF] => 0.0008875s
+2026-06-30 15:26:51.154 +03:00 [INF] AlterColumn Users RoleId Int32
+2026-06-30 15:26:51.159 +03:00 [INF] ALTER TABLE "public"."Users" ALTER "RoleId" TYPE integer, ALTER "RoleId" SET NOT NULL;
+2026-06-30 15:26:51.163 +03:00 [INF] => 0.0081445s
+2026-06-30 15:26:51.164 +03:00 [INF] CreateForeignKey FK_Users_Roles_RoleId Users(RoleId) Roles(Id)
+2026-06-30 15:26:51.165 +03:00 [INF] ALTER TABLE "public"."Users" ADD CONSTRAINT "FK_Users_Roles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "public"."Roles" ("Id");
+2026-06-30 15:26:51.169 +03:00 [INF] => 0.0042197s
+2026-06-30 15:26:51.171 +03:00 [INF] DeleteColumn Users Role
+2026-06-30 15:26:51.173 +03:00 [INF] ALTER TABLE "public"."Users" DROP COLUMN "Role";
+2026-06-30 15:26:51.178 +03:00 [INF] => 0.0060643s
+2026-06-30 15:26:51.180 +03:00 [INF] -> 24 Insert operations completed in 00:00:00.0608939 taking an average of 00:00:00.0025372
+2026-06-30 15:26:51.185 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (6,'2026-06-30T12:26:51','CreateRolesAndPermissions');
+2026-06-30 15:26:51.186 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:51.188 +03:00 [INF] 6: CreateRolesAndPermissions migrated
+2026-06-30 15:26:51.223 +03:00 [INF] => 0.0158794s
+2026-06-30 15:26:51.227 +03:00 [INF] 7: AddOpeningStockNumber migrating
+2026-06-30 15:26:51.228 +03:00 [INF] Beginning Transaction
+2026-06-30 15:26:51.230 +03:00 [INF] AlterTable OpeningStocks
+2026-06-30 15:26:51.231 +03:00 [INF] 
+2026-06-30 15:26:51.232 +03:00 [INF] => 0.0010208s
+2026-06-30 15:26:51.233 +03:00 [INF] CreateColumn OpeningStocks OpeningStockNumber String
+2026-06-30 15:26:51.238 +03:00 [INF] ALTER TABLE "public"."OpeningStocks" ADD "OpeningStockNumber" varchar(100);
+2026-06-30 15:26:51.241 +03:00 [INF] => 0.0031837s
+2026-06-30 15:26:51.243 +03:00 [INF] ExecuteSqlStatement 
+            UPDATE "OpeningStocks"
+            SET "OpeningStockNumber" = 'OS-' || LPAD("Id"::text, 6, '0')
+            WHERE "OpeningStockNumber" IS NULL OR "OpeningStockNumber" = ''
+2026-06-30 15:26:51.244 +03:00 [INF] 
+            UPDATE "OpeningStocks"
+            SET "OpeningStockNumber" = 'OS-' || LPAD("Id"::text, 6, '0')
+            WHERE "OpeningStockNumber" IS NULL OR "OpeningStockNumber" = ''
+2026-06-30 15:26:51.247 +03:00 [INF] => 0.0030105s
+2026-06-30 15:26:51.249 +03:00 [INF] AlterTable OpeningStocks
+2026-06-30 15:26:51.251 +03:00 [INF] 
+2026-06-30 15:26:51.252 +03:00 [INF] => 0.0006789s
+2026-06-30 15:26:51.253 +03:00 [INF] AlterColumn OpeningStocks OpeningStockNumber String
+2026-06-30 15:26:51.255 +03:00 [INF] ALTER TABLE "public"."OpeningStocks" ALTER "OpeningStockNumber" TYPE varchar(100), ALTER "OpeningStockNumber" SET NOT NULL;
+2026-06-30 15:26:51.257 +03:00 [INF] => 0.0021813s
+2026-06-30 15:26:51.258 +03:00 [INF] CreateIndex OpeningStocks (OpeningStockNumber)
+2026-06-30 15:26:51.259 +03:00 [INF] CREATE UNIQUE INDEX "IX_OpeningStocks_OpeningStockNumber" ON "public"."OpeningStocks" ("OpeningStockNumber" ASC);
+2026-06-30 15:26:51.263 +03:00 [INF] => 0.0041919s
+2026-06-30 15:26:51.274 +03:00 [INF] INSERT INTO "public"."VersionInfo" ("Version","AppliedOn","Description") VALUES (7,'2026-06-30T12:26:51','AddOpeningStockNumber');
+2026-06-30 15:26:51.277 +03:00 [INF] Committing Transaction
+2026-06-30 15:26:51.281 +03:00 [INF] 7: AddOpeningStockNumber migrated
+2026-06-30 15:26:51.282 +03:00 [INF] => 0.0218691s
+2026-06-30 15:26:51.496 +03:00 [INF] Database migration completed successfully.
+2026-06-30 15:26:52.278 +03:00 [INF] User profile is available. Using 'C:\Users\USER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-30 15:26:53.528 +03:00 [INF] Now listening on: https://localhost:7167
+2026-06-30 15:26:53.719 +03:00 [INF] Now listening on: http://localhost:5009
+2026-06-30 15:26:54.090 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-30 15:26:54.094 +03:00 [INF] Hosting environment: Development
+2026-06-30 15:26:54.151 +03:00 [INF] Content root path: D:\TARTEEBERPMOBILE\TarteebErp M\TarteebErp.API
+2026-06-30 15:27:56.918 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/index.html - null null
+2026-06-30 15:27:57.140 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/index.html - 200 null text/html;charset=utf-8 239.5814ms
+2026-06-30 15:27:57.158 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-30 15:27:57.168 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/index.js - null null
+2026-06-30 15:27:57.181 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/index.js - 200 null application/javascript;charset=utf-8 12.676ms
+2026-06-30 15:27:57.208 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 49.9526ms
+2026-06-30 15:27:57.317 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - null null
+2026-06-30 15:27:57.894 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 576.3888ms
+2026-06-30 15:46:52.835 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/auth/me - null null
+2026-06-30 15:46:53.532 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 15:46:53.585 +03:00 [INF] Route matched with {action = "GetCurrentUser", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser() on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:46:54.356 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.UserDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:46:54.537 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API) in 940.9044ms
+2026-06-30 15:46:54.730 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 15:46:54.838 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/auth/me - 200 null application/json; charset=utf-8 2003.2078ms
+2026-06-30 15:46:55.140 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - null null
+2026-06-30 15:46:55.182 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:46:55.243 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 15:46:55.452 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:46:55.529 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API) in 257.3263ms
+2026-06-30 15:46:55.535 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:46:55.538 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 398.0499ms
+2026-06-30 15:47:06.359 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 40
+2026-06-30 15:47:06.370 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:47:06.374 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:47:06.382 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:47:06.662 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:47:06.668 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 283.0938ms
+2026-06-30 15:47:06.682 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:47:06.684 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 401 null application/json; charset=utf-8 324.9758ms
+2026-06-30 15:47:16.260 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/login - application/json 43
+2026-06-30 15:47:16.267 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:47:16.269 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:47:16.271 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TarteebErp.Application.DTOs.Auth.LoginRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 15:47:16.384 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.LoginResponseDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:16.400 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API) in 126.0208ms
+2026-06-30 15:47:16.406 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.Login (TarteebErp.API)'
+2026-06-30 15:47:16.420 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/login - 200 null application/json; charset=utf-8 160.8737ms
+2026-06-30 15:47:16.513 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:47:16.521 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:16.531 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:47:16.556 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:16.565 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 30.6127ms
+2026-06-30 15:47:16.570 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:16.583 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 69.4293ms
+2026-06-30 15:47:16.603 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:47:16.610 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:16.617 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:47:16.641 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:16.649 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 27.8627ms
+2026-06-30 15:47:16.656 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:16.658 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 55.8402ms
+2026-06-30 15:47:22.605 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/companies/first - null null
+2026-06-30 15:47:22.609 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CompaniesController.GetFirst (TarteebErp.API)'
+2026-06-30 15:47:22.617 +03:00 [INF] Route matched with {action = "GetFirst", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.CompanyDto]]] GetFirst() on controller TarteebErp.API.Controllers.CompaniesController (TarteebErp.API).
+2026-06-30 15:47:22.634 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.CompanyDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:22.638 +03:00 [INF] Executed action TarteebErp.API.Controllers.CompaniesController.GetFirst (TarteebErp.API) in 18.3536ms
+2026-06-30 15:47:22.641 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CompaniesController.GetFirst (TarteebErp.API)'
+2026-06-30 15:47:22.643 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/companies/first - 200 null application/json; charset=utf-8 38.5568ms
+2026-06-30 15:47:42.833 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/companies - application/json 245
+2026-06-30 15:47:42.877 +03:00 [INF] CORS policy execution successful.
+2026-06-30 15:47:43.056 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CompaniesController.Create (TarteebErp.API)'
+2026-06-30 15:47:43.153 +03:00 [INF] Route matched with {action = "Create", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.CompanyDto]]] Create(TarteebErp.Application.DTOs.CreateCompanyDto) on controller TarteebErp.API.Controllers.CompaniesController (TarteebErp.API).
+2026-06-30 15:47:43.196 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.CompanyDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:43.289 +03:00 [INF] Executed action TarteebErp.API.Controllers.CompaniesController.Create (TarteebErp.API) in 134.4156ms
+2026-06-30 15:47:43.295 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CompaniesController.Create (TarteebErp.API)'
+2026-06-30 15:47:43.299 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/companies - 201 null application/json; charset=utf-8 466.4935ms
+2026-06-30 15:47:43.380 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/companies/first - null null
+2026-06-30 15:47:43.387 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CompaniesController.GetFirst (TarteebErp.API)'
+2026-06-30 15:47:43.414 +03:00 [INF] Route matched with {action = "GetFirst", controller = "Companies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.CompanyDto]]] GetFirst() on controller TarteebErp.API.Controllers.CompaniesController (TarteebErp.API).
+2026-06-30 15:47:43.423 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.CompanyDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:43.428 +03:00 [INF] Executed action TarteebErp.API.Controllers.CompaniesController.GetFirst (TarteebErp.API) in 12.0132ms
+2026-06-30 15:47:43.433 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CompaniesController.GetFirst (TarteebErp.API)'
+2026-06-30 15:47:43.434 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/companies/first - 200 null application/json; charset=utf-8 53.9518ms
+2026-06-30 15:47:48.402 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - null null
+2026-06-30 15:47:48.404 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:48.406 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 15:47:48.413 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:48.415 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API) in 6.7526ms
+2026-06-30 15:47:48.417 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:48.419 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 17.4358ms
+2026-06-30 15:47:49.723 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers/all - null null
+2026-06-30 15:47:49.724 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items/all - null null
+2026-06-30 15:47:49.726 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 15:47:49.737 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/documentnumbers/sale/next - null null
+2026-06-30 15:47:49.740 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 15:47:49.754 +03:00 [INF] Route matched with {action = "GetAll", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetAll() on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:47:49.863 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
+2026-06-30 15:47:49.904 +03:00 [INF] Route matched with {action = "GetAll", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.ItemDto]]]] GetAll() on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:47:49.999 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:47:50.002 +03:00 [INF] Route matched with {action = "GetNext", controller = "DocumentNumbers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.String]]] GetNext(System.String) on controller TarteebErp.API.Controllers.DocumentNumbersController (TarteebErp.API).
+2026-06-30 15:47:50.022 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:47:50.038 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API) in 56.3542ms
+2026-06-30 15:47:50.074 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 15:47:50.104 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API) in 97.0851ms
+2026-06-30 15:47:50.128 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 15:47:50.149 +03:00 [INF] Executed action TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API) in 112.4466ms
+2026-06-30 15:47:50.349 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
+2026-06-30 15:47:50.298 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers/all - 200 null application/json; charset=utf-8 574.9222ms
+2026-06-30 15:47:50.156 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 15:47:50.357 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/documentnumbers/sale/next - 200 null application/json; charset=utf-8 620.6327ms
+2026-06-30 15:47:50.387 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items/all - 200 null application/json; charset=utf-8 663.4784ms
+2026-06-30 15:47:57.556 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:47:57.559 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:57.561 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 15:47:57.567 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:57.570 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 6.5052ms
+2026-06-30 15:47:57.571 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:57.573 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 17.0953ms
+2026-06-30 15:47:57.586 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - null null
+2026-06-30 15:47:57.590 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:57.591 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 15:47:57.599 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 15:47:57.601 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 7.5026ms
+2026-06-30 15:47:57.603 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 15:47:57.604 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=1 - 200 null application/json; charset=utf-8 18.9105ms
+2026-06-30 16:57:48.625 +03:00 [INF] Starting database migration...
+2026-06-30 16:57:50.646 +03:00 [INF] Database migration completed successfully.
+2026-06-30 16:57:51.049 +03:00 [INF] User profile is available. Using 'C:\Users\USER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-30 16:57:52.274 +03:00 [INF] Now listening on: https://localhost:7167
+2026-06-30 16:57:52.283 +03:00 [INF] Now listening on: http://localhost:5009
+2026-06-30 16:57:52.720 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-30 16:57:52.850 +03:00 [INF] Hosting environment: Development
+2026-06-30 16:57:52.856 +03:00 [INF] Content root path: D:\TARTEEBERPMOBILE\TarteebErp M\TarteebErp.API
+2026-06-30 16:57:55.761 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/index.html - null null
+2026-06-30 16:57:56.256 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/index.html - 200 null text/html;charset=utf-8 530.7365ms
+2026-06-30 16:57:56.269 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/index.js - null null
+2026-06-30 16:57:56.269 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-30 16:57:56.388 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/index.js - 200 null application/javascript;charset=utf-8 118.6188ms
+2026-06-30 16:57:56.443 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 173.661ms
+2026-06-30 16:57:56.498 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - null null
+2026-06-30 16:57:56.830 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 331.6313ms
+2026-06-30 16:58:00.009 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/auth/me - null null
+2026-06-30 16:58:00.702 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '30/Jun/2026 1:47:16 PM', Current time (UTC): '30/Jun/2026 1:58:00 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-30 16:58:00.742 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '30/Jun/2026 1:47:16 PM', Current time (UTC): '30/Jun/2026 1:58:00 PM'.
+2026-06-30 16:58:00.757 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-06-30 16:58:00.769 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-30 16:58:00.791 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/auth/me - 401 0 null 781.5613ms
+2026-06-30 16:58:00.815 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/auth/refresh-token - application/json 459
+2026-06-30 16:58:00.828 +03:00 [INF] CORS policy execution successful.
+2026-06-30 16:58:00.926 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '30/Jun/2026 1:47:16 PM', Current time (UTC): '30/Jun/2026 1:58:00 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-30 16:58:00.942 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '30/Jun/2026 1:47:16 PM', Current time (UTC): '30/Jun/2026 1:58:00 PM'.
+2026-06-30 16:58:00.950 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.RefreshToken (TarteebErp.API)'
+2026-06-30 16:58:01.019 +03:00 [INF] Route matched with {action = "RefreshToken", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RefreshToken(TarteebErp.Application.DTOs.Auth.RefreshTokenRequestDto) on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 16:58:02.303 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.LoginResponseDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:58:02.381 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.RefreshToken (TarteebErp.API) in 1302.6072ms
+2026-06-30 16:58:02.559 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.RefreshToken (TarteebErp.API)'
+2026-06-30 16:58:02.628 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/auth/refresh-token - 200 null application/json; charset=utf-8 1813.167ms
+2026-06-30 16:58:02.656 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/auth/me - null null
+2026-06-30 16:58:03.066 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 16:58:03.085 +03:00 [INF] Route matched with {action = "GetCurrentUser", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser() on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 16:58:03.128 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.UserDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:58:03.142 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API) in 54.5746ms
+2026-06-30 16:58:03.155 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 16:58:03.156 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/auth/me - 200 null application/json; charset=utf-8 499.7097ms
+2026-06-30 16:58:58.840 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=10 - null null
+2026-06-30 16:58:58.936 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:58:58.990 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 16:58:59.159 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:58:59.176 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 158.0795ms
+2026-06-30 16:58:59.184 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:58:59.186 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 346.1375ms
+2026-06-30 16:59:26.100 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/customers - application/json 226
+2026-06-30 16:59:26.131 +03:00 [INF] CORS policy execution successful.
+2026-06-30 16:59:26.133 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.Create (TarteebErp.API)'
+2026-06-30 16:59:26.146 +03:00 [INF] Route matched with {action = "Create", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.CustomerDto]]] Create(TarteebErp.Application.DTOs.CreateCustomerDto) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 16:59:26.224 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:26.300 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.Create (TarteebErp.API) in 150.762ms
+2026-06-30 16:59:26.304 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.Create (TarteebErp.API)'
+2026-06-30 16:59:26.306 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/customers - 201 null application/json; charset=utf-8 205.6843ms
+2026-06-30 16:59:26.336 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=10 - null null
+2026-06-30 16:59:26.343 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:26.353 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 16:59:26.378 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:26.384 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API) in 28.6368ms
+2026-06-30 16:59:26.391 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:26.398 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 62.1091ms
+2026-06-30 16:59:29.186 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10 - null null
+2026-06-30 16:59:29.240 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:29.266 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:29.341 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:29.353 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 48.1284ms
+2026-06-30 16:59:29.357 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:29.363 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 177.3334ms
+2026-06-30 16:59:31.955 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=S - null null
+2026-06-30 16:59:31.968 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:32.021 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:32.150 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:32.158 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 19.2614ms
+2026-06-30 16:59:32.165 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:32.166 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=S - 200 null application/json; charset=utf-8 211.4417ms
+2026-06-30 16:59:32.457 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SU - null null
+2026-06-30 16:59:32.569 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:32.724 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:32.783 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:32.785 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 11.647ms
+2026-06-30 16:59:32.789 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:32.819 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SU - 200 null application/json; charset=utf-8 362.5133ms
+2026-06-30 16:59:33.819 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPL - null null
+2026-06-30 16:59:33.854 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:34.138 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:34.299 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:34.304 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 8.0143ms
+2026-06-30 16:59:34.322 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:34.324 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPL - 200 null application/json; charset=utf-8 505.0294ms
+2026-06-30 16:59:35.002 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPLY - null null
+2026-06-30 16:59:35.190 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:35.196 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:35.202 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:35.204 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 4.8574ms
+2026-06-30 16:59:35.206 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:35.207 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPLY - 200 null application/json; charset=utf-8 205.1045ms
+2026-06-30 16:59:36.440 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPLYCO - null null
+2026-06-30 16:59:36.488 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:36.637 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:36.648 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:36.690 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 49.7492ms
+2026-06-30 16:59:36.732 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:36.733 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPLYCO - 200 null application/json; charset=utf-8 293.1881ms
+2026-06-30 16:59:45.404 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/suppliers - application/json 141
+2026-06-30 16:59:45.414 +03:00 [INF] CORS policy execution successful.
+2026-06-30 16:59:45.421 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.Create (TarteebErp.API)'
+2026-06-30 16:59:45.431 +03:00 [INF] Route matched with {action = "Create", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.SupplierDto]]] Create(TarteebErp.Application.DTOs.CreateSupplierDto) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:45.477 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:45.902 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.Create (TarteebErp.API) in 468.2236ms
+2026-06-30 16:59:45.922 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.Create (TarteebErp.API)'
+2026-06-30 16:59:45.924 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/suppliers - 201 null application/json; charset=utf-8 519.6058ms
+2026-06-30 16:59:45.962 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPLYCO - null null
+2026-06-30 16:59:45.990 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:46.018 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Suppliers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SupplierDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SuppliersController (TarteebErp.API).
+2026-06-30 16:59:46.093 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SupplierDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:46.097 +03:00 [INF] Executed action TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API) in 75.0962ms
+2026-06-30 16:59:46.099 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SuppliersController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:46.101 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/suppliers?pageNumber=1&pageSize=10&searchTerm=SUPPLYCO - 200 null application/json; charset=utf-8 139.2112ms
+2026-06-30 16:59:48.549 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/categories?pageNumber=1&pageSize=10 - null null
+2026-06-30 16:59:48.818 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CategoriesController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:48.885 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CategoryDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CategoriesController (TarteebErp.API).
+2026-06-30 16:59:49.105 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CategoryDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 16:59:49.229 +03:00 [INF] Executed action TarteebErp.API.Controllers.CategoriesController.GetPaged (TarteebErp.API) in 174.855ms
+2026-06-30 16:59:49.313 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CategoriesController.GetPaged (TarteebErp.API)'
+2026-06-30 16:59:49.315 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/categories?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 766.2672ms
+2026-06-30 17:00:04.334 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/categories - application/json 44
+2026-06-30 17:00:04.360 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:00:04.482 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CategoriesController.Create (TarteebErp.API)'
+2026-06-30 17:00:04.504 +03:00 [INF] Route matched with {action = "Create", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.CategoryDto]]] Create(TarteebErp.Application.DTOs.CreateCategoryDto) on controller TarteebErp.API.Controllers.CategoriesController (TarteebErp.API).
+2026-06-30 17:00:04.531 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.CategoryDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:04.543 +03:00 [INF] Executed action TarteebErp.API.Controllers.CategoriesController.Create (TarteebErp.API) in 36.88ms
+2026-06-30 17:00:04.555 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CategoriesController.Create (TarteebErp.API)'
+2026-06-30 17:00:04.557 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/categories - 201 null application/json; charset=utf-8 222.9647ms
+2026-06-30 17:00:04.589 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/categories?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:00:04.597 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CategoriesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:04.600 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.CategoryDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.CategoriesController (TarteebErp.API).
+2026-06-30 17:00:04.614 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.CategoryDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:04.616 +03:00 [INF] Executed action TarteebErp.API.Controllers.CategoriesController.GetPaged (TarteebErp.API) in 13.3518ms
+2026-06-30 17:00:04.620 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CategoriesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:04.623 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/categories?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 33.5134ms
+2026-06-30 17:00:07.328 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/brands?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:00:07.338 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.BrandsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:07.760 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Brands"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.BrandDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.BrandsController (TarteebErp.API).
+2026-06-30 17:00:07.821 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.BrandDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:07.829 +03:00 [INF] Executed action TarteebErp.API.Controllers.BrandsController.GetPaged (TarteebErp.API) in 27.2202ms
+2026-06-30 17:00:07.836 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.BrandsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:07.837 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/brands?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 509.4027ms
+2026-06-30 17:00:14.402 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/brands - application/json 23
+2026-06-30 17:00:14.406 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:00:14.408 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.BrandsController.Create (TarteebErp.API)'
+2026-06-30 17:00:14.419 +03:00 [INF] Route matched with {action = "Create", controller = "Brands"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.BrandDto]]] Create(TarteebErp.Application.DTOs.CreateBrandDto) on controller TarteebErp.API.Controllers.BrandsController (TarteebErp.API).
+2026-06-30 17:00:14.435 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.BrandDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:14.438 +03:00 [INF] Executed action TarteebErp.API.Controllers.BrandsController.Create (TarteebErp.API) in 17.2205ms
+2026-06-30 17:00:14.441 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.BrandsController.Create (TarteebErp.API)'
+2026-06-30 17:00:14.444 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/brands - 201 null application/json; charset=utf-8 42.4676ms
+2026-06-30 17:00:14.471 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/brands?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:00:14.477 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.BrandsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:14.479 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Brands"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.BrandDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.BrandsController (TarteebErp.API).
+2026-06-30 17:00:14.491 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.BrandDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:14.494 +03:00 [INF] Executed action TarteebErp.API.Controllers.BrandsController.GetPaged (TarteebErp.API) in 10.0041ms
+2026-06-30 17:00:14.519 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.BrandsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:14.521 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/brands?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 49.9884ms
+2026-06-30 17:00:17.660 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/units?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:00:17.696 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.UnitsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:17.765 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Units"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.UnitDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.UnitsController (TarteebErp.API).
+2026-06-30 17:00:17.789 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.UnitDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:17.803 +03:00 [INF] Executed action TarteebErp.API.Controllers.UnitsController.GetPaged (TarteebErp.API) in 33.8893ms
+2026-06-30 17:00:17.820 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.UnitsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:17.821 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/units?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 161.3185ms
+2026-06-30 17:00:31.799 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/units - application/json 31
+2026-06-30 17:00:31.884 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:00:32.219 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.UnitsController.Create (TarteebErp.API)'
+2026-06-30 17:00:32.253 +03:00 [INF] Route matched with {action = "Create", controller = "Units"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.UnitDto]]] Create(TarteebErp.Application.DTOs.CreateUnitDto) on controller TarteebErp.API.Controllers.UnitsController (TarteebErp.API).
+2026-06-30 17:00:32.322 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.UnitDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:32.337 +03:00 [INF] Executed action TarteebErp.API.Controllers.UnitsController.Create (TarteebErp.API) in 41.5247ms
+2026-06-30 17:00:32.352 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.UnitsController.Create (TarteebErp.API)'
+2026-06-30 17:00:32.354 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/units - 201 null application/json; charset=utf-8 554.2497ms
+2026-06-30 17:00:32.382 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/units?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:00:32.385 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.UnitsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:32.388 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Units"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.UnitDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.UnitsController (TarteebErp.API).
+2026-06-30 17:00:32.399 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.UnitDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:00:32.402 +03:00 [INF] Executed action TarteebErp.API.Controllers.UnitsController.GetPaged (TarteebErp.API) in 8.0795ms
+2026-06-30 17:00:32.405 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.UnitsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:00:32.406 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/units?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 24.6555ms
+2026-06-30 17:01:49.466 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:01:49.470 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:01:49.478 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 17:01:49.507 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:01:49.516 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 30.4837ms
+2026-06-30 17:01:49.518 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:01:49.520 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 54.7395ms
+2026-06-30 17:01:50.146 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/categories/all - null null
+2026-06-30 17:01:50.674 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CategoriesController.GetAll (TarteebErp.API)'
+2026-06-30 17:01:50.860 +03:00 [INF] Route matched with {action = "GetAll", controller = "Categories"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.CategoryDto]]]] GetAll() on controller TarteebErp.API.Controllers.CategoriesController (TarteebErp.API).
+2026-06-30 17:01:50.901 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.CategoryDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:01:50.908 +03:00 [INF] Executed action TarteebErp.API.Controllers.CategoriesController.GetAll (TarteebErp.API) in 22.2195ms
+2026-06-30 17:01:50.910 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CategoriesController.GetAll (TarteebErp.API)'
+2026-06-30 17:01:50.927 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/categories/all - 200 null application/json; charset=utf-8 780.6986ms
+2026-06-30 17:01:51.094 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/brands/all - null null
+2026-06-30 17:01:51.809 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.BrandsController.GetAll (TarteebErp.API)'
+2026-06-30 17:01:51.928 +03:00 [INF] Route matched with {action = "GetAll", controller = "Brands"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.BrandDto]]]] GetAll() on controller TarteebErp.API.Controllers.BrandsController (TarteebErp.API).
+2026-06-30 17:01:51.978 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.BrandDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:01:52.001 +03:00 [INF] Executed action TarteebErp.API.Controllers.BrandsController.GetAll (TarteebErp.API) in 35.2845ms
+2026-06-30 17:01:52.007 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.BrandsController.GetAll (TarteebErp.API)'
+2026-06-30 17:01:52.009 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/brands/all - 200 null application/json; charset=utf-8 915.0305ms
+2026-06-30 17:01:52.024 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/units/all - null null
+2026-06-30 17:01:52.034 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.UnitsController.GetAll (TarteebErp.API)'
+2026-06-30 17:01:52.042 +03:00 [INF] Route matched with {action = "GetAll", controller = "Units"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.UnitDto]]]] GetAll() on controller TarteebErp.API.Controllers.UnitsController (TarteebErp.API).
+2026-06-30 17:01:52.052 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.UnitDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:01:52.061 +03:00 [INF] Executed action TarteebErp.API.Controllers.UnitsController.GetAll (TarteebErp.API) in 16.4358ms
+2026-06-30 17:01:52.086 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.UnitsController.GetAll (TarteebErp.API)'
+2026-06-30 17:01:52.090 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/units/all - 200 null application/json; charset=utf-8 66.0342ms
+2026-06-30 17:02:51.625 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/items - application/json 272
+2026-06-30 17:02:51.691 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:02:51.783 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.Create (TarteebErp.API)'
+2026-06-30 17:02:51.863 +03:00 [INF] Route matched with {action = "Create", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.ItemDto]]] Create(TarteebErp.Application.DTOs.CreateItemDto) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 17:02:52.386 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:02:52.415 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.Create (TarteebErp.API) in 548.2524ms
+2026-06-30 17:02:52.422 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.Create (TarteebErp.API)'
+2026-06-30 17:02:52.433 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/items - 201 null application/json; charset=utf-8 807.8108ms
+2026-06-30 17:02:52.572 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:02:52.581 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:02:52.589 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.ItemDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 17:02:52.603 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:02:52.610 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API) in 15.4149ms
+2026-06-30 17:02:52.617 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:02:52.642 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 69.5455ms
+2026-06-30 17:03:02.086 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/openingstocks?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:03:02.100 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.OpeningStocksController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:02.116 +03:00 [INF] Route matched with {action = "GetPaged", controller = "OpeningStocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.OpeningStockDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.OpeningStocksController (TarteebErp.API).
+2026-06-30 17:03:02.177 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.OpeningStockDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:03:02.332 +03:00 [INF] Executed action TarteebErp.API.Controllers.OpeningStocksController.GetPaged (TarteebErp.API) in 199.2438ms
+2026-06-30 17:03:02.418 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.OpeningStocksController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:02.541 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/openingstocks?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 454.6035ms
+2026-06-30 17:03:03.303 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items/all - null null
+2026-06-30 17:03:03.526 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 17:03:03.689 +03:00 [INF] Route matched with {action = "GetAll", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.ItemDto]]]] GetAll() on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 17:03:03.713 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:03:03.719 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API) in 12.7718ms
+2026-06-30 17:03:03.725 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 17:03:03.729 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items/all - 200 null application/json; charset=utf-8 426.0647ms
+2026-06-30 17:03:22.212 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/openingstocks - application/json 202
+2026-06-30 17:03:22.247 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:03:22.304 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.OpeningStocksController.Create (TarteebErp.API)'
+2026-06-30 17:03:22.462 +03:00 [INF] Route matched with {action = "Create", controller = "OpeningStocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.OpeningStockDto]]] Create(TarteebErp.Application.DTOs.CreateOpeningStockDto) on controller TarteebErp.API.Controllers.OpeningStocksController (TarteebErp.API).
+2026-06-30 17:03:22.525 +03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-06-30 17:03:22.566 +03:00 [INF] Executed action TarteebErp.API.Controllers.OpeningStocksController.Create (TarteebErp.API) in 83.8735ms
+2026-06-30 17:03:22.585 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.OpeningStocksController.Create (TarteebErp.API)'
+2026-06-30 17:03:22.590 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/openingstocks - 400 null application/problem+json; charset=utf-8 378.1916ms
+2026-06-30 17:03:32.140 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/openingstocks - application/json 227
+2026-06-30 17:03:32.201 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:03:32.262 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.OpeningStocksController.Create (TarteebErp.API)'
+2026-06-30 17:03:32.276 +03:00 [INF] Route matched with {action = "Create", controller = "OpeningStocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.OpeningStockDto]]] Create(TarteebErp.Application.DTOs.CreateOpeningStockDto) on controller TarteebErp.API.Controllers.OpeningStocksController (TarteebErp.API).
+2026-06-30 17:03:32.598 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.OpeningStockDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:03:32.714 +03:00 [INF] Executed action TarteebErp.API.Controllers.OpeningStocksController.Create (TarteebErp.API) in 432.7591ms
+2026-06-30 17:03:32.730 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.OpeningStocksController.Create (TarteebErp.API)'
+2026-06-30 17:03:32.758 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/openingstocks - 201 null application/json; charset=utf-8 618.1033ms
+2026-06-30 17:03:32.808 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/openingstocks?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:03:32.881 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.OpeningStocksController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:32.885 +03:00 [INF] Route matched with {action = "GetPaged", controller = "OpeningStocks"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.OpeningStockDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.OpeningStocksController (TarteebErp.API).
+2026-06-30 17:03:32.909 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.OpeningStockDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:03:32.911 +03:00 [INF] Executed action TarteebErp.API.Controllers.OpeningStocksController.GetPaged (TarteebErp.API) in 9.9698ms
+2026-06-30 17:03:32.917 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.OpeningStocksController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:32.923 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/openingstocks?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 115.1135ms
+2026-06-30 17:03:37.679 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:03:37.866 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:37.882 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 17:03:37.910 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:03:37.962 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API) in 75.4101ms
+2026-06-30 17:03:38.031 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:38.042 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 362.4498ms
+2026-06-30 17:03:38.879 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/documentnumbers/sale/next - null null
+2026-06-30 17:03:38.879 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items/all - null null
+2026-06-30 17:03:38.879 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers/all - null null
+2026-06-30 17:03:38.883 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
+2026-06-30 17:03:38.889 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 17:03:38.894 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 17:03:38.897 +03:00 [INF] Route matched with {action = "GetAll", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.ItemDto]]]] GetAll() on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 17:03:38.900 +03:00 [INF] Route matched with {action = "GetNext", controller = "DocumentNumbers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.String]]] GetNext(System.String) on controller TarteebErp.API.Controllers.DocumentNumbersController (TarteebErp.API).
+2026-06-30 17:03:38.904 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:03:38.905 +03:00 [INF] Route matched with {action = "GetAll", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetAll() on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 17:03:38.910 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API) in 10.4111ms
+2026-06-30 17:03:38.914 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:03:38.916 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 17:03:38.919 +03:00 [INF] Executed action TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API) in 11.4668ms
+2026-06-30 17:03:38.921 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items/all - 200 null application/json; charset=utf-8 42.0124ms
+2026-06-30 17:03:38.921 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:03:38.940 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.DocumentNumbersController.GetNext (TarteebErp.API)'
+2026-06-30 17:03:38.963 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/documentnumbers/sale/next - 200 null application/json; charset=utf-8 84.1133ms
+2026-06-30 17:03:38.964 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API) in 50.1969ms
+2026-06-30 17:03:39.129 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 17:03:39.132 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers/all - 200 null application/json; charset=utf-8 253.1583ms
+2026-06-30 17:03:55.776 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7167/api/sales - application/json 186
+2026-06-30 17:03:55.810 +03:00 [INF] CORS policy execution successful.
+2026-06-30 17:03:55.814 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.Create (TarteebErp.API)'
+2026-06-30 17:03:55.832 +03:00 [INF] Route matched with {action = "Create", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Application.DTOs.SaleDto]]] Create(TarteebErp.Application.DTOs.CreateSaleDto) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 17:03:55.935 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:03:56.065 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.Create (TarteebErp.API) in 203.5469ms
+2026-06-30 17:03:56.167 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.Create (TarteebErp.API)'
+2026-06-30 17:03:56.177 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7167/api/sales - 201 null application/json; charset=utf-8 400.7749ms
+2026-06-30 17:03:56.308 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:03:57.176 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:57.305 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 17:03:57.341 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:03:57.343 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API) in 14.0852ms
+2026-06-30 17:03:57.348 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:03:57.350 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 1041.7468ms
+2026-06-30 17:04:44.382 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/salereturns?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:04:44.388 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SaleReturnsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:04:44.396 +03:00 [INF] Route matched with {action = "GetPaged", controller = "SaleReturns"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleReturnDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SaleReturnsController (TarteebErp.API).
+2026-06-30 17:04:44.435 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleReturnDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:04:44.466 +03:00 [INF] Executed action TarteebErp.API.Controllers.SaleReturnsController.GetPaged (TarteebErp.API) in 61.9604ms
+2026-06-30 17:04:44.478 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SaleReturnsController.GetPaged (TarteebErp.API)'
+2026-06-30 17:04:44.488 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/salereturns?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 105.9067ms
+2026-06-30 17:14:33.525 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/supplier-outstanding - null null
+2026-06-30 17:14:33.566 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/supplier-outstanding - 404 0 null 42.4948ms
+2026-06-30 17:14:33.630 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7167/api/reports/supplier-outstanding, Response status code: 404
+2026-06-30 17:27:20.545 +03:00 [INF] Starting database migration...
+2026-06-30 17:27:22.461 +03:00 [INF] Database migration completed successfully.
+2026-06-30 17:27:22.985 +03:00 [INF] User profile is available. Using 'C:\Users\USER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-30 17:27:24.544 +03:00 [INF] Now listening on: https://localhost:7167
+2026-06-30 17:27:24.931 +03:00 [INF] Now listening on: http://localhost:5009
+2026-06-30 17:27:25.040 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-30 17:27:25.110 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 96.0937ms
+2026-06-30 17:27:25.172 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - null null
+2026-06-30 17:27:25.418 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-30 17:27:25.420 +03:00 [INF] Hosting environment: Development
+2026-06-30 17:27:25.422 +03:00 [INF] Content root path: D:\TARTEEBERPMOBILE\TarteebErp M\TarteebErp.API
+2026-06-30 17:27:25.997 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7167/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 824.4255ms
+2026-06-30 17:27:30.130 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/auth/me - null null
+2026-06-30 17:27:30.816 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 17:27:30.965 +03:00 [INF] Route matched with {action = "GetCurrentUser", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser() on controller TarteebErp.API.Controllers.AuthController (TarteebErp.API).
+2026-06-30 17:27:31.999 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Application.DTOs.Auth.UserDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:27:32.161 +03:00 [INF] Executed action TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API) in 1147.5758ms
+2026-06-30 17:27:32.336 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.AuthController.GetCurrentUser (TarteebErp.API)'
+2026-06-30 17:27:32.367 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/auth/me - 200 null application/json; charset=utf-8 2236.748ms
+2026-06-30 17:27:32.714 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/sales - null null
+2026-06-30 17:27:33.109 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:27:33.184 +03:00 [INF] Route matched with {action = "GetSalesReport", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.DTOs.SalesReportItemDto]]]] GetSalesReport(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TarteebErp.API.Controllers.ReportsController (TarteebErp.API).
+2026-06-30 17:27:33.276 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Domain.DTOs.SalesReportItemDto, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:27:33.320 +03:00 [INF] Executed action TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API) in 109.2144ms
+2026-06-30 17:27:33.446 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:27:33.492 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/sales - 200 null application/json; charset=utf-8 778.0353ms
+2026-06-30 17:27:39.495 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/purchases - null null
+2026-06-30 17:27:39.620 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ReportsController.GetPurchasesReport (TarteebErp.API)'
+2026-06-30 17:27:39.651 +03:00 [INF] Route matched with {action = "GetPurchasesReport", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.DTOs.PurchasesReportItemDto]]]] GetPurchasesReport(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TarteebErp.API.Controllers.ReportsController (TarteebErp.API).
+2026-06-30 17:27:39.686 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Domain.DTOs.PurchasesReportItemDto, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:27:39.699 +03:00 [INF] Executed action TarteebErp.API.Controllers.ReportsController.GetPurchasesReport (TarteebErp.API) in 29.6965ms
+2026-06-30 17:27:39.706 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ReportsController.GetPurchasesReport (TarteebErp.API)'
+2026-06-30 17:27:39.708 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/purchases - 200 null application/json; charset=utf-8 212.6031ms
+2026-06-30 17:27:45.212 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/sales - null null
+2026-06-30 17:27:45.359 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:27:45.390 +03:00 [INF] Route matched with {action = "GetSalesReport", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.DTOs.SalesReportItemDto]]]] GetSalesReport(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TarteebErp.API.Controllers.ReportsController (TarteebErp.API).
+2026-06-30 17:27:45.451 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Domain.DTOs.SalesReportItemDto, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:27:45.525 +03:00 [INF] Executed action TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API) in 83.0051ms
+2026-06-30 17:27:45.582 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:27:45.593 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/sales - 200 null application/json; charset=utf-8 380.9496ms
+2026-06-30 17:27:49.490 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/sales?startDate=2026-06-29&endDate=2026-06-30 - null null
+2026-06-30 17:27:49.761 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:27:50.156 +03:00 [INF] Route matched with {action = "GetSalesReport", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.DTOs.SalesReportItemDto]]]] GetSalesReport(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TarteebErp.API.Controllers.ReportsController (TarteebErp.API).
+2026-06-30 17:27:50.369 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Domain.DTOs.SalesReportItemDto, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:27:50.603 +03:00 [INF] Executed action TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API) in 283.4519ms
+2026-06-30 17:27:50.605 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:27:50.610 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/sales?startDate=2026-06-29&endDate=2026-06-30 - 200 null application/json; charset=utf-8 1119.9879ms
+2026-06-30 17:28:04.199 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/current-stock - null null
+2026-06-30 17:28:04.383 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ReportsController.GetCurrentStockReport (TarteebErp.API)'
+2026-06-30 17:28:04.789 +03:00 [INF] Route matched with {action = "GetCurrentStockReport", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.DTOs.CurrentStockReportItemDto]]]] GetCurrentStockReport() on controller TarteebErp.API.Controllers.ReportsController (TarteebErp.API).
+2026-06-30 17:28:04.928 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Domain.DTOs.CurrentStockReportItemDto, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:28:05.159 +03:00 [INF] Executed action TarteebErp.API.Controllers.ReportsController.GetCurrentStockReport (TarteebErp.API) in 272.0578ms
+2026-06-30 17:28:05.192 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ReportsController.GetCurrentStockReport (TarteebErp.API)'
+2026-06-30 17:28:05.197 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/current-stock - 200 null application/json; charset=utf-8 995.9714ms
+2026-06-30 17:28:14.237 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/reports/sales - null null
+2026-06-30 17:28:14.254 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:28:14.258 +03:00 [INF] Route matched with {action = "GetSalesReport", controller = "Reports"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Domain.DTOs.SalesReportItemDto]]]] GetSalesReport(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime]) on controller TarteebErp.API.Controllers.ReportsController (TarteebErp.API).
+2026-06-30 17:28:14.269 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Domain.DTOs.SalesReportItemDto, TarteebErp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:28:14.271 +03:00 [INF] Executed action TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API) in 3.9824ms
+2026-06-30 17:28:14.485 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ReportsController.GetSalesReport (TarteebErp.API)'
+2026-06-30 17:28:14.987 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/reports/sales - 200 null application/json; charset=utf-8 750.6308ms
+2026-06-30 17:28:23.709 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - null null
+2026-06-30 17:28:23.857 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:28:23.890 +03:00 [INF] Route matched with {action = "GetPaged", controller = "Sales"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[TarteebErp.Shared.Responses.PagedResponse`1[TarteebErp.Application.DTOs.SaleDto]]]] GetPaged(TarteebErp.Shared.Requests.PagedRequest) on controller TarteebErp.API.Controllers.SalesController (TarteebErp.API).
+2026-06-30 17:28:23.996 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[TarteebErp.Shared.Responses.PagedResponse`1[[TarteebErp.Application.DTOs.SaleDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TarteebErp.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-06-30 17:28:24.050 +03:00 [INF] Executed action TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API) in 146.1769ms
+2026-06-30 17:28:24.116 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.SalesController.GetPaged (TarteebErp.API)'
+2026-06-30 17:28:24.118 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/sales?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 409.6429ms
+2026-06-30 17:28:29.614 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/items/all - null null
+2026-06-30 17:28:29.651 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7167/api/customers/all - null null
+2026-06-30 17:28:29.688 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 17:28:29.722 +03:00 [INF] Executing endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 17:28:29.754 +03:00 [INF] Route matched with {action = "GetAll", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.ItemDto]]]] GetAll() on controller TarteebErp.API.Controllers.ItemsController (TarteebErp.API).
+2026-06-30 17:28:29.941 +03:00 [INF] Route matched with {action = "GetAll", controller = "Customers"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TarteebErp.Shared.Responses.ApiResponse`1[System.Collections.Generic.IEnumerable`1[TarteebErp.Application.DTOs.CustomerDto]]]] GetAll() on controller TarteebErp.API.Controllers.CustomersController (TarteebErp.API).
+2026-06-30 17:28:30.174 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.ItemDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:28:30.197 +03:00 [INF] Executed action TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API) in 49.6965ms
+2026-06-30 17:28:30.200 +03:00 [INF] Executing OkObjectResult, writing value of type 'TarteebErp.Shared.Responses.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[TarteebErp.Application.DTOs.CustomerDto, TarteebErp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-06-30 17:28:30.201 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.ItemsController.GetAll (TarteebErp.API)'
+2026-06-30 17:28:30.204 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/items/all - 200 null application/json; charset=utf-8 589.6031ms
+2026-06-30 17:28:30.209 +03:00 [INF] Executed action TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API) in 36.8252ms
+2026-06-30 17:28:30.211 +03:00 [INF] Executed endpoint 'TarteebErp.API.Controllers.CustomersController.GetAll (TarteebErp.API)'
+2026-06-30 17:28:30.216 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7167/api/customers/all - 200 null application/json; charset=utf-8 564.6443ms

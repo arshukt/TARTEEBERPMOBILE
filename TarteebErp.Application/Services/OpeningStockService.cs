@@ -111,6 +111,7 @@ public class OpeningStockService : IOpeningStockService
 
     public async Task DeleteAsync(int id)
     {
+        await _stockTransactionRepository.DeleteForReferenceAsync("OpeningStock", id, 0);
         await _openingStockRepository.DeleteAsync(id);
     }
 

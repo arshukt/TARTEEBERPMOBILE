@@ -10,18 +10,23 @@ namespace TarteebErp.Application.Services;
 
 public class PurchaseReturnService : IPurchaseReturnService
 {
+    private const string PurchaseReturnReferenceType = "PurchaseReturn";
+
     private readonly IPurchaseReturnRepository _purchaseReturnRepository;
+    private readonly IPurchaseRepository _purchaseRepository;
     private readonly IStockTransactionRepository _stockTransactionRepository;
     private readonly IDocumentNumberService _documentNumberService;
     private readonly IMapper _mapper;
 
     public PurchaseReturnService(
         IPurchaseReturnRepository purchaseReturnRepository,
+        IPurchaseRepository purchaseRepository,
         IStockTransactionRepository stockTransactionRepository,
         IDocumentNumberService documentNumberService,
         IMapper mapper)
     {
         _purchaseReturnRepository = purchaseReturnRepository;
+        _purchaseRepository = purchaseRepository;
         _stockTransactionRepository = stockTransactionRepository;
         _documentNumberService = documentNumberService;
         _mapper = mapper;
@@ -57,6 +62,9 @@ public class PurchaseReturnService : IPurchaseReturnService
     public async Task<PurchaseReturnDto> CreateAsync(CreatePurchaseReturnDto dto, int currentUserId)
     {
         ValidatePurchaseReturn(dto);
+        await ValidatePurchaseReturnAgainstPurchaseAsync(dto);
+        await ValidatePurchaseReturnStockAsync(dto);
+
         dto.ReturnNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.PurchaseReturn,
             dto.ReturnNumber);
@@ -68,24 +76,7 @@ public class PurchaseReturnService : IPurchaseReturnService
         CalculateTotals(purchaseReturn);
 
         await _purchaseReturnRepository.AddAsync(purchaseReturn);
-
-        // Create stock transactions for each item (stock out)
-        foreach (var detail in purchaseReturn.PurchaseReturnDetails)
-        {
-            await _stockTransactionRepository.AddTransactionAsync(new StockTransaction
-            {
-                ItemId = detail.ItemId,
-                TransactionType = StockTransactionType.PurchaseReturn,
-                QuantityIn = 0,
-                QuantityOut = detail.Quantity,
-                ReferenceId = purchaseReturn.Id,
-                ReferenceType = "PurchaseReturn",
-                Notes = $"Purchase return {dto.ReturnNumber}",
-                TransactionDate = dto.ReturnDate,
-                CreatedAt = DateTime.UtcNow,
-                CreatedBy = currentUserId
-            });
-        }
+        await ReplaceStockTransactionsAsync(purchaseReturn, currentUserId);
 
         return _mapper.Map<PurchaseReturnDto>(purchaseReturn);
     }
@@ -97,6 +88,9 @@ public class PurchaseReturnService : IPurchaseReturnService
             throw new KeyNotFoundException($"PurchaseReturn with id {dto.Id} not found");
 
         ValidatePurchaseReturn(dto);
+        await ValidatePurchaseReturnAgainstPurchaseAsync(dto, dto.Id);
+        await ValidatePurchaseReturnStockAsync(dto, GetQuantitiesByItem(purchaseReturn.PurchaseReturnDetails));
+
         dto.ReturnNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.PurchaseReturn,
             dto.ReturnNumber,
@@ -108,11 +102,18 @@ public class PurchaseReturnService : IPurchaseReturnService
         purchaseReturn.UpdatedBy = currentUserId;
 
         await _purchaseReturnRepository.UpdateAsync(purchaseReturn);
+        await ReplaceStockTransactionsAsync(purchaseReturn, currentUserId);
     }
 
     public async Task DeleteAsync(int id)
     {
+        var purchaseReturn = await _purchaseReturnRepository.GetByIdAsync(id);
+        if (purchaseReturn == null)
+            throw new KeyNotFoundException($"PurchaseReturn with id {id} not found");
+
         await _purchaseReturnRepository.DeleteAsync(id);
+        var affectedItemIds = await _stockTransactionRepository.DeleteForReferenceAsync(PurchaseReturnReferenceType, id, 0);
+        await _stockTransactionRepository.RecalculateBalancesAsync(affectedItemIds);
     }
 
     private static void CalculateTotals(PurchaseReturn purchaseReturn)
@@ -163,22 +164,118 @@ public class PurchaseReturnService : IPurchaseReturnService
             lineNumber++;
         }
     }
+
+    private async Task ValidatePurchaseReturnAgainstPurchaseAsync(CreatePurchaseReturnDto dto, int? excludeReturnId = null)
+    {
+        var purchase = await _purchaseRepository.GetByIdAsync(dto.PurchaseId);
+        if (purchase == null)
+            throw new ArgumentException("Purchase not found");
+
+        var purchaseDetails = purchase.PurchaseDetails.ToDictionary(detail => detail.Id);
+        var returnedQuantities = await _purchaseReturnRepository.GetReturnedQuantitiesByPurchaseDetailAsync(
+            dto.PurchaseId,
+            excludeReturnId);
+
+        foreach (var detail in dto.PurchaseReturnDetails)
+        {
+            if (!purchaseDetails.TryGetValue(detail.PurchaseDetailId, out var purchaseDetail))
+                throw new ArgumentException($"Purchase return detail {detail.PurchaseDetailId} does not belong to the selected purchase");
+
+            if (purchaseDetail.ItemId != detail.ItemId)
+                throw new ArgumentException($"Purchase return detail {detail.PurchaseDetailId} item does not match the selected purchase item");
+        }
+
+        foreach (var group in dto.PurchaseReturnDetails.GroupBy(detail => detail.PurchaseDetailId))
+        {
+            var purchaseDetail = purchaseDetails[group.Key];
+            var requestedQuantity = group.Sum(detail => detail.Quantity);
+            returnedQuantities.TryGetValue(group.Key, out var alreadyReturnedQuantity);
+
+            if (alreadyReturnedQuantity + requestedQuantity > purchaseDetail.Quantity)
+            {
+                var remainingQuantity = purchaseDetail.Quantity - alreadyReturnedQuantity;
+                throw new InvalidOperationException(
+                    $"Purchase return quantity for item {purchaseDetail.ItemId} exceeds purchased quantity. Remaining returnable quantity: {remainingQuantity}");
+            }
+        }
+    }
+
+    private async Task ValidatePurchaseReturnStockAsync(
+        CreatePurchaseReturnDto dto,
+        IReadOnlyDictionary<int, decimal>? existingReturnQuantitiesByItem = null)
+    {
+        foreach (var group in dto.PurchaseReturnDetails.GroupBy(detail => detail.ItemId))
+        {
+            var itemId = group.Key;
+            var requestedQuantity = group.Sum(detail => detail.Quantity);
+            var currentStock = await _stockTransactionRepository.GetCurrentStockAsync(itemId);
+            var existingReturnQuantity = 0m;
+            if (existingReturnQuantitiesByItem != null)
+                existingReturnQuantitiesByItem.TryGetValue(itemId, out existingReturnQuantity);
+
+            var availableStock = currentStock + existingReturnQuantity;
+
+            if (requestedQuantity > availableStock)
+            {
+                throw new InvalidOperationException(
+                    $"Insufficient stock for item {itemId}. Available stock: {availableStock}, requested purchase return: {requestedQuantity}");
+            }
+        }
+    }
+
+    private async Task ReplaceStockTransactionsAsync(PurchaseReturn purchaseReturn, int currentUserId)
+    {
+        var affectedItemIds = new HashSet<int>(
+            await _stockTransactionRepository.DeleteForReferenceAsync(PurchaseReturnReferenceType, purchaseReturn.Id, currentUserId));
+
+        foreach (var detail in purchaseReturn.PurchaseReturnDetails)
+        {
+            affectedItemIds.Add(detail.ItemId);
+            await _stockTransactionRepository.AddTransactionAsync(new StockTransaction
+            {
+                ItemId = detail.ItemId,
+                TransactionType = StockTransactionType.PurchaseReturn,
+                QuantityIn = 0,
+                QuantityOut = detail.Quantity,
+                ReferenceId = purchaseReturn.Id,
+                ReferenceType = PurchaseReturnReferenceType,
+                Notes = $"Purchase return {purchaseReturn.ReturnNumber}",
+                TransactionDate = purchaseReturn.ReturnDate,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = currentUserId
+            });
+        }
+
+        await _stockTransactionRepository.RecalculateBalancesAsync(affectedItemIds);
+    }
+
+    private static IReadOnlyDictionary<int, decimal> GetQuantitiesByItem(IEnumerable<PurchaseReturnDetail> details)
+    {
+        return details
+            .GroupBy(detail => detail.ItemId)
+            .ToDictionary(group => group.Key, group => group.Sum(detail => detail.Quantity));
+    }
 }
 
 public class SaleReturnService : ISaleReturnService
 {
+    private const string SaleReturnReferenceType = "SaleReturn";
+
     private readonly ISaleReturnRepository _saleReturnRepository;
+    private readonly ISaleRepository _saleRepository;
     private readonly IStockTransactionRepository _stockTransactionRepository;
     private readonly IDocumentNumberService _documentNumberService;
     private readonly IMapper _mapper;
 
     public SaleReturnService(
         ISaleReturnRepository saleReturnRepository,
+        ISaleRepository saleRepository,
         IStockTransactionRepository stockTransactionRepository,
         IDocumentNumberService documentNumberService,
         IMapper mapper)
     {
         _saleReturnRepository = saleReturnRepository;
+        _saleRepository = saleRepository;
         _stockTransactionRepository = stockTransactionRepository;
         _documentNumberService = documentNumberService;
         _mapper = mapper;
@@ -214,6 +311,8 @@ public class SaleReturnService : ISaleReturnService
     public async Task<SaleReturnDto> CreateAsync(CreateSaleReturnDto dto, int currentUserId)
     {
         ValidateSaleReturn(dto);
+        await ValidateSaleReturnAgainstSaleAsync(dto);
+
         dto.ReturnNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.SaleReturn,
             dto.ReturnNumber);
@@ -225,24 +324,7 @@ public class SaleReturnService : ISaleReturnService
         CalculateTotals(saleReturn);
 
         await _saleReturnRepository.AddAsync(saleReturn);
-
-        // Create stock transactions for each item (stock in)
-        foreach (var detail in saleReturn.SaleReturnDetails)
-        {
-            await _stockTransactionRepository.AddTransactionAsync(new StockTransaction
-            {
-                ItemId = detail.ItemId,
-                TransactionType = StockTransactionType.SaleReturn,
-                QuantityIn = detail.Quantity,
-                QuantityOut = 0,
-                ReferenceId = saleReturn.Id,
-                ReferenceType = "SaleReturn",
-                Notes = $"Sale return {dto.ReturnNumber}",
-                TransactionDate = dto.ReturnDate,
-                CreatedAt = DateTime.UtcNow,
-                CreatedBy = currentUserId
-            });
-        }
+        await ReplaceStockTransactionsAsync(saleReturn, currentUserId);
 
         return _mapper.Map<SaleReturnDto>(saleReturn);
     }
@@ -254,6 +336,13 @@ public class SaleReturnService : ISaleReturnService
             throw new KeyNotFoundException($"SaleReturn with id {dto.Id} not found");
 
         ValidateSaleReturn(dto);
+        await ValidateSaleReturnAgainstSaleAsync(dto, dto.Id);
+        await ValidateSaleReturnStockReductionAsync(
+            GetQuantitiesByItem(saleReturn.SaleReturnDetails),
+            dto.SaleReturnDetails
+                .GroupBy(detail => detail.ItemId)
+                .ToDictionary(group => group.Key, group => group.Sum(detail => detail.Quantity)));
+
         dto.ReturnNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.SaleReturn,
             dto.ReturnNumber,
@@ -265,11 +354,22 @@ public class SaleReturnService : ISaleReturnService
         saleReturn.UpdatedBy = currentUserId;
 
         await _saleReturnRepository.UpdateAsync(saleReturn);
+        await ReplaceStockTransactionsAsync(saleReturn, currentUserId);
     }
 
     public async Task DeleteAsync(int id)
     {
+        var saleReturn = await _saleReturnRepository.GetByIdAsync(id);
+        if (saleReturn == null)
+            throw new KeyNotFoundException($"SaleReturn with id {id} not found");
+
+        await ValidateSaleReturnStockReductionAsync(
+            GetQuantitiesByItem(saleReturn.SaleReturnDetails),
+            new Dictionary<int, decimal>());
+
         await _saleReturnRepository.DeleteAsync(id);
+        var affectedItemIds = await _stockTransactionRepository.DeleteForReferenceAsync(SaleReturnReferenceType, id, 0);
+        await _stockTransactionRepository.RecalculateBalancesAsync(affectedItemIds);
     }
 
     private static void CalculateTotals(SaleReturn saleReturn)
@@ -315,6 +415,94 @@ public class SaleReturnService : ISaleReturnService
 
             lineNumber++;
         }
+    }
+
+    private async Task ValidateSaleReturnAgainstSaleAsync(CreateSaleReturnDto dto, int? excludeReturnId = null)
+    {
+        var sale = await _saleRepository.GetByIdAsync(dto.SaleId);
+        if (sale == null)
+            throw new ArgumentException("Sale not found");
+
+        var saleDetails = sale.SaleDetails.ToDictionary(detail => detail.Id);
+        var returnedQuantities = await _saleReturnRepository.GetReturnedQuantitiesBySaleDetailAsync(
+            dto.SaleId,
+            excludeReturnId);
+
+        foreach (var detail in dto.SaleReturnDetails)
+        {
+            if (!saleDetails.TryGetValue(detail.SaleDetailId, out var saleDetail))
+                throw new ArgumentException($"Sale return detail {detail.SaleDetailId} does not belong to the selected sale");
+
+            if (saleDetail.ItemId != detail.ItemId)
+                throw new ArgumentException($"Sale return detail {detail.SaleDetailId} item does not match the selected sale item");
+        }
+
+        foreach (var group in dto.SaleReturnDetails.GroupBy(detail => detail.SaleDetailId))
+        {
+            var saleDetail = saleDetails[group.Key];
+            var requestedQuantity = group.Sum(detail => detail.Quantity);
+            returnedQuantities.TryGetValue(group.Key, out var alreadyReturnedQuantity);
+
+            if (alreadyReturnedQuantity + requestedQuantity > saleDetail.Quantity)
+            {
+                var remainingQuantity = saleDetail.Quantity - alreadyReturnedQuantity;
+                throw new InvalidOperationException(
+                    $"Sale return quantity for item {saleDetail.ItemId} exceeds sold quantity. Remaining returnable quantity: {remainingQuantity}");
+            }
+        }
+    }
+
+    private async Task ValidateSaleReturnStockReductionAsync(
+        IReadOnlyDictionary<int, decimal> existingReturnQuantitiesByItem,
+        IReadOnlyDictionary<int, decimal> newReturnQuantitiesByItem)
+    {
+        foreach (var existingQuantity in existingReturnQuantitiesByItem)
+        {
+            newReturnQuantitiesByItem.TryGetValue(existingQuantity.Key, out var newQuantity);
+            var stockReduction = existingQuantity.Value - newQuantity;
+            if (stockReduction <= 0)
+                continue;
+
+            var currentStock = await _stockTransactionRepository.GetCurrentStockAsync(existingQuantity.Key);
+            if (currentStock < stockReduction)
+            {
+                throw new InvalidOperationException(
+                    $"Insufficient stock for item {existingQuantity.Key}. Available stock: {currentStock}, required to reverse sale return: {stockReduction}");
+            }
+        }
+    }
+
+    private async Task ReplaceStockTransactionsAsync(SaleReturn saleReturn, int currentUserId)
+    {
+        var affectedItemIds = new HashSet<int>(
+            await _stockTransactionRepository.DeleteForReferenceAsync(SaleReturnReferenceType, saleReturn.Id, currentUserId));
+
+        foreach (var detail in saleReturn.SaleReturnDetails)
+        {
+            affectedItemIds.Add(detail.ItemId);
+            await _stockTransactionRepository.AddTransactionAsync(new StockTransaction
+            {
+                ItemId = detail.ItemId,
+                TransactionType = StockTransactionType.SaleReturn,
+                QuantityIn = detail.Quantity,
+                QuantityOut = 0,
+                ReferenceId = saleReturn.Id,
+                ReferenceType = SaleReturnReferenceType,
+                Notes = $"Sale return {saleReturn.ReturnNumber}",
+                TransactionDate = saleReturn.ReturnDate,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = currentUserId
+            });
+        }
+
+        await _stockTransactionRepository.RecalculateBalancesAsync(affectedItemIds);
+    }
+
+    private static IReadOnlyDictionary<int, decimal> GetQuantitiesByItem(IEnumerable<SaleReturnDetail> details)
+    {
+        return details
+            .GroupBy(detail => detail.ItemId)
+            .ToDictionary(group => group.Key, group => group.Sum(detail => detail.Quantity));
     }
 }
 
@@ -366,7 +554,7 @@ public class StockAdjustmentService : IStockAdjustmentService
 
     public async Task<StockAdjustmentDto> CreateAsync(CreateStockAdjustmentDto dto, int currentUserId)
     {
-        ValidateStockAdjustment(dto);
+        await ValidateStockAdjustment(dto);
         dto.AdjustmentNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.StockAdjustment,
             dto.AdjustmentNumber);
@@ -408,7 +596,7 @@ public class StockAdjustmentService : IStockAdjustmentService
         if (stockAdjustment == null)
             throw new KeyNotFoundException($"StockAdjustment with id {dto.Id} not found");
 
-        ValidateStockAdjustment(dto);
+        await ValidateStockAdjustment(dto);
         dto.AdjustmentNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.StockAdjustment,
             dto.AdjustmentNumber,
@@ -423,10 +611,11 @@ public class StockAdjustmentService : IStockAdjustmentService
 
     public async Task DeleteAsync(int id)
     {
+        await _stockTransactionRepository.DeleteForReferenceAsync("StockAdjustment", id, 0);
         await _stockAdjustmentRepository.DeleteAsync(id);
     }
 
-    private static void ValidateStockAdjustment(CreateStockAdjustmentDto dto)
+    private async Task ValidateStockAdjustment(CreateStockAdjustmentDto dto)
     {
         TransactionValidation.RequireDate(dto.AdjustmentDate, "Stock adjustment date");
         TransactionValidation.RequireDetails(dto.StockAdjustmentDetails, "Stock adjustment details");
@@ -443,6 +632,13 @@ public class StockAdjustmentService : IStockAdjustmentService
 
             if (detail.QuantityIn > 0 && detail.QuantityOut > 0)
                 throw new ArgumentException($"Stock adjustment line {lineNumber} cannot include both quantity in and quantity out");
+
+            if (detail.QuantityOut > 0)
+            {
+                var currentStock = await _stockTransactionRepository.GetCurrentStockAsync(detail.ItemId);
+                if (detail.QuantityOut > currentStock)
+                    throw new InvalidOperationException($"Insufficient stock for item {detail.ItemId}. Available: {currentStock}, requested: {detail.QuantityOut}");
+            }
 
             lineNumber++;
         }
@@ -589,7 +785,7 @@ public class StockTransferService : IStockTransferService
 
     public async Task<StockTransferDto> CreateAsync(CreateStockTransferDto dto, int currentUserId)
     {
-        ValidateStockTransfer(dto);
+        await ValidateStockTransfer(dto);
         dto.TransferNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.StockTransfer,
             dto.TransferNumber);
@@ -643,7 +839,7 @@ public class StockTransferService : IStockTransferService
         if (stockTransfer == null)
             throw new KeyNotFoundException($"StockTransfer with id {dto.Id} not found");
 
-        ValidateStockTransfer(dto);
+        await ValidateStockTransfer(dto);
         dto.TransferNumber = await _documentNumberService.EnsureNumberAsync(
             TransactionDocumentTypes.StockTransfer,
             dto.TransferNumber,
@@ -658,10 +854,11 @@ public class StockTransferService : IStockTransferService
 
     public async Task DeleteAsync(int id)
     {
+        await _stockTransactionRepository.DeleteForReferenceAsync("StockTransfer", id, 0);
         await _stockTransferRepository.DeleteAsync(id);
     }
 
-    private static void ValidateStockTransfer(CreateStockTransferDto dto)
+    private async Task ValidateStockTransfer(CreateStockTransferDto dto)
     {
         TransactionValidation.RequireDate(dto.TransferDate, "Stock transfer date");
         TransactionValidation.RequireText(dto.FromLocation, "From location");
@@ -676,6 +873,11 @@ public class StockTransferService : IStockTransferService
         {
             TransactionValidation.RequirePositive(detail.ItemId, $"Stock transfer line {lineNumber} item");
             TransactionValidation.RequirePositive(detail.Quantity, $"Stock transfer line {lineNumber} quantity");
+
+            var currentStock = await _stockTransactionRepository.GetCurrentStockAsync(detail.ItemId);
+            if (detail.Quantity > currentStock)
+                throw new InvalidOperationException($"Insufficient stock for item {detail.ItemId}. Available: {currentStock}, requested: {detail.Quantity}");
+
             lineNumber++;
         }
     }

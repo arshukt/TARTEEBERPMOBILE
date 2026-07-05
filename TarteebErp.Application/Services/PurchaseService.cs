@@ -108,10 +108,34 @@ public class PurchaseService : IPurchaseService
         purchase.UpdatedBy = currentUserId;
 
         await _purchaseRepository.UpdateAsync(purchase);
+
+        var affectedItemIds = new HashSet<int>(
+            await _stockTransactionRepository.DeleteForReferenceAsync("Purchase", dto.Id, currentUserId));
+
+        foreach (var detail in purchase.PurchaseDetails)
+        {
+            affectedItemIds.Add(detail.ItemId);
+            await _stockTransactionRepository.AddTransactionAsync(new StockTransaction
+            {
+                ItemId = detail.ItemId,
+                TransactionType = StockTransactionType.Purchase,
+                QuantityIn = detail.Quantity,
+                QuantityOut = 0,
+                ReferenceId = purchase.Id,
+                ReferenceType = "Purchase",
+                Notes = $"Purchase invoice {dto.InvoiceNumber}",
+                TransactionDate = dto.PurchaseDate,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = currentUserId
+            });
+        }
+
+        await _stockTransactionRepository.RecalculateBalancesAsync(affectedItemIds);
     }
 
     public async Task DeleteAsync(int id)
     {
+        await _stockTransactionRepository.DeleteForReferenceAsync("Purchase", id, 0);
         await _purchaseRepository.DeleteAsync(id);
     }
 

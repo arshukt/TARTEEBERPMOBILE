@@ -2,24 +2,37 @@
   <div class="p-6 max-w-2xl mx-auto">
     <el-card>
       <template #header>
-        <div class="flex items-center justify-between">
-          <h2 class="text-xl font-bold">User Profile</h2>
-        </div>
+        <h2 class="text-xl font-bold text-[#025f8b]">User Profile</h2>
       </template>
 
       <el-tabs v-model="activeTab">
         <el-tab-pane label="Profile" name="profile">
           <el-descriptions :column="1" border>
-            <el-descriptions-item label="Username">{{ authStore.user?.username }}</el-descriptions-item>
-            <el-descriptions-item label="Full Name">{{ authStore.user?.fullName }}</el-descriptions-item>
-            <el-descriptions-item label="Mobile">{{ authStore.user?.mobile || '-' }}</el-descriptions-item>
-            <el-descriptions-item label="Email">{{ authStore.user?.email || '-' }}</el-descriptions-item>
-            <el-descriptions-item label="Role">{{ authStore.user?.roleName }}</el-descriptions-item>
+            <el-descriptions-item label="Username">{{
+              authStore.user?.username
+            }}</el-descriptions-item>
+            <el-descriptions-item label="Full Name">{{
+              authStore.user?.fullName
+            }}</el-descriptions-item>
+            <el-descriptions-item label="Mobile">{{
+              authStore.user?.mobile || "-"
+            }}</el-descriptions-item>
+            <el-descriptions-item label="Email">{{
+              authStore.user?.email || "-"
+            }}</el-descriptions-item>
+            <el-descriptions-item label="Role">{{
+              authStore.user?.roleName
+            }}</el-descriptions-item>
           </el-descriptions>
         </el-tab-pane>
 
         <el-tab-pane label="Change Password" name="password">
-          <el-form :model="passwordForm" :rules="passwordRules" ref="passwordFormRef" label-width="150px">
+          <el-form
+            :model="passwordForm"
+            :rules="passwordRules"
+            ref="passwordFormRef"
+            label-width="150px"
+          >
             <el-form-item label="Current Password" prop="currentPassword">
               <el-input
                 v-model="passwordForm.currentPassword"
@@ -45,7 +58,11 @@
               />
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="handleChangePassword" :loading="loading">
+              <el-button
+                type="primary"
+                @click="handleChangePassword"
+                :loading="loading"
+              >
                 Change Password
               </el-button>
             </el-form-item>
@@ -59,7 +76,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useAuthStore } from "@/stores/auth";
-import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from "element-plus";
+import {
+  ElMessage,
+  ElMessageBox,
+  type FormInstance,
+  type FormRules,
+} from "element-plus";
 import { authService } from "@/services/auth";
 
 const authStore = useAuthStore();
@@ -70,7 +92,7 @@ const passwordFormRef = ref<FormInstance>();
 const passwordForm = ref({
   currentPassword: "",
   newPassword: "",
-  confirmPassword: ""
+  confirmPassword: "",
 });
 
 const validateConfirmPassword = (rule: any, value: any, callback: any) => {
@@ -83,21 +105,33 @@ const validateConfirmPassword = (rule: any, value: any, callback: any) => {
 
 const passwordRules: FormRules = {
   currentPassword: [
-    { required: true, message: "Current password is required", trigger: "blur" }
+    {
+      required: true,
+      message: "Current password is required",
+      trigger: "blur",
+    },
   ],
   newPassword: [
     { required: true, message: "New password is required", trigger: "blur" },
-    { min: 6, message: "Password must be at least 6 characters", trigger: "blur" }
+    {
+      min: 6,
+      message: "Password must be at least 6 characters",
+      trigger: "blur",
+    },
   ],
   confirmPassword: [
-    { required: true, message: "Confirm password is required", trigger: "blur" },
-    { validator: validateConfirmPassword, trigger: "blur" }
-  ]
+    {
+      required: true,
+      message: "Confirm password is required",
+      trigger: "blur",
+    },
+    { validator: validateConfirmPassword, trigger: "blur" },
+  ],
 };
 
 const handleChangePassword = async () => {
   if (!passwordFormRef.value) return;
-  
+
   await passwordFormRef.value.validate(async (valid) => {
     if (valid) {
       try {
@@ -108,11 +142,13 @@ const handleChangePassword = async () => {
           passwordForm.value = {
             currentPassword: "",
             newPassword: "",
-            confirmPassword: ""
+            confirmPassword: "",
           };
         }
       } catch (error: any) {
-        ElMessage.error(error?.response?.data?.message || "Failed to change password");
+        ElMessage.error(
+          error?.response?.data?.message || "Failed to change password",
+        );
       } finally {
         loading.value = false;
       }

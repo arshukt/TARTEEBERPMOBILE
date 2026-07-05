@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { ElMessage } from "element-plus";
 import type { Item, CreateItem, UpdateItem } from "@/services/items";
 import { itemService } from "@/services/items";
+import { reportService } from "@/services/reports";
 
 export const useItemStore = defineStore("items", () => {
   const items = ref<Item[]>([]);
@@ -31,6 +32,30 @@ export const useItemStore = defineStore("items", () => {
       const response = await itemService.getAll();
       if (response.success) {
         items.value = response.data || [];
+      }
+    } catch (error: any) {
+      ElMessage.error(error?.response?.data?.message || "Failed to fetch items");
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const fetchAllWithStock = async () => {
+    try {
+      loading.value = true;
+      const [itemsResponse, stockResponse] = await Promise.all([
+        itemService.getAll(),
+        reportService.getCurrentStock()
+      ]);
+      if (itemsResponse.success) {
+        const stockMap = new Map<number, number>();
+        if (stockResponse.success && stockResponse.data) {
+          stockResponse.data.forEach((s: any) => stockMap.set(s.id, s.currentStock));
+        }
+        items.value = (itemsResponse.data || []).map(item => ({
+          ...item,
+          currentStock: stockMap.get(item.id)
+        }));
       }
     } catch (error: any) {
       ElMessage.error(error?.response?.data?.message || "Failed to fetch items");
@@ -109,6 +134,7 @@ export const useItemStore = defineStore("items", () => {
     pagedItems,
     loading,
     fetchAll,
+    fetchAllWithStock,
     fetchPaged,
     create,
     update,

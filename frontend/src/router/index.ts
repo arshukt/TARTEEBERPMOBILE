@@ -122,6 +122,31 @@ const routes: RouteRecordRaw[] = [
         name: "Reports",
         component: () => import("@/pages/ReportsPage.vue"),
       },
+      {
+        path: "/reports/sales",
+        name: "SalesReport",
+        component: () => import("@/pages/reports/SalesReportPage.vue"),
+      },
+      {
+        path: "/reports/purchases",
+        name: "PurchasesReport",
+        component: () => import("@/pages/reports/PurchasesReportPage.vue"),
+      },
+      {
+        path: "/reports/current-stock",
+        name: "CurrentStockReport",
+        component: () => import("@/pages/reports/CurrentStockReportPage.vue"),
+      },
+      {
+        path: "/reports/customer-outstanding",
+        name: "CustomerOutstandingReport",
+        component: () => import("@/pages/reports/CustomerOutstandingReportPage.vue"),
+      },
+      {
+        path: "/reports/supplier-outstanding",
+        name: "SupplierOutstandingReport",
+        component: () => import("@/pages/reports/SupplierOutstandingReportPage.vue"),
+      },
     ],
   },
 ];

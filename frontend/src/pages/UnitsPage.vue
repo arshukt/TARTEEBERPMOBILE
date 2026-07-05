@@ -16,22 +16,31 @@
     </div>
 
     <el-card>
-      <el-table :data="unitStore.pagedUnits.items" v-loading="unitStore.loading" stripe>
+      <el-table
+        :data="unitStore.pagedUnits.items"
+        v-loading="unitStore.loading"
+        stripe
+      >
         <el-table-column prop="id" label="ID" width="80" />
-        <el-table-column prop="unitName" label="Unit Name" />
-        <el-table-column prop="symbol" label="Symbol" />
-        <el-table-column label="Actions" width="200">
+        <el-table-column prop="unitName" label="Name" width="150" />
+        <!-- <el-table-column prop="symbol" label="Symbol" /> -->
+        <el-table-column
+          label="Actions"
+          width="90"
+          fixed="right"
+          align="center"
+        >
           <template #default="{ row }">
-            <el-button type="primary" size="small" link @click="openDialog(row)">
+            <el-button link type="primary" @click="openDialog(row)">
               Edit
             </el-button>
-            <el-button type="danger" size="small" link @click="handleDelete(row.id)">
+            <el-button link type="danger" @click="handleDelete(row)">
               Delete
             </el-button>
           </template>
         </el-table-column>
       </el-table>
-      
+
       <el-pagination
         v-model:current-page="unitStore.pagedUnits.pageNumber"
         v-model:page-size="unitStore.pagedUnits.pageSize"
@@ -67,7 +76,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from "element-plus";
+import {
+  ElMessage,
+  ElMessageBox,
+  type FormInstance,
+  type FormRules,
+} from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { useUnitStore } from "@/stores/units";
 import type { CreateUnit, UpdateUnit } from "@/services/units";
@@ -80,16 +94,14 @@ const formRef = ref<FormInstance>();
 
 const form = ref<CreateUnit>({
   unitName: "",
-  symbol: ""
+  symbol: "",
 });
 
 const rules: FormRules = {
   unitName: [
-    { required: true, message: "Unit name is required", trigger: "blur" }
+    { required: true, message: "Unit name is required", trigger: "blur" },
   ],
-  symbol: [
-    { required: true, message: "Symbol is required", trigger: "blur" }
-  ]
+  symbol: [{ required: true, message: "Symbol is required", trigger: "blur" }],
 };
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
@@ -104,7 +116,7 @@ const loadUnits = () => {
   unitStore.fetchPaged(
     unitStore.pagedUnits.pageNumber,
     unitStore.pagedUnits.pageSize,
-    searchTerm.value
+    searchTerm.value,
   );
 };
 
@@ -113,12 +125,12 @@ const openDialog = (unit?: any) => {
   if (unit) {
     form.value = {
       unitName: unit.unitName,
-      symbol: unit.symbol
+      symbol: unit.symbol,
     };
   } else {
     form.value = {
       unitName: "",
-      symbol: ""
+      symbol: "",
     };
   }
   dialogVisible.value = true;
@@ -132,7 +144,7 @@ const handleSubmit = async () => {
       if (editingUnit.value) {
         success = await unitStore.update({
           id: editingUnit.value.id,
-          ...form.value
+          ...form.value,
         } as UpdateUnit);
       } else {
         success = await unitStore.create(form.value);
@@ -147,9 +159,13 @@ const handleSubmit = async () => {
 
 const handleDelete = async (id: number) => {
   try {
-    await ElMessageBox.confirm("Are you sure you want to delete this unit?", "Confirm", {
-      type: "warning"
-    });
+    await ElMessageBox.confirm(
+      "Are you sure you want to delete this unit?",
+      "Confirm",
+      {
+        type: "warning",
+      },
+    );
     const success = await unitStore.remove(id);
     if (success) {
       loadUnits();

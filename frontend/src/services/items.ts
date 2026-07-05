@@ -17,6 +17,7 @@ export interface Item {
   taxPercentage: number;
   minimumStock: number;
   openingStock: number;
+  currentStock?: number;
   isActive: boolean;
   itemImage?: string;
   categoryName?: string;

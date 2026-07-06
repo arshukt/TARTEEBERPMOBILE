@@ -16,6 +16,29 @@ public class OpeningStockRepository : RepositoryBase<OpeningStock>, IOpeningStoc
     {
     }
 
+    public override async Task<OpeningStock?> GetByIdAsync(int id)
+    {
+        using var conn = _dbConnectionFactory.CreateConnection();
+        const string headerSql = @"
+            SELECT *
+            FROM ""OpeningStocks""
+            WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
+        var openingStock = await conn.QueryFirstOrDefaultAsync<OpeningStock>(headerSql, new { Id = id });
+        if (openingStock == null)
+            return null;
+
+        const string detailsSql = @"
+            SELECT *
+            FROM ""OpeningStockDetails""
+            WHERE ""OpeningStockId"" = @OpeningStockId AND ""IsDeleted"" = false
+            ORDER BY ""Id""";
+        openingStock.OpeningStockDetails = (await conn.QueryAsync<OpeningStockDetail>(
+            detailsSql,
+            new { OpeningStockId = id })).ToList();
+
+        return openingStock;
+    }
+
     public override async Task AddAsync(OpeningStock openingStock)
     {
         using var conn = _dbConnectionFactory.CreateConnection();

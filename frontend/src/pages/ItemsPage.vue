@@ -1,15 +1,19 @@
 <template>
-  <div class="p-6">
-    <div class="flex justify-between items-center mb-6">
+  <div class="erp-page">
+    <div class="erp-toolbar">
       <el-input
         v-model="searchTerm"
         placeholder="Search by barcode, code, or name..."
         prefix-icon="Search"
-        style="width: 300px"
+        class="erp-search"
         clearable
         @input="debouncedSearch"
       />
-      <el-button type="primary" @click="openDialog()">
+      <el-button
+        type="primary"
+        :loading="dialogLoading && !editingItem"
+        @click="openDialog()"
+      >
         <el-icon><Plus /></el-icon>
         Add Item
       </el-button>
@@ -50,7 +54,7 @@
             <el-button link type="primary" @click="openDialog(row)">
               Edit
             </el-button>
-            <el-button link type="danger" @click="handleDelete(row)">
+            <el-button link type="danger" @click="handleDelete(row.id)">
               Delete
             </el-button>
           </template>
@@ -72,24 +76,32 @@
     <el-dialog
       v-model="dialogVisible"
       :title="editingItem ? 'Edit Item' : 'Add Item'"
-      width="700px"
+      width="1200px"
+      :close-on-click-modal="!saveLoading"
     >
-      <el-form :model="form" :rules="rules" ref="formRef" label-width="150px">
+      <el-form
+        :model="form"
+        :rules="rules"
+        ref="formRef"
+        label-width="150px"
+        class="erp-dialog-form"
+        v-loading="dialogLoading"
+      >
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="Barcode" prop="barcode">
-              <el-input v-model="form.barcode" placeholder="Enter barcode" />
+              <el-input v-model="form.barcode" placeholder="Enter barcode" style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="Item Code" prop="itemCode">
-              <el-input v-model="form.itemCode" placeholder="Enter item code" />
+              <el-input v-model="form.itemCode" placeholder="Enter item code" style="width: 100%" />
             </el-form-item>
           </el-col>
         </el-row>
 
         <el-form-item label="Item Name" prop="itemName">
-          <el-input v-model="form.itemName" placeholder="Enter item name" />
+          <el-input v-model="form.itemName" placeholder="Enter item name" style="width: 100%" />
         </el-form-item>
 
         <el-row :gutter="20">
@@ -234,13 +246,23 @@
         </el-form-item>
 
         <el-form-item label="Item Image" prop="itemImage">
-          <el-input v-model="form.itemImage" placeholder="Enter image URL" />
+          <el-input v-model="form.itemImage" placeholder="Enter image URL" style="width: 100%" />
         </el-form-item>
       </el-form>
 
       <template #footer>
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="handleSubmit">Save</el-button>
+        <div class="dialog-footer">
+          <el-button :disabled="saveLoading" @click="dialogVisible = false"
+            >Cancel</el-button
+          >
+          <el-button
+            type="primary"
+            :loading="saveLoading"
+            :disabled="dialogLoading"
+            @click="handleSubmit"
+            >Save</el-button
+          >
+        </div>
       </template>
     </el-dialog>
   </div>
@@ -270,6 +292,8 @@ const searchTerm = ref("");
 const dialogVisible = ref(false);
 const editingItem = ref<any>(null);
 const formRef = ref<FormInstance>();
+const dialogLoading = ref(false);
+const saveLoading = ref(false);
 
 const form = ref<CreateItem>({
   barcode: "",
@@ -352,72 +376,81 @@ const loadItems = () => {
 };
 
 const openDialog = async (item?: any) => {
-  await categoryStore.fetchAll();
-  await brandStore.fetchAll();
-  await unitStore.fetchAll();
-
-  editingItem.value = item || null;
-  if (item) {
-    form.value = {
-      barcode: item.barcode,
-      itemCode: item.itemCode,
-      itemName: item.itemName,
-      categoryId: item.categoryId,
-      brandId: item.brandId,
-      unitId: item.unitId,
-      purchaseRate: item.purchaseRate,
-      costRate: item.costRate,
-      wholesaleRate: item.wholesaleRate,
-      retailRate: item.retailRate,
-      mrp: item.mrp,
-      taxPercentage: item.taxPercentage,
-      minimumStock: item.minimumStock,
-      openingStock: item.openingStock,
-      isActive: item.isActive,
-      itemImage: item.itemImage,
-    };
-  } else {
-    form.value = {
-      barcode: "",
-      itemCode: "",
-      itemName: "",
-      categoryId: 0,
-      brandId: 0,
-      unitId: 0,
-      purchaseRate: 0,
-      costRate: 0,
-      wholesaleRate: 0,
-      retailRate: 0,
-      mrp: 0,
-      taxPercentage: 0,
-      minimumStock: 0,
-      openingStock: 0,
-      isActive: true,
-      itemImage: "",
-    };
-  }
+  dialogLoading.value = true;
   dialogVisible.value = true;
+  try {
+    await categoryStore.fetchAll();
+    await brandStore.fetchAll();
+    await unitStore.fetchAll();
+
+    editingItem.value = item || null;
+    if (item) {
+      form.value = {
+        barcode: item.barcode,
+        itemCode: item.itemCode,
+        itemName: item.itemName,
+        categoryId: item.categoryId,
+        brandId: item.brandId,
+        unitId: item.unitId,
+        purchaseRate: item.purchaseRate,
+        costRate: item.costRate,
+        wholesaleRate: item.wholesaleRate,
+        retailRate: item.retailRate,
+        mrp: item.mrp,
+        taxPercentage: item.taxPercentage,
+        minimumStock: item.minimumStock,
+        openingStock: item.openingStock,
+        isActive: item.isActive,
+        itemImage: item.itemImage,
+      };
+    } else {
+      form.value = {
+        barcode: "",
+        itemCode: "",
+        itemName: "",
+        categoryId: 0,
+        brandId: 0,
+        unitId: 0,
+        purchaseRate: 0,
+        costRate: 0,
+        wholesaleRate: 0,
+        retailRate: 0,
+        mrp: 0,
+        taxPercentage: 0,
+        minimumStock: 0,
+        openingStock: 0,
+        isActive: true,
+        itemImage: "",
+      };
+    }
+  } finally {
+    dialogLoading.value = false;
+  }
 };
 
 const handleSubmit = async () => {
-  if (!formRef.value) return;
-  await formRef.value.validate(async (valid) => {
-    if (valid) {
-      let success = false;
-      if (editingItem.value) {
-        success = await itemStore.update({
-          id: editingItem.value.id,
-          ...form.value,
-        } as UpdateItem);
-      } else {
-        success = await itemStore.create(form.value);
-      }
-      if (success) {
-        dialogVisible.value = false;
-        loadItems();
-      }
+  if (!formRef.value || saveLoading.value) return;
+  const valid = await formRef.value.validate().catch(() => false);
+  if (!valid) return;
+
+  saveLoading.value = true;
+  try {
+    let success = false;
+    if (editingItem.value) {
+      success = await itemStore.update({
+        id: editingItem.value.id,
+        ...form.value,
+      } as UpdateItem);
+    } else {
+      success = await itemStore.create(form.value);
     }
-  });
+    if (success) {
+      dialogVisible.value = false;
+      loadItems();
+    }
+  } finally {
+    saveLoading.value = false;
+  }
 };
 
 const handleDelete = async (id: number) => {

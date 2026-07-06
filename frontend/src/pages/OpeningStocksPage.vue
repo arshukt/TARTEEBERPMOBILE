@@ -338,6 +338,7 @@ import {
 import { Plus } from "@element-plus/icons-vue";
 import { useOpeningStockStore } from "@/stores/opening-stocks";
 import { useItemStore } from "@/stores/items";
+import { openingStockService } from "@/services/opening-stocks";
 import type {
   CreateOpeningStock,
   UpdateOpeningStock,
@@ -386,23 +387,40 @@ const loadOpeningStocks = () => {
 
 const openDialog = async (openingStock?: any) => {
   editingOpeningStock.value = openingStock || null;
-  if (openingStock) {
-    form.value = {
-      date: openingStock.date.split("T")[0],
-      notes: openingStock.notes,
-      openingStockDetails: openingStock.openingStockDetails,
-    };
-  } else {
-    form.value = {
-      date: new Date().toISOString().split("T")[0],
-      notes: "",
-      openingStockDetails: [],
-    };
-  }
   dialogVisible.value = true;
   dialogLoading.value = true;
   try {
-    await itemStore.fetchAll();
+    const tasks = [itemStore.fetchAll()];
+
+    if (openingStock) {
+      const response = await openingStockService.getById(openingStock.id);
+      if (response.success && response.data) {
+        const data = response.data;
+        form.value = {
+          date: data.date.split("T")[0],
+          notes: data.notes,
+          openingStockDetails: data.openingStockDetails.map((d) => ({
+            itemId: d.itemId,
+            purchaseRate: d.purchaseRate,
+            costRate: d.costRate,
+            retailRate: d.retailRate,
+            wholesaleRate: d.wholesaleRate,
+            mrp: d.mrp,
+            quantity: d.quantity,
+            batchNumber: d.batchNumber || "",
+            expiryDate: d.expiryDate ? d.expiryDate.split("T")[0] : "",
+          })),
+        };
+      }
+    } else {
+      form.value = {
+        date: new Date().toISOString().split("T")[0],
+        notes: "",
+        openingStockDetails: [],
+      };
+    }
+
+    await Promise.all(tasks);
   } finally {
     dialogLoading.value = false;
   }

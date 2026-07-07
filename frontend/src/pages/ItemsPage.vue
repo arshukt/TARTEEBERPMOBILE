@@ -17,8 +17,19 @@
         <el-icon><Plus /></el-icon>
         Add Item
       </el-button>
-    </div>
 
+      <div class="action-group">
+        <el-button class="tool-btn" @click="downloadTemplate">
+          <el-icon><Download /></el-icon>
+          Template
+        </el-button>
+
+        <el-button class="tool-btn" @click="openImportDialog">
+          <el-icon><Upload /></el-icon>
+          Import
+        </el-button>
+      </div>
+    </div>
     <el-card>
       <el-table
         :data="itemStore.pagedItems.items"
@@ -90,18 +101,30 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="Barcode" prop="barcode">
-              <el-input v-model="form.barcode" placeholder="Enter barcode" style="width: 100%" />
+              <el-input
+                v-model="form.barcode"
+                placeholder="Enter barcode"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="Item Code" prop="itemCode">
-              <el-input v-model="form.itemCode" placeholder="Enter item code" style="width: 100%" />
+              <el-input
+                v-model="form.itemCode"
+                placeholder="Enter item code"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
         </el-row>
 
         <el-form-item label="Item Name" prop="itemName">
-          <el-input v-model="form.itemName" placeholder="Enter item name" style="width: 100%" />
+          <el-input
+            v-model="form.itemName"
+            placeholder="Enter item name"
+            style="width: 100%"
+          />
         </el-form-item>
 
         <el-row :gutter="20">
@@ -246,7 +269,11 @@
         </el-form-item>
 
         <el-form-item label="Item Image" prop="itemImage">
-          <el-input v-model="form.itemImage" placeholder="Enter image URL" style="width: 100%" />
+          <el-input
+            v-model="form.itemImage"
+            placeholder="Enter image URL"
+            style="width: 100%"
+          />
         </el-form-item>
       </el-form>
 
@@ -265,6 +292,99 @@
         </div>
       </template>
     </el-dialog>
+
+    <el-dialog
+      v-model="importDialogVisible"
+      title="Import Items"
+      width="900px"
+      :close-on-click-modal="!importLoading"
+    >
+      <div class="import-dialog">
+        <div class="import-toolbar">
+          <el-upload
+            accept=".xlsx,.xls,.csv"
+            :auto-upload="false"
+            :show-file-list="true"
+            :limit="1"
+            @change="onFileChange"
+          >
+            <template #trigger>
+              <el-button type="primary">Select Excel File</el-button>
+            </template>
+            <el-button @click="downloadTemplate" class="ml-2"
+              >Download Template</el-button
+            >
+          </el-upload>
+          <div class="import-info">Supported formats: .xlsx, .xls, .csv</div>
+        </div>
+
+        <el-alert
+          v-if="importError"
+          type="error"
+          show-icon
+          :closable="false"
+          class="mb-4"
+        >
+          {{ importError }}
+        </el-alert>
+
+        <el-table
+          v-if="importPreview.length"
+          :data="importPreview"
+          border
+          style="width: 100%"
+          max-height="400"
+        >
+          <el-table-column prop="barcode" label="Barcode" width="120" />
+          <el-table-column prop="itemCode" label="Item Code" width="120" />
+          <el-table-column prop="itemName" label="Item Name" width="180" />
+          <el-table-column prop="categoryName" label="Category" width="140" />
+          <el-table-column prop="brandName" label="Brand" width="140" />
+          <el-table-column prop="unitName" label="Unit" width="120" />
+          <el-table-column
+            prop="purchaseRate"
+            label="Purchase Rate"
+            width="140"
+          />
+          <el-table-column prop="costRate" label="Cost Rate" width="140" />
+          <el-table-column
+            prop="wholesaleRate"
+            label="Wholesale Rate"
+            width="150"
+          />
+          <el-table-column prop="retailRate" label="Retail Rate" width="140" />
+          <el-table-column prop="mrp" label="MRP" width="120" />
+          <el-table-column prop="taxPercentage" label="Tax %" width="100" />
+          <el-table-column prop="minimumStock" label="Min Stock" width="120" />
+          <el-table-column
+            prop="openingStock"
+            label="Opening Stock"
+            width="140"
+          />
+          <el-table-column prop="isActive" label="Active" width="100">
+            <template #default="{ row }">
+              <el-tag :type="row.isActive ? 'success' : 'danger'">
+                {{ row.isActive ? "Yes" : "No" }}
+              </el-tag>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="importDialogVisible = false">Cancel</el-button>
+          <el-button
+            type="primary"
+            :loading="importLoading"
+            :disabled="!importPreview.length || !!importError"
+            @click="handleImport"
+          >
+            Import {{ importPreview.length }} Items
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -276,12 +396,15 @@ import {
   type FormInstance,
   type FormRules,
 } from "element-plus";
-import { Plus } from "@element-plus/icons-vue";
+import { Plus, Download, Upload } from "@element-plus/icons-vue";
+import * as XLSX from "xlsx";
 import { useItemStore } from "@/stores/items";
 import { useCategoryStore } from "@/stores/categories";
 import { useBrandStore } from "@/stores/brands";
 import { useUnitStore } from "@/stores/units";
+import { itemService } from "@/services/items";
 import type { CreateItem, UpdateItem } from "@/services/items";
+import type { ImportItemDto } from "@/services/items";
 
 const itemStore = useItemStore();
 const categoryStore = useCategoryStore();
@@ -294,6 +417,11 @@ const editingItem = ref<any>(null);
 const formRef = ref<FormInstance>();
 const dialogLoading = ref(false);
 const saveLoading = ref(false);
+
+const importDialogVisible = ref(false);
+const importLoading = ref(false);
+const importError = ref<string>("");
+const importPreview = ref<ImportItemDto[]>([]);
 
 const form = ref<CreateItem>({
   barcode: "",
@@ -469,6 +597,176 @@ const handleDelete = async (id: number) => {
   } catch {
     // User cancelled
   }
+};
+
+const openImportDialog = async () => {
+  importDialogVisible.value = true;
+  importError.value = "";
+  importPreview.value = [];
+  await categoryStore.fetchAll();
+  await brandStore.fetchAll();
+  await unitStore.fetchAll();
+};
+
+const onFileChange = (file: any) => {
+  importError.value = "";
+  importPreview.value = [];
+
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+    try {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json<Record<string, any>>(firstSheet);
+
+      if (!json.length) {
+        importError.value = "Excel file is empty";
+        return;
+      }
+
+      const normalized = json.map((row) => {
+        const entry: any = {};
+        Object.keys(row).forEach((key) => {
+          const normalizedKey = key.trim().toLowerCase();
+          entry[normalizedKey] = row[key];
+        });
+        return entry;
+      });
+
+      const requiredHeaders = [
+        "itemcode",
+        "itemname",
+        "category",
+        "brand",
+        "unit",
+        "purchaserate",
+        "costrate",
+        "wholesalerate",
+        "retailrate",
+        "mrp",
+        "taxpercentage",
+        "minimumstock",
+        "openingstock",
+      ];
+
+      const missingHeaders = requiredHeaders.filter(
+        (header) => normalized[0][header] === undefined,
+      );
+
+      if (missingHeaders.length) {
+        importError.value = `Missing required columns: ${missingHeaders.join(", ")}`;
+        return;
+      }
+
+      importPreview.value = normalized.map((row) => ({
+        barcode:
+          row.barcode === undefined || row.barcode === null
+            ? ""
+            : String(row.barcode),
+        itemCode: String(row.itemcode ?? ""),
+        itemName: String(row.itemname ?? ""),
+        categoryName: String(row.category ?? ""),
+        brandName: String(row.brand ?? ""),
+        unitName: String(row.unit ?? ""),
+        purchaseRate: Number(row.purchaserate ?? 0),
+        costRate: Number(row.costrate ?? 0),
+        wholesaleRate: Number(row.wholesalerate ?? 0),
+        retailRate: Number(row.retailrate ?? 0),
+        mrp: Number(row.mrp ?? 0),
+        taxPercentage: Number(row.taxpercentage ?? 0),
+        minimumStock: Number(row.minimumstock ?? 0),
+        openingStock: Number(row.openingstock ?? 0),
+        isActive:
+          row.isactive !== undefined
+            ? String(row.isactive).toLowerCase() === "true" ||
+              String(row.isactive) === "1"
+            : true,
+      }));
+    } catch (err) {
+      console.error(err);
+      importError.value = "Failed to parse Excel file";
+    }
+  };
+
+  reader.readAsArrayBuffer(file.raw);
+};
+
+const handleImport = async () => {
+  if (!importPreview.value.length || importLoading.value) return;
+
+  importLoading.value = true;
+  importError.value = "";
+
+  try {
+    const response = await itemService.importItems(importPreview.value);
+
+    if (!response.success) {
+      throw new Error(response.message || "Import failed");
+    }
+
+    const successCount = (response.data ?? []).filter(
+      (item: any) => item.success,
+    ).length;
+    const failedCount = (response.data ?? []).length - successCount;
+
+    ElMessage.success(
+      `Imported ${successCount} items successfully${failedCount ? `, ${failedCount} failed` : ""}`,
+    );
+    importDialogVisible.value = false;
+    importPreview.value = [];
+    searchTerm.value = "";
+    itemStore.pagedItems.pageNumber = 1;
+    itemStore.pagedItems.pageSize = 10;
+    await itemStore.fetchPaged(1, 10, "");
+  } catch (err: any) {
+    importError.value = err.message || "Failed to import items";
+  } finally {
+    importLoading.value = false;
+  }
+};
+
+const downloadTemplate = () => {
+  const headers = [
+    "Barcode",
+    "ItemCode",
+    "ItemName",
+    "Category",
+    "Brand",
+    "Unit",
+    "PurchaseRate",
+    "CostRate",
+    "WholesaleRate",
+    "RetailRate",
+    "MRP",
+    "TaxPercentage",
+    "MinimumStock",
+    "OpeningStock",
+    "IsActive",
+  ];
+
+  const sampleRow = [
+    "",
+    "ITM-001",
+    "Sample Item",
+    categoryStore.categories[0]?.categoryName ?? "General",
+    brandStore.brands[0]?.brandName ?? "Generic",
+    unitStore.units[0]?.unitName ?? "Pcs",
+    10,
+    8,
+    12,
+    15,
+    20,
+    5,
+    10,
+    50,
+    "TRUE",
+  ];
+
+  const worksheet = XLSX.utils.aoa_to_sheet([headers, sampleRow]);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Items");
+  XLSX.writeFile(workbook, "items-import-template.xlsx");
 };
 
 onMounted(() => {

@@ -12,6 +12,7 @@ public class CurrentStockReportItemDto
 
 public class SalesReportItemDto
 {
+    public int SaleId { get; set; }
     public DateTime Date { get; set; }
     public string InvoiceNumber { get; set; } = string.Empty;
     public string Customer { get; set; } = string.Empty;
@@ -20,6 +21,7 @@ public class SalesReportItemDto
 
 public class PurchasesReportItemDto
 {
+    public int PurchaseId { get; set; }
     public DateTime Date { get; set; }
     public string InvoiceNumber { get; set; } = string.Empty;
     public string Supplier { get; set; } = string.Empty;

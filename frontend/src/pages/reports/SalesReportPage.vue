@@ -13,6 +13,16 @@
           value-format="YYYY-MM-DD"
         />
         <el-button type="primary" @click="fetchReport">Search</el-button>
+        <!-- <el-button @click="handleExportPdf" :loading="exportLoading">Export PDF</el-button> -->
+        <div class="export-btn-wrapper">
+          <el-button
+            class="export-btn"
+            @click="handleExportExcel"
+            :loading="exportLoading"
+          >
+            Export Excel
+          </el-button>
+        </div>
       </div>
       <el-table :data="reportData" v-loading="loading" style="width: 100%">
         <el-table-column prop="date" label="Date" width="100">
@@ -40,8 +50,10 @@
 import { ref, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import { reportService, type SalesReportItem } from "@/services/reports";
+import { exportSalesToPdf, exportSalesToExcel } from "@/utils/exporters";
 
 const loading = ref(false);
+const exportLoading = ref(false);
 const dateRange = ref<string[]>([]);
 const reportData = ref<SalesReportItem[]>([]);
 
@@ -73,6 +85,39 @@ const fetchReport = async () => {
     ElMessage.error("Failed to fetch report");
   } finally {
     loading.value = false;
+  }
+};
+
+const buildFilename = (prefix = "sales-report") => {
+  const datePart = new Date().toISOString().slice(0, 10);
+  return `${prefix}-${datePart}`;
+};
+
+const handleExportPdf = async () => {
+  if (!reportData.value.length || exportLoading.value) return;
+  exportLoading.value = true;
+  try {
+    await exportSalesToPdf(reportData.value, `${buildFilename()}.pdf`);
+    ElMessage.success("PDF exported successfully");
+  } catch (error) {
+    console.error(error);
+    ElMessage.error("Failed to export PDF");
+  } finally {
+    exportLoading.value = false;
+  }
+};
+
+const handleExportExcel = async () => {
+  if (!reportData.value.length || exportLoading.value) return;
+  exportLoading.value = true;
+  try {
+    await exportSalesToExcel(reportData.value, `${buildFilename()}.xlsx`);
+    ElMessage.success("Excel exported successfully");
+  } catch (error) {
+    console.error(error);
+    ElMessage.error("Failed to export Excel");
+  } finally {
+    exportLoading.value = false;
   }
 };
 

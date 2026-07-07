@@ -72,7 +72,7 @@ public class ItemsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<ApiResponse<ItemDto>>> Create([FromBody] CreateItemDto dto)
+    public async Task<ActionResult<ApiResponse<IEnumerable<ItemImportResultDto>>>> Create([FromBody] CreateItemDto dto)
     {
         try
         {
@@ -83,6 +83,22 @@ public class ItemsController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating item");
+            return StatusCode(StatusCodes.Status500InternalServerError, ApiResponse.FailureResult("An error occurred"));
+        }
+    }
+
+    [HttpPost("import")]
+    public async Task<ActionResult<ApiResponse<IEnumerable<ItemImportResultDto>>>> Import([FromBody] List<ImportItemDto> dtos)
+    {
+        try
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var result = await _itemService.ImportAsync(dtos, currentUserId);
+            return Ok(ApiResponse<IEnumerable<ItemImportResultDto>>.SuccessResult(result, "Import completed"));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error importing items");
             return StatusCode(StatusCodes.Status500InternalServerError, ApiResponse.FailureResult("An error occurred"));
         }
     }

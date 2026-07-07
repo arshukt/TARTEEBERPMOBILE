@@ -48,19 +48,14 @@
             </span>
           </template>
         </el-table-column> -->
-        <el-table-column
-          label="Actions"
-          width="90"
-          fixed="right"
-          align="center"
-        >
+        <el-table-column label="Actions" width="130" fixed="right" align="center">
           <template #default="{ row }">
             <el-button link type="primary" @click="openDialog(row)">
               Edit
             </el-button>
-            <!-- <el-button link type="danger" @click="handleDelete(row)">
-              Delete
-            </el-button> -->
+            <el-button link type="success" @click="openPrintDialog(row)">
+              Print
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -376,6 +371,101 @@
         </div>
       </template>
     </el-dialog>
+
+    <el-dialog
+      v-model="printDialogVisible"
+      :title="`Print Receipt - ${printSale?.invoiceNumber || ''}`"
+      width="480px"
+      :show-close="true"
+      :close-on-click-modal="false"
+      class="sales-print-dialog"
+    >
+      <div v-if="printSale && company" class="sales-receipt">
+        <div class="receipt-header">
+          <h2 class="receipt-company">{{ company.companyName }}</h2>
+          <p v-if="company.address">{{ company.address }}</p>
+          <p v-if="company.phone">Tel: {{ company.phone }}</p>
+          <p v-if="company.mobile">Mob: {{ company.mobile }}</p>
+          <p v-if="company.email">Email: {{ company.email }}</p>
+          <p v-if="company.taxNumber">Tax No: {{ company.taxNumber }}</p>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-meta">
+          <div class="receipt-meta-row">
+            <span>Invoice</span>
+            <span>{{ printSale.invoiceNumber }}</span>
+          </div>
+          <div class="receipt-meta-row">
+            <span>Date</span>
+            <span>{{ formatDate(printSale.saleDate) }}</span>
+          </div>
+          <div v-if="printCustomer" class="receipt-meta-row">
+            <span>Customer</span>
+            <span>{{ printCustomer.customerName }}</span>
+          </div>
+          <div v-if="printCustomer?.mobile" class="receipt-meta-row">
+            <span>Mobile</span>
+            <span>{{ printCustomer.mobile }}</span>
+          </div>
+        </div>
+        <div class="receipt-divider"></div>
+        <table class="receipt-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="text-right">Qty</th>
+              <th class="text-right">Rate</th>
+              <th class="text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="detail in printSale.saleDetails" :key="detail.id">
+              <td>{{ detail.item?.itemName || ('Item ' + detail.itemId) }}</td>
+              <td class="text-right">{{ detail.quantity }}</td>
+              <td class="text-right">{{ formatCurrency(detail.rate) }}</td>
+              <td class="text-right">{{ formatCurrency(detail.quantity * detail.rate - detail.discount) }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="receipt-divider"></div>
+        <div class="receipt-totals">
+          <div class="receipt-totals-row">
+            <span>Subtotal</span>
+            <span>{{ formatCurrency(printSale.totalAmount) }}</span>
+          </div>
+          <div v-if="printSale.discount" class="receipt-totals-row">
+            <span>Discount</span>
+            <span>{{ formatCurrency(printSale.discount) }}</span>
+          </div>
+          <div v-if="printSale.taxAmount" class="receipt-totals-row">
+            <span>Tax</span>
+            <span>{{ formatCurrency(printSale.taxAmount) }}</span>
+          </div>
+          <div class="receipt-totals-row receipt-totals-total">
+            <span>Net</span>
+            <span>{{ formatCurrency(printSale.netAmount) }}</span>
+          </div>
+          <div class="receipt-totals-row">
+            <span>Paid</span>
+            <span>{{ formatCurrency(printSale.paidAmount) }}</span>
+          </div>
+          <div v-if="printSale.dueAmount" class="receipt-totals-row">
+            <span>Due</span>
+            <span class="text-red-600">{{ formatCurrency(printSale.dueAmount) }}</span>
+          </div>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-footer">
+          <p>Thank you for your business!</p>
+        </div>
+      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="printDialogVisible = false">Close</el-button>
+          <el-button type="primary" @click="printReceipt">Print</el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -391,6 +481,7 @@ import { Plus } from "@element-plus/icons-vue";
 import { useSaleStore } from "@/stores/sales";
 import { useCustomerStore } from "@/stores/customers";
 import { useItemStore } from "@/stores/items";
+import { useCompanyStore } from "@/stores/companies";
 import { documentNumberService } from "@/services/document-numbers";
 import type {
   CreateSale,
@@ -403,6 +494,7 @@ import { saleService } from "@/services/sales";
 const saleStore = useSaleStore();
 const customerStore = useCustomerStore();
 const itemStore = useItemStore();
+const companyStore = useCompanyStore();
 
 const searchTerm = ref("");
 const dialogVisible = ref(false);
@@ -410,6 +502,10 @@ const editingSale = ref<any>(null);
 const formRef = ref<FormInstance>();
 const dialogLoading = ref(false);
 const saveLoading = ref(false);
+const printDialogVisible = ref(false);
+const printSale = ref<any>(null);
+const company = ref<any>(null);
+const printCustomer = ref<any>(null);
 
 const form = ref<CreateSale>({
   customerId: undefined,
@@ -641,7 +737,185 @@ const handleDelete = async (id: number) => {
   }
 };
 
-onMounted(() => {
+const openPrintDialog = async (sale: any) => {
+  printDialogVisible.value = true;
+  printSale.value = null;
+  printCustomer.value = null;
+  try {
+    const [saleResponse] = await Promise.all([
+      saleService.getById(sale.id),
+      itemStore.fetchAll(),
+    ]);
+
+    if (saleResponse.success && saleResponse.data) {
+      const data = saleResponse.data;
+      printSale.value = {
+        ...data,
+        saleDetails: (data.saleDetails || []).map((d: any) => ({
+          ...d,
+          item: d.item || itemStore.items.find((i) => i.id === d.itemId) || undefined,
+        })),
+      };
+      printCustomer.value = data.customer || null;
+    }
+  } catch (error: any) {
+    ElMessage.error(error?.response?.data?.message || "Failed to load receipt data");
+    printDialogVisible.value = false;
+  }
+};
+
+const printReceipt = () => {
+  if (!printSale.value) return;
+  const printContent = document.querySelector(".sales-receipt");
+  if (!printContent) return;
+
+  const printWindow = window.open("", "_blank", "width=320,height=600");
+  if (!printWindow) {
+    ElMessage.error("Please allow popups to print");
+    return;
+  }
+
+  const companyName = company.value?.companyName || "Company";
+  const companyAddress = company.value?.address || "";
+  const companyPhone = company.value?.phone || "";
+  const companyMobile = company.value?.mobile || "";
+  const companyEmail = company.value?.email || "";
+  const companyTax = company.value?.taxNumber || "";
+
+  const rows = printSale.value.saleDetails
+    .map(
+      (detail: any) => `<tr>
+        <td>${(detail.item?.itemName || "Item " + detail.itemId) || "Item"}</td>
+        <td class="text-right">${detail.quantity}</td>
+        <td class="text-right">${formatCurrency(detail.rate)}</td>
+        <td class="text-right">${formatCurrency(detail.quantity * detail.rate - detail.discount)}</td>
+      </tr>`
+    )
+    .join("");
+
+  printWindow.document.write(`<!doctype html>
+<html>
+<head>
+<title>Receipt - ${printSale.value.invoiceNumber}</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.35;
+    color: #000;
+  }
+  .receipt-header, .receipt-meta, .receipt-totals, .receipt-footer {
+    text-align: center;
+  }
+  .receipt-header h1 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .receipt-header p {
+    margin: 2px 0;
+  }
+  .receipt-divider {
+    border-top: 1px dashed #000;
+    margin: 8px 0;
+  }
+  .receipt-meta-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    text-align: left;
+  }
+  .receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .receipt-table th, .receipt-table td {
+    padding: 4px 2px;
+    text-align: left;
+    border-bottom: 1px dotted #000;
+    vertical-align: top;
+  }
+  .receipt-table th {
+    border-bottom: 1px solid #000;
+  }
+  .receipt-table .text-right {
+    text-align: right;
+  }
+  .receipt-totals-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .receipt-totals-total {
+    font-weight: 700;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 4px 0;
+    margin: 4px 0;
+  }
+  .text-red-600 { color: #b00000; }
+  .text-right { text-align: right; }
+  @media print {
+    body { padding: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="receipt-header">
+    <h1>${companyName}</h1>
+    ${companyAddress ? `<p>${companyAddress}</p>` : ""}
+    ${companyPhone ? `<p>Tel: ${companyPhone}</p>` : ""}
+    ${companyMobile ? `<p>Mob: ${companyMobile}</p>` : ""}
+    ${companyEmail ? `<p>${companyEmail}</p>` : ""}
+    ${companyTax ? `<p>Tax No: ${companyTax}</p>` : ""}
+  </div>
+  <div class="receipt-divider"></div>
+  <div class="receipt-meta">
+    <div class="receipt-meta-row"><span>Invoice</span><span>${printSale.value.invoiceNumber}</span></div>
+    <div class="receipt-meta-row"><span>Date</span><span>${formatDate(printSale.value.saleDate)}</span></div>
+    ${printCustomer.value ? `<div class="receipt-meta-row"><span>Customer</span><span>${printCustomer.value.customerName}</span></div>` : ""}
+    ${printCustomer.value?.mobile ? `<div class="receipt-meta-row"><span>Mobile</span><span>${printCustomer.value.mobile}</span></div>` : ""}
+  </div>
+  <div class="receipt-divider"></div>
+  <table class="receipt-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th class="text-right">Qty</th>
+        <th class="text-right">Rate</th>
+        <th class="text-right">Total</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <div class="receipt-divider"></div>
+  <div class="receipt-totals">
+    <div class="receipt-totals-row"><span>Subtotal</span><span>${formatCurrency(printSale.value.totalAmount)}</span></div>
+    ${printSale.value.discount ? `<div class="receipt-totals-row"><span>Discount</span><span>${formatCurrency(printSale.value.discount)}</span></div>` : ""}
+    ${printSale.value.taxAmount ? `<div class="receipt-totals-row"><span>Tax</span><span>${formatCurrency(printSale.value.taxAmount)}</span></div>` : ""}
+    <div class="receipt-totals-row receipt-totals-total"><span>Net</span><span>${formatCurrency(printSale.value.netAmount)}</span></div>
+    <div class="receipt-totals-row"><span>Paid</span><span>${formatCurrency(printSale.value.paidAmount)}</span></div>
+    ${printSale.value.dueAmount ? `<div class="receipt-totals-row"><span>Due</span><span class="text-red-600">${formatCurrency(printSale.value.dueAmount)}</span></div>` : ""}
+  </div>
+  <div class="receipt-divider"></div>
+  <div class="receipt-footer">
+    <p>Thank you for your business!</p>
+  </div>
+</body>
+</html>`);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+};
+
+onMounted(async () => {
   loadSales();
+  try {
+    await companyStore.fetchFirst();
+    company.value = companyStore.currentCompany;
+  } catch {}
 });
 </script>

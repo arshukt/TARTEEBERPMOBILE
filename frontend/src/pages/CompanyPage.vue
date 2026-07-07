@@ -1,8 +1,6 @@
 <template>
   <div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-xl font-bold">Company Settings</h2>
-    </div>
+    <h2 class="text-xl font-bold text-[#025f8b]">Company Settings</h2>
 
     <el-card>
       <div v-if="companyStore.loading" class="text-center py-10">
@@ -12,20 +10,34 @@
       <template v-else>
         <el-form :model="form" :rules="rules" ref="formRef" label-width="150px">
           <el-form-item label="Company Name" prop="companyName">
-            <el-input v-model="form.companyName" placeholder="Enter company name" />
+            <el-input
+              v-model="form.companyName"
+              placeholder="Enter company name"
+            />
           </el-form-item>
           <el-form-item label="Address" prop="address">
-            <el-input v-model="form.address" type="textarea" :rows="2" placeholder="Enter address" />
+            <el-input
+              v-model="form.address"
+              type="textarea"
+              :rows="2"
+              placeholder="Enter address"
+            />
           </el-form-item>
           <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="Mobile" prop="mobile">
-                <el-input v-model="form.mobile" placeholder="Enter mobile number" />
+                <el-input
+                  v-model="form.mobile"
+                  placeholder="Enter mobile number"
+                />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="Phone" prop="phone">
-                <el-input v-model="form.phone" placeholder="Enter phone number" />
+                <el-input
+                  v-model="form.phone"
+                  placeholder="Enter phone number"
+                />
               </el-form-item>
             </el-col>
           </el-row>
@@ -44,7 +56,10 @@
           <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="Tax Number" prop="taxNumber">
-                <el-input v-model="form.taxNumber" placeholder="Enter tax number" />
+                <el-input
+                  v-model="form.taxNumber"
+                  placeholder="Enter tax number"
+                />
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -54,7 +69,11 @@
             </el-col>
           </el-row>
           <el-form-item>
-            <el-button type="primary" @click="handleSubmit" :loading="companyStore.loading">
+            <el-button
+              type="primary"
+              @click="handleSubmit"
+              :loading="companyStore.loading"
+            >
               {{ companyStore.currentCompany ? "Update" : "Create" }} Company
             </el-button>
           </el-form-item>
@@ -82,13 +101,13 @@ const form = ref<CreateCompany>({
   email: "",
   website: "",
   logo: "",
-  taxNumber: ""
+  taxNumber: "",
 });
 
 const rules: FormRules = {
   companyName: [
-    { required: true, message: "Company name is required", trigger: "blur" }
-  ]
+    { required: true, message: "Company name is required", trigger: "blur" },
+  ],
 };
 
 const loadCompany = async () => {
@@ -102,7 +121,7 @@ const loadCompany = async () => {
       email: companyStore.currentCompany.email,
       website: companyStore.currentCompany.website,
       logo: companyStore.currentCompany.logo,
-      taxNumber: companyStore.currentCompany.taxNumber
+      taxNumber: companyStore.currentCompany.taxNumber,
     };
   }
 };
@@ -115,7 +134,7 @@ const handleSubmit = async () => {
       if (companyStore.currentCompany) {
         success = await companyStore.update({
           id: companyStore.currentCompany.id,
-          ...form.value
+          ...form.value,
         } as UpdateCompany);
       } else {
         success = await companyStore.create(form.value);

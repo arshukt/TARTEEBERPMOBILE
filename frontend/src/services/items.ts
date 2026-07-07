@@ -48,6 +48,24 @@ export interface UpdateItem extends CreateItem {
   id: number;
 }
 
+export interface ImportItemDto {
+  barcode?: string;
+  itemCode: string;
+  itemName: string;
+  categoryName: string;
+  brandName: string;
+  unitName: string;
+  purchaseRate: number;
+  costRate: number;
+  wholesaleRate: number;
+  retailRate: number;
+  mrp: number;
+  taxPercentage: number;
+  minimumStock: number;
+  openingStock: number;
+  isActive: boolean;
+}
+
 export const itemService = {
   async getPaged(pageNumber: number, pageSize: number, searchTerm?: string): Promise<ApiResponse<PagedResponse<Item>>> {
     const params = new URLSearchParams({
@@ -81,6 +99,11 @@ export const itemService = {
 
   async delete(id: number): Promise<ApiResponse> {
     const response = await api.delete(`/items/${id}`);
+    return response.data;
+  },
+
+  async importItems(dtos: ImportItemDto[]): Promise<ApiResponse<any[]>> {
+    const response = await api.post(`/items/import`, dtos);
     return response.data;
   }
 };

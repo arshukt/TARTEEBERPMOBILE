@@ -47,6 +47,7 @@ public class ReportRepository : IReportRepository
         using var conn = _dbConnectionFactory.CreateConnection();
         var sql = @"
             SELECT 
+                s.""Id"" AS ""SaleId"",
                 s.""SaleDate"" AS ""Date"",
                 s.""InvoiceNumber"",
                 COALESCE(c.""CustomerName"", 'Cash Sale') AS ""Customer"",
@@ -54,12 +55,12 @@ public class ReportRepository : IReportRepository
             FROM ""Sales"" s
             LEFT JOIN ""Customers"" c ON s.""CustomerId"" = c.""Id""
             WHERE s.""IsDeleted"" = false";
-        
+
         if (startDate.HasValue)
             sql += " AND s.\"SaleDate\" >= @StartDate";
         if (endDate.HasValue)
             sql += " AND s.\"SaleDate\" <= @EndDate";
-        
+
         sql += " ORDER BY s.\"SaleDate\" DESC";
 
         return await conn.QueryAsync<SalesReportItemDto>(sql, new { StartDate = startDate, EndDate = endDate });
@@ -70,6 +71,7 @@ public class ReportRepository : IReportRepository
         using var conn = _dbConnectionFactory.CreateConnection();
         var sql = @"
             SELECT 
+                p.""Id"" AS ""PurchaseId"",
                 p.""PurchaseDate"" AS ""Date"",
                 p.""InvoiceNumber"",
                 s.""SupplierName"" AS ""Supplier"",
@@ -77,12 +79,12 @@ public class ReportRepository : IReportRepository
             FROM ""Purchases"" p
             LEFT JOIN ""Suppliers"" s ON p.""SupplierId"" = s.""Id""
             WHERE p.""IsDeleted"" = false";
-        
+
         if (startDate.HasValue)
             sql += " AND p.\"PurchaseDate\" >= @StartDate";
         if (endDate.HasValue)
             sql += " AND p.\"PurchaseDate\" <= @EndDate";
-        
+
         sql += " ORDER BY p.\"PurchaseDate\" DESC";
 
         return await conn.QueryAsync<PurchasesReportItemDto>(sql, new { StartDate = startDate, EndDate = endDate });
